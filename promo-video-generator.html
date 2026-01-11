@@ -2935,6 +2935,7 @@ select option.category-header {
       <option value="viral">🔥 Viral Hooks</option>
       <option value="manifestation">🌟 Manifestation</option>
       <option value="advanced">🚀 Advanced Modes</option>
+      <option value="premium">👑 Premium Showcase</option>
     </select>
   </div>
   <div class="control-row full">
@@ -4818,6 +4819,373 @@ const PRESETS = {
       ]
     },
   ],
+  
+  // ========== PREMIUM SHOWCASE - Sophisticated 3D videos for each Premium Mode ==========
+  premium: [
+    // ========== DEEP SLEEP PREMIUM (5 presets) ==========
+    {
+      id: 'premium-deepsleep-1', name: '👑 DEEP SLEEP - The 20-Minute Promise', duration: '20 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '👑', title: 'DEEP SLEEP', subtitle: 'PREMIUM MODE', warning: '🌙 20-minute scientific protocol' },
+        { type: 'vortex', bg: 'blue', text: '4 PHASES', sub: 'Alpha → Theta → Delta → Ultra' },
+        { type: 'pulse3d', bg: 'purple', text: 'Scientists mapped the exact descent' },
+        { type: 'neon', bg: 'teal', text: '0.2 Hz', subtext: 'Ultra delta destination' },
+        { type: 'particle', bg: 'purple', text: 'UNCONSCIOUS', sub: 'In 20 minutes guaranteed' }
+      ]
+    },
+    {
+      id: 'premium-deepsleep-2', name: '👑 DEEP SLEEP - 4-Phase Descent', duration: '20 min',
+      scenes: [
+        { type: 'hook3d', bg: 'blue', icon: '⬇️', title: '4-PHASE', subtitle: 'DESCENT', warning: '🧠 Your brain follows the exact path' },
+        { type: 'hypnotic', bg: 'purple', icon: '1️⃣', text: 'Phase 1: Alpha Calm (0-5 min)' },
+        { type: 'vortex', bg: 'teal', text: 'PHASE 2: THETA', sub: 'Drowsiness begins' },
+        { type: 'pulse3d', bg: 'blue', text: 'Phase 3-4: Delta → Ultra Delta' },
+        { type: 'blackout', bg: 'purple', text: 'DESTINATION', sub: '0.2-0.5 Hz territory' }
+      ]
+    },
+    {
+      id: 'premium-deepsleep-3', name: '👑 DEEP SLEEP - Cell Regeneration', duration: '20 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '🧬', title: 'CELLULAR', subtitle: 'REGENERATION', warning: '💉 Growth hormone surge' },
+        { type: 'particle', bg: 'teal', text: 'DNA REPAIR', sub: 'Happens below 1 Hz' },
+        { type: 'hypnotic', bg: 'gold', icon: '🔬', text: 'Scientific sleep optimization' },
+        { type: 'vortex', bg: 'purple', text: 'HGH RELEASE', sub: 'Natural anti-aging' },
+        { type: 'neon', bg: 'purple', text: '20 min', subtext: 'Complete restoration' }
+      ]
+    },
+    {
+      id: 'premium-deepsleep-4', name: '👑 DEEP SLEEP - Insomnia Solution', duration: '20 min',
+      scenes: [
+        { type: 'hook3d', bg: 'blue', icon: '🛏️', title: 'INSOMNIA', subtitle: 'SOLUTION', warning: '💤 End sleepless nights' },
+        { type: 'glitch', bg: 'purple', text: 'RACING THOUGHTS', sub: 'Silenced by delta' },
+        { type: 'pulse3d', bg: 'teal', text: 'Your brain cannot resist ultra delta' },
+        { type: 'vortex', bg: 'blue', text: 'YEARS OF INSOMNIA', sub: '→ Fixed in 20 min' },
+        { type: 'particle', bg: 'purple', text: 'TONIGHT', sub: 'Everything changes' }
+      ]
+    },
+    {
+      id: 'premium-deepsleep-5', name: '👑 DEEP SLEEP - Premium Overview', duration: '20 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '🌠', title: 'NESTORIUM', subtitle: 'DEEP SLEEP', warning: '👑 The Premium Experience' },
+        { type: 'matrix', bg: 'blue', text: '20 MIN PROTOCOL', sub: 'Scientifically optimized' },
+        { type: 'hypnotic', bg: 'teal', icon: '🎯', text: '4 phases • 5 stages • 1 destination' },
+        { type: 'neon', bg: 'purple', text: 'FREE', subtext: 'Premium quality, $0 cost' },
+        { type: 'pulse3d', bg: 'purple', text: 'Sleep like you\'ve never slept' }
+      ]
+    },
+    
+    // ========== ANXIETY RELIEF PREMIUM (5 presets) ==========
+    {
+      id: 'premium-anxiety-1', name: '👑 ANXIETY RELIEF - 18-Minute Protocol', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '👑', title: 'ANXIETY RELIEF', subtitle: 'PREMIUM MODE', warning: '🦋 18-minute dissolution' },
+        { type: 'vortex', bg: 'purple', text: 'SMR → ALPHA → THETA', sub: 'The therapeutic descent' },
+        { type: 'hypnotic', bg: 'gold', icon: '🧠', text: 'Alpha-Theta crossover zone' },
+        { type: 'neon', bg: 'teal', text: '7.5 Hz', subtext: 'The release frequency' },
+        { type: 'particle', bg: 'teal', text: 'ANXIETY', sub: 'Dissolved' }
+      ]
+    },
+    {
+      id: 'premium-anxiety-2', name: '👑 ANXIETY RELIEF - OM Carrier Frequency', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '🕉️', title: 'OM CARRIER', subtitle: '136.1 Hz', warning: '🙏 Sacred frequency base' },
+        { type: 'pulse3d', bg: 'purple', text: 'Earth\'s rotation as sound' },
+        { type: 'hypnotic', bg: 'gold', icon: '🌍', text: 'Ancient monks knew this' },
+        { type: 'vortex', bg: 'teal', text: 'COSMIC RHYTHM', sub: 'Grounds your nervous system' },
+        { type: 'neon', bg: 'teal', text: '136.1 Hz', subtext: 'The OM frequency' }
+      ]
+    },
+    {
+      id: 'premium-anxiety-3', name: '👑 ANXIETY RELIEF - Crossover Zone', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '🌊', title: 'CROSSOVER', subtitle: 'ZONE', warning: '✨ Where anxiety releases' },
+        { type: 'vortex', bg: 'purple', text: '7-8 Hz', sub: 'The therapeutic window' },
+        { type: 'hypnotic', bg: 'gold', icon: '🧬', text: 'Fight/flight → Rest/digest' },
+        { type: 'pulse3d', bg: 'teal', text: 'Therapists call this the release point' },
+        { type: 'particle', bg: 'teal', text: 'TRANSFORMATION', sub: 'Happens here' }
+      ]
+    },
+    {
+      id: 'premium-anxiety-4', name: '👑 ANXIETY RELIEF - Schumann Integration', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '🌍', title: 'SCHUMANN', subtitle: '7.83 Hz', warning: '🌿 Earth\'s heartbeat' },
+        { type: 'pulse3d', bg: 'purple', text: 'Natural grounding frequency' },
+        { type: 'hypnotic', bg: 'gold', icon: '🌳', text: 'Sync with the planet' },
+        { type: 'neon', bg: 'teal', text: '7.83 Hz', subtext: 'Earth resonance' },
+        { type: 'vortex', bg: 'teal', text: 'GROUNDED', sub: 'Calm. Centered.' }
+      ]
+    },
+    {
+      id: 'premium-anxiety-5', name: '👑 ANXIETY RELIEF - Premium Overview', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '🦋', title: 'NESTORIUM', subtitle: 'ANXIETY RELIEF', warning: '👑 The Premium Experience' },
+        { type: 'matrix', bg: 'purple', text: '18 MIN PROTOCOL', sub: 'Clinical-grade calm' },
+        { type: 'hypnotic', bg: 'gold', icon: '🎯', text: 'OM carrier • Schumann • Crossover' },
+        { type: 'neon', bg: 'teal', text: 'FREE', subtext: 'Professional results, $0' },
+        { type: 'pulse3d', bg: 'teal', text: 'Peace is your birthright' }
+      ]
+    },
+    
+    // ========== DEEP FOCUS PREMIUM (5 presets) ==========
+    {
+      id: 'premium-focus-1', name: '👑 DEEP FOCUS - 18-Minute Flow State', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'gold', icon: '👑', title: 'DEEP FOCUS', subtitle: 'PREMIUM MODE', warning: '⚡ 18-minute flow activation' },
+        { type: 'vortex', bg: 'purple', text: 'ALPHA → BETA → GAMMA', sub: 'The ascent to genius' },
+        { type: 'pulse3d', bg: 'teal', text: '40 Hz gamma coherence' },
+        { type: 'neon', bg: 'gold', text: '40 Hz', subtext: 'Peak performance frequency' },
+        { type: 'particle', bg: 'gold', text: 'FLOW STATE', sub: 'On demand' }
+      ]
+    },
+    {
+      id: 'premium-focus-2', name: '👑 DEEP FOCUS - Gamma Activation', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'gold', icon: '⚡', title: 'GAMMA', subtitle: 'ACTIVATION', warning: '🧠 40 Hz genius frequency' },
+        { type: 'hypnotic', bg: 'purple', icon: '💡', text: 'Cognitive binding activated' },
+        { type: 'vortex', bg: 'teal', text: 'DISTRACTIONS', sub: 'Become invisible' },
+        { type: 'neon', bg: 'gold', text: '40 Hz', subtext: 'Neural synchronization' },
+        { type: 'pulse3d', bg: 'gold', text: 'Think faster. Work deeper.' }
+      ]
+    },
+    {
+      id: 'premium-focus-3', name: '👑 DEEP FOCUS - CEO Performance', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'gold', icon: '💼', title: 'CEO', subtitle: 'PERFORMANCE', warning: '👔 Elite mental state' },
+        { type: 'pulse3d', bg: 'purple', text: 'High achievers use gamma' },
+        { type: 'hypnotic', bg: 'teal', icon: '🎯', text: 'SMR → Beta → High Beta → Gamma' },
+        { type: 'vortex', bg: 'gold', text: 'SYSTEMATIC', sub: 'Performance building' },
+        { type: 'neon', bg: 'gold', text: '40 Hz', subtext: 'Executive frequency' }
+      ]
+    },
+    {
+      id: 'premium-focus-4', name: '👑 DEEP FOCUS - 4 Hours in 2', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'gold', icon: '⏱️', title: '4 HOURS', subtitle: 'IN 2', warning: '🚀 Double your output' },
+        { type: 'glitch', bg: 'purple', text: 'GAMMA COHERENCE', sub: 'Doubles processing speed' },
+        { type: 'hypnotic', bg: 'teal', icon: '💰', text: 'Same effort, double results' },
+        { type: 'vortex', bg: 'gold', text: '18 MIN ACTIVATION', sub: 'Then peak output' },
+        { type: 'neon', bg: 'gold', text: '2X', subtext: 'Productivity boost' }
+      ]
+    },
+    {
+      id: 'premium-focus-5', name: '👑 DEEP FOCUS - Premium Overview', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'gold', icon: '⚡', title: 'NESTORIUM', subtitle: 'DEEP FOCUS', warning: '👑 The Premium Experience' },
+        { type: 'matrix', bg: 'purple', text: '18 MIN PROTOCOL', sub: 'Flow state engineering' },
+        { type: 'hypnotic', bg: 'teal', icon: '🎯', text: 'SMR • Beta • Gamma cascade' },
+        { type: 'neon', bg: 'gold', text: 'FREE', subtext: 'Elite focus, $0' },
+        { type: 'pulse3d', bg: 'gold', text: 'Enter the zone on demand' }
+      ]
+    },
+    
+    // ========== TRANSCENDENT PREMIUM (5 presets) ==========
+    {
+      id: 'premium-transcendent-1', name: '👑 TRANSCENDENT - 25-Minute Enlightenment', duration: '25 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '👑', title: 'TRANSCENDENT', subtitle: 'PREMIUM MODE', warning: '🔮 25-minute enlightenment' },
+        { type: 'vortex', bg: 'gold', text: 'THETA + GAMMA', sub: 'The monk signature' },
+        { type: 'hypnotic', bg: 'teal', icon: '🧘', text: 'What monks achieve in years' },
+        { type: 'neon', bg: 'purple', text: 'θ + γ', subtext: 'Enlightenment frequencies' },
+        { type: 'particle', bg: 'purple', text: 'TRANSCENDENCE', sub: 'Achieved' }
+      ]
+    },
+    {
+      id: 'premium-transcendent-2', name: '👑 TRANSCENDENT - Tibetan Monk Signature', duration: '25 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '🧘', title: 'MONK', subtitle: 'STATE', warning: '📿 Decades of practice in 25 min' },
+        { type: 'pulse3d', bg: 'gold', text: 'Gamma riding theta waves' },
+        { type: 'hypnotic', bg: 'teal', icon: '🧠', text: 'Researchers scanned meditating monks' },
+        { type: 'vortex', bg: 'purple', text: 'UNIQUE SIGNATURE', sub: 'Now in sound' },
+        { type: 'neon', bg: 'purple', text: '4-7 + 40', subtext: 'Hz combination' }
+      ]
+    },
+    {
+      id: 'premium-transcendent-3', name: '👑 TRANSCENDENT - Ego Dissolution', duration: '25 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '💫', title: 'EGO', subtitle: 'DISSOLUTION', warning: '🌌 Unity consciousness' },
+        { type: 'blackout', bg: 'gold', text: 'BOUNDARIES FADE', sub: 'Deep theta immersion' },
+        { type: 'hypnotic', bg: 'teal', icon: '♾️', text: 'I am separate → I am everything' },
+        { type: 'vortex', bg: 'purple', text: '4 Hz', sub: 'Gateway to beyond' },
+        { type: 'particle', bg: 'purple', text: 'UNITY', sub: 'Experienced' }
+      ]
+    },
+    {
+      id: 'premium-transcendent-4', name: '👑 TRANSCENDENT - Bliss State Access', duration: '25 min',
+      scenes: [
+        { type: 'hook3d', bg: 'gold', icon: '😊', title: 'ANANDA', subtitle: 'BLISS', warning: '✨ Pure joy state' },
+        { type: 'pulse3d', bg: 'purple', text: 'Endogenous bliss chemicals' },
+        { type: 'hypnotic', bg: 'teal', icon: '🌟', text: 'Theta opens. Gamma floods.' },
+        { type: 'vortex', bg: 'gold', text: 'NATURAL ECSTASY', sub: 'In 25 minutes' },
+        { type: 'particle', bg: 'gold', text: 'PURE BLISS', sub: 'Unlocked' }
+      ]
+    },
+    {
+      id: 'premium-transcendent-5', name: '👑 TRANSCENDENT - Premium Overview', duration: '25 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '🔮', title: 'NESTORIUM', subtitle: 'TRANSCENDENT', warning: '👑 The Premium Experience' },
+        { type: 'matrix', bg: 'gold', text: '25 MIN PROTOCOL', sub: 'Consciousness evolution' },
+        { type: 'hypnotic', bg: 'teal', icon: '🎯', text: 'OM • Theta • Gamma burst' },
+        { type: 'neon', bg: 'purple', text: 'FREE', subtext: 'Enlightenment, $0' },
+        { type: 'pulse3d', bg: 'purple', text: 'Become who you truly are' }
+      ]
+    },
+    
+    // ========== THIRD EYE PREMIUM (5 presets) ==========
+    {
+      id: 'premium-thirdeye-1', name: '👑 THIRD EYE - 22-Minute Activation', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '👑', title: 'THIRD EYE', subtitle: 'PREMIUM MODE', warning: '👁️ 22-minute pineal activation' },
+        { type: 'vortex', bg: 'gold', text: '852 + 963 Hz', sub: 'Solfeggio activation' },
+        { type: 'hypnotic', bg: 'teal', icon: '🔮', text: 'Ancient frequencies unlocked' },
+        { type: 'neon', bg: 'purple', text: '963 Hz', subtext: 'Pineal frequency' },
+        { type: 'particle', bg: 'purple', text: 'AWAKENING', sub: 'Begins' }
+      ]
+    },
+    {
+      id: 'premium-thirdeye-2', name: '👑 THIRD EYE - Pineal Gland Science', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '🧠', title: 'PINEAL', subtitle: 'ACTIVATION', warning: '🔬 Seat of the soul' },
+        { type: 'pulse3d', bg: 'gold', text: 'Photoreceptor cells inside' },
+        { type: 'hypnotic', bg: 'teal', icon: '👁️', text: 'Descartes knew. Ancients knew.' },
+        { type: 'vortex', bg: 'purple', text: '963 Hz', sub: 'Activates it' },
+        { type: 'neon', bg: 'purple', text: '22 min', subtext: 'Full activation' }
+      ]
+    },
+    {
+      id: 'premium-thirdeye-3', name: '👑 THIRD EYE - Inner Vision', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'gold', icon: '✨', title: 'INNER', subtitle: 'VISION', warning: '👁️ See with eyes closed' },
+        { type: 'hypnotic', bg: 'purple', icon: '💫', text: 'Darkness → Light, colors, visions' },
+        { type: 'vortex', bg: 'teal', text: 'AJNA ILLUMINATION', sub: '852 Hz opens the gate' },
+        { type: 'neon', bg: 'gold', text: '852 Hz', subtext: 'Third eye frequency' },
+        { type: 'particle', bg: 'purple', text: 'PERCEPTION', sub: 'Expanded' }
+      ]
+    },
+    {
+      id: 'premium-thirdeye-4', name: '👑 THIRD EYE - Solfeggio + Gamma Flash', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '⚡', title: 'GAMMA', subtitle: 'FLASH', warning: '🔥 963 Hz + 40 Hz combo' },
+        { type: 'pulse3d', bg: 'gold', text: 'The illumination combination' },
+        { type: 'hypnotic', bg: 'teal', icon: '💡', text: 'Pineal primed → Gamma flash!' },
+        { type: 'vortex', bg: 'purple', text: 'BLINDING', sub: 'Inner light' },
+        { type: 'neon', bg: 'purple', text: '963+40', subtext: 'Hz ultimate combo' }
+      ]
+    },
+    {
+      id: 'premium-thirdeye-5', name: '👑 THIRD EYE - Premium Overview', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'purple', icon: '👁️', title: 'NESTORIUM', subtitle: 'THIRD EYE', warning: '👑 The Premium Experience' },
+        { type: 'matrix', bg: 'gold', text: '22 MIN PROTOCOL', sub: 'Pineal awakening' },
+        { type: 'hypnotic', bg: 'teal', icon: '🎯', text: 'Solfeggio • Theta • Gamma' },
+        { type: 'neon', bg: 'purple', text: 'FREE', subtext: 'Inner vision, $0' },
+        { type: 'pulse3d', bg: 'purple', text: 'Open your inner eye' }
+      ]
+    },
+    
+    // ========== BODY RESTORE PREMIUM (5 presets) ==========
+    {
+      id: 'premium-body-1', name: '👑 BODY RESTORE - 22-Minute Healing', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '👑', title: 'BODY RESTORE', subtitle: 'PREMIUM MODE', warning: '🩹 22-minute cellular healing' },
+        { type: 'vortex', bg: 'purple', text: 'DELTA + GH RELEASE', sub: 'The repair cascade' },
+        { type: 'hypnotic', bg: 'gold', icon: '🧬', text: 'Growth hormone surge' },
+        { type: 'neon', bg: 'teal', text: '0.5-3 Hz', subtext: 'Healing frequencies' },
+        { type: 'particle', bg: 'teal', text: 'RESTORED', sub: 'Renewed' }
+      ]
+    },
+    {
+      id: 'premium-body-2', name: '👑 BODY RESTORE - Growth Hormone Protocol', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '💉', title: 'GH', subtitle: 'PROTOCOL', warning: '🧬 Natural anti-aging' },
+        { type: 'pulse3d', bg: 'purple', text: 'Delta triggers GH release' },
+        { type: 'hypnotic', bg: 'gold', icon: '💪', text: 'Repairs tissue. Burns fat.' },
+        { type: 'vortex', bg: 'teal', text: 'DEEP DELTA', sub: 'Peak GH secretion' },
+        { type: 'neon', bg: 'teal', text: '2 Hz', subtext: 'GH release frequency' }
+      ]
+    },
+    {
+      id: 'premium-body-3', name: '👑 BODY RESTORE - Vagus Nerve Activation', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '🧠', title: 'VAGUS', subtitle: 'NERVE', warning: '💓 Rest & digest activation' },
+        { type: 'hypnotic', bg: 'purple', icon: '🔄', text: 'Parasympathetic switch' },
+        { type: 'vortex', bg: 'gold', text: 'FIGHT/FLIGHT', sub: '→ Healing mode' },
+        { type: 'neon', bg: 'teal', text: '6-7 Hz', subtext: 'Vagus activation' },
+        { type: 'pulse3d', bg: 'teal', text: 'Deep healing enabled' }
+      ]
+    },
+    {
+      id: 'premium-body-4', name: '👑 BODY RESTORE - Pain & Inflammation', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '🔥', title: 'PAIN', subtitle: 'RELIEF', warning: '❄️ Natural anti-inflammatory' },
+        { type: 'glitch', bg: 'purple', text: 'CHRONIC PAIN', sub: 'Silenced by delta' },
+        { type: 'hypnotic', bg: 'gold', icon: '💊', text: 'Drug-free relief' },
+        { type: 'vortex', bg: 'teal', text: '0.5 Hz', sub: 'Below pain threshold' },
+        { type: 'neon', bg: 'teal', text: '10 Hz', subtext: 'Anti-inflammatory zone' }
+      ]
+    },
+    {
+      id: 'premium-body-5', name: '👑 BODY RESTORE - Premium Overview', duration: '22 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '🩹', title: 'NESTORIUM', subtitle: 'BODY RESTORE', warning: '👑 The Premium Experience' },
+        { type: 'matrix', bg: 'purple', text: '22 MIN PROTOCOL', sub: 'Cellular regeneration' },
+        { type: 'hypnotic', bg: 'gold', icon: '🎯', text: 'Delta • GH • Vagus • Repair' },
+        { type: 'neon', bg: 'teal', text: 'FREE', subtext: 'Healing, $0' },
+        { type: 'pulse3d', bg: 'teal', text: 'Your body knows how to heal' }
+      ]
+    },
+    
+    // ========== SPACE CLEAR PREMIUM (5 presets) ==========
+    {
+      id: 'premium-space-1', name: '👑 SPACE CLEAR - 18-Minute Purification', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '👑', title: 'SPACE CLEAR', subtitle: 'PREMIUM MODE', warning: '✨ 18-minute room cleansing' },
+        { type: 'vortex', bg: 'purple', text: 'FULL SOLFEGGIO', sub: '174 Hz → 963 Hz sweep' },
+        { type: 'hypnotic', bg: 'gold', icon: '🔔', text: 'Ancient temple frequencies' },
+        { type: 'neon', bg: 'teal', text: '9', subtext: 'Sacred tones' },
+        { type: 'particle', bg: 'teal', text: 'PURIFIED', sub: 'Play through speakers' }
+      ]
+    },
+    {
+      id: 'premium-space-2', name: '👑 SPACE CLEAR - Temple Sound Science', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '⛪', title: 'TEMPLE', subtitle: 'SCIENCE', warning: '🔔 Ancient wisdom proven' },
+        { type: 'pulse3d', bg: 'purple', text: 'Bells, gongs, chants - all Solfeggio' },
+        { type: 'hypnotic', bg: 'gold', icon: '🎵', text: 'Tibetan bowls • Church organs' },
+        { type: 'vortex', bg: 'teal', text: 'ORDINARY', sub: '→ Sacred space' },
+        { type: 'neon', bg: 'teal', text: '528 Hz', subtext: 'Miracle frequency' }
+      ]
+    },
+    {
+      id: 'premium-space-3', name: '👑 SPACE CLEAR - OM Space Opening', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '🕉️', title: 'OM', subtitle: 'OPENING', warning: '🌌 Cosmic frequency' },
+        { type: 'hypnotic', bg: 'purple', icon: '🌍', text: 'Earth\'s year orbit as sound' },
+        { type: 'vortex', bg: 'gold', text: '136.1 Hz', sub: 'The primordial sound' },
+        { type: 'neon', bg: 'teal', text: '136.1 Hz', subtext: 'Universal OM' },
+        { type: 'pulse3d', bg: 'teal', text: 'Space sanctified' }
+      ]
+    },
+    {
+      id: 'premium-space-4', name: '👑 SPACE CLEAR - Energy Reset', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '🧹', title: 'ENERGY', subtitle: 'RESET', warning: '💨 Clear stagnant vibes' },
+        { type: 'glitch', bg: 'purple', text: 'HEAVY ENERGY', sub: 'Neutralized' },
+        { type: 'hypnotic', bg: 'gold', icon: '✨', text: 'After arguments • New home • Office' },
+        { type: 'vortex', bg: 'teal', text: '396 Hz', sub: 'Liberation frequency' },
+        { type: 'particle', bg: 'teal', text: 'HARMONY', sub: 'Restored' }
+      ]
+    },
+    {
+      id: 'premium-space-5', name: '👑 SPACE CLEAR - Premium Overview', duration: '18 min',
+      scenes: [
+        { type: 'hook3d', bg: 'teal', icon: '✨', title: 'NESTORIUM', subtitle: 'SPACE CLEAR', warning: '👑 The Premium Experience' },
+        { type: 'matrix', bg: 'purple', text: '18 MIN PROTOCOL', sub: 'Full Solfeggio sweep' },
+        { type: 'hypnotic', bg: 'gold', icon: '🎯', text: '9 sacred tones • OM carrier' },
+        { type: 'neon', bg: 'teal', text: 'FREE', subtext: 'Sacred sound, $0' },
+        { type: 'pulse3d', bg: 'teal', text: 'Transform any room into a temple' }
+      ]
+    },
+  ],
 };
 
 function renderSceneContent(scene) {
@@ -5349,7 +5717,8 @@ class PromoPlayer {
       features: '⚡ Feature Showcases',
       viral: '🔥 Viral Hooks',
       manifestation: '🌟 Manifestation',
-      advanced: '🚀 Advanced Modes'
+      advanced: '🚀 Advanced Modes',
+      premium: '👑 Premium Showcase'
     };
     return labels[cat] || cat;
   }
