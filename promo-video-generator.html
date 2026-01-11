@@ -3078,9 +3078,11 @@ select option.category-header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  max-height: 95%;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
 .aurora-sky {
@@ -3423,14 +3425,16 @@ select option.category-header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  max-height: 95%;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   background: radial-gradient(ellipse at center,
     #0d0d2b 0%,
     #050510 50%,
     #000 100%
   );
+  padding: 15px;
+  box-sizing: border-box;
 }
 
 .cosmos-stars {
@@ -3612,10 +3616,12 @@ select option.category-header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  max-height: 90%;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0a0a1a 100%);
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .aether-wisps {
@@ -3648,8 +3654,8 @@ select option.category-header {
 
 .aether-orb {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   background: radial-gradient(circle at 30% 30%,
     rgba(255, 255, 255, 0.4) 0%,
     rgba(155, 126, 217, 0.3) 30%,
@@ -3658,11 +3664,12 @@ select option.category-header {
   );
   border-radius: 50%;
   box-shadow:
-    0 0 60px rgba(155, 126, 217, 0.4),
-    0 0 100px rgba(94, 231, 223, 0.2),
-    inset 0 0 40px rgba(255, 255, 255, 0.1);
+    0 0 50px rgba(155, 126, 217, 0.4),
+    0 0 80px rgba(94, 231, 223, 0.2),
+    inset 0 0 30px rgba(255, 255, 255, 0.1);
   animation: aetherOrbPulse 4s ease-in-out infinite;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .aether-orb::before {
@@ -3801,14 +3808,16 @@ select option.category-header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  max-height: 95%;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   background: radial-gradient(circle at center,
     #0a0a0a 0%,
     #050505 40%,
     #000 100%
   );
+  padding: 15px;
+  box-sizing: border-box;
 }
 
 .singularity-accretion {
@@ -4012,6 +4021,7 @@ select option.category-header {
       <option value="manifestation">🌟 Manifestation</option>
       <option value="advanced">🚀 Advanced Modes</option>
       <option value="premium">👑 Premium Showcase</option>
+      <option value="4d">🔮 4D FUTURISTIC</option>
     </select>
   </div>
   <div class="control-row full">
@@ -5894,232 +5904,6 @@ const PRESETS = {
         { type: 'hypnotic', bg: 'teal', icon: '🌟', text: 'Pure and clear' }
       ]
     },
-    
-    // ========== 4D FUTURISTIC PRESETS - Next Generation Consciousness Tech ==========
-    
-    // ========== 4D DEEP SLEEP (3 presets) ==========
-    {
-      id: '4d-sleep-1', name: '🔮 4D Sleep Portal', duration: '20 min',
-      scenes: [
-        { type: 'portal', bg: 'purple', text: 'DIMENSIONAL GATEWAY', sub: 'Step through to deep sleep' },
-        { type: 'tesseract', bg: 'blue', text: 'HYPERCUBE DESCENT' },
-        { type: 'singularity', bg: 'purple', text: 'EVENT HORIZON', sub: '0.2 Hz consciousness collapse' },
-        { type: 'aether', bg: 'blue', icon: '💤', text: 'Float beyond time', sub: 'Where dreams crystallize' },
-        { type: 'cosmos', bg: 'purple', icon: '🌌', text: 'Infinite rest awaits', sub: '4D SLEEP ACTIVATED' }
-      ]
-    },
-    {
-      id: '4d-sleep-2', name: '🔮 Quantum Sleep Field', duration: '20 min',
-      scenes: [
-        { type: 'quantum', bg: 'purple', text: 'QUANTUM FIELD INITIALIZING' },
-        { type: 'hologram', bg: 'blue', icon: '🧬', text: 'DNA REGENERATION PROTOCOL' },
-        { type: 'aurora', bg: 'teal', icon: '🌙', text: 'Brainwave synchronization', sub: 'Alpha → Theta → Delta → Ultra' },
-        { type: 'crystalline', bg: 'purple', text: 'Neural pathways crystallizing' },
-        { type: 'aether', bg: 'blue', icon: '✦', text: 'Sleep state locked', sub: 'QUANTUM COHERENCE' }
-      ]
-    },
-    {
-      id: '4d-sleep-3', name: '🔮 Tesseract Dreamstate', duration: '20 min',
-      scenes: [
-        { type: 'tesseract', bg: 'blue', text: '4TH DIMENSION ACCESSED' },
-        { type: 'mandala', bg: 'purple', icon: '🔮', text: 'Sacred geometry alignment' },
-        { type: 'cosmos', bg: 'blue', icon: '💫', text: 'Floating through starfields', sub: 'Beyond physical form' },
-        { type: 'singularity', bg: 'purple', text: 'CONSCIOUSNESS FOLD', sub: 'Entering dreamtime' },
-        { type: 'aurora', bg: 'blue', icon: '🌌', text: 'Rest beyond measure', sub: '4D DREAMSTATE COMPLETE' }
-      ]
-    },
-    
-    // ========== 4D ANXIETY RELIEF (3 presets) ==========
-    {
-      id: '4d-anxiety-1', name: '🦋 4D Calm Matrix', duration: '18 min',
-      scenes: [
-        { type: 'hologram', bg: 'teal', icon: '🦋', text: 'SERENITY PROTOCOL ONLINE' },
-        { type: 'quantum', bg: 'blue', text: 'DISSOLVING STRESS PARTICLES' },
-        { type: 'aurora', bg: 'teal', icon: '💠', text: 'Northern lights of peace', sub: 'SMR waves flowing' },
-        { type: 'crystalline', bg: 'blue', text: 'Anxiety transformed to clarity' },
-        { type: 'aether', bg: 'teal', icon: '☯️', text: 'Perfect equilibrium', sub: '4D CALM ACHIEVED' }
-      ]
-    },
-    {
-      id: '4d-anxiety-2', name: '🦋 Ethereal Peace Engine', duration: '18 min',
-      scenes: [
-        { type: 'aether', bg: 'teal', icon: '🕊️', text: 'Ethereal calm descending', sub: '136.1 Hz OM carrier' },
-        { type: 'mandala', bg: 'blue', icon: '🌸', text: 'Heart chakra harmonics' },
-        { type: 'portal', bg: 'teal', text: 'GATEWAY TO STILLNESS', sub: 'Leave worry behind' },
-        { type: 'cosmos', bg: 'blue', icon: '✨', text: 'Infinite peace within', sub: 'Alpha-theta bridge' },
-        { type: 'hologram', bg: 'teal', icon: '💎', text: 'TRANQUILITY CRYSTALLIZED' }
-      ]
-    },
-    {
-      id: '4d-anxiety-3', name: '🦋 Cosmic Anxiety Dissolve', duration: '18 min',
-      scenes: [
-        { type: 'cosmos', bg: 'blue', icon: '🌟', text: 'Stress becomes stardust', sub: 'Perspective shifts' },
-        { type: 'tesseract', bg: 'teal', text: 'WORRY UNTANGLED' },
-        { type: 'aurora', bg: 'blue', icon: '🦋', text: 'Metamorphosis complete', sub: 'From tension to lightness' },
-        { type: 'quantum', bg: 'teal', text: 'PEACE AT PARTICLE LEVEL' },
-        { type: 'singularity', bg: 'blue', text: 'CALM SINGULARITY', sub: 'All stress consumed' }
-      ]
-    },
-    
-    // ========== 4D DEEP FOCUS (3 presets) ==========
-    {
-      id: '4d-focus-1', name: '⚡ 4D Focus Reactor', duration: '18 min',
-      scenes: [
-        { type: 'tesseract', bg: 'gold', text: 'NEURAL HYPERCUBE ONLINE' },
-        { type: 'quantum', bg: 'blue', text: 'COGNITION PARTICLES ALIGNED' },
-        { type: 'hologram', bg: 'gold', icon: '🧠', text: 'PREFRONTAL CORTEX BOOST' },
-        { type: 'crystalline', bg: 'blue', text: 'Thoughts crystallize perfectly' },
-        { type: 'cosmos', bg: 'gold', icon: '⚡', text: 'Limitless concentration', sub: '4D FOCUS ENGAGED' }
-      ]
-    },
-    {
-      id: '4d-focus-2', name: '⚡ Quantum Cognition Drive', duration: '18 min',
-      scenes: [
-        { type: 'quantum', bg: 'blue', text: 'QUANTUM COMPUTING MODE' },
-        { type: 'mandala', bg: 'gold', icon: '🎯', text: 'Target lock: Genius state' },
-        { type: 'aurora', bg: 'blue', icon: '💡', text: 'Ideas flowing like aurora', sub: 'SMR precision waves' },
-        { type: 'portal', bg: 'gold', text: 'FLOW STATE PORTAL', sub: 'Step into hyperfocus' },
-        { type: 'hologram', bg: 'blue', icon: '∞', text: 'INFINITE POTENTIAL' }
-      ]
-    },
-    {
-      id: '4d-focus-3', name: '⚡ Singularity Mind', duration: '18 min',
-      scenes: [
-        { type: 'singularity', bg: 'gold', text: 'ALL FOCUS CONVERGES', sub: 'Single point mastery' },
-        { type: 'aether', bg: 'blue', icon: '🔬', text: 'Pure mental clarity', sub: 'Beta-gamma precision' },
-        { type: 'tesseract', bg: 'gold', text: 'MULTIDIMENSIONAL THINKING' },
-        { type: 'crystalline', bg: 'blue', text: 'Diamond-sharp focus' },
-        { type: 'cosmos', bg: 'gold', icon: '✦', text: 'Cosmic intelligence unlocked', sub: '4D MIND ONLINE' }
-      ]
-    },
-    
-    // ========== 4D TRANSCENDENT (3 presets) ==========
-    {
-      id: '4d-transcendent-1', name: '🔮 4D Transcendence Gate', duration: '25 min',
-      scenes: [
-        { type: 'portal', bg: 'purple', text: 'TRANSCENDENCE GATEWAY', sub: 'Beyond ordinary awareness' },
-        { type: 'mandala', bg: 'gold', icon: '🕉️', text: 'Sacred geometry activation' },
-        { type: 'cosmos', bg: 'purple', icon: '✦', text: 'Dissolving into infinite', sub: 'Theta-delta merger' },
-        { type: 'singularity', bg: 'gold', text: 'EGO DISSOLUTION', sub: 'Pure awareness remains' },
-        { type: 'aurora', bg: 'purple', icon: '🌌', text: 'Cosmic consciousness', sub: '4D TRANSCENDENCE COMPLETE' }
-      ]
-    },
-    {
-      id: '4d-transcendent-2', name: '🔮 Akashic Field Access', duration: '25 min',
-      scenes: [
-        { type: 'aether', bg: 'purple', icon: '📜', text: 'Akashic records opening', sub: 'Universal memory field' },
-        { type: 'quantum', bg: 'gold', text: 'INFORMATION FIELD ACTIVATED' },
-        { type: 'hologram', bg: 'purple', icon: '👁️', text: 'ALL-KNOWING VISION' },
-        { type: 'crystalline', bg: 'gold', text: 'Wisdom crystallizing within' },
-        { type: 'tesseract', bg: 'purple', text: '4D ENLIGHTENMENT' }
-      ]
-    },
-    {
-      id: '4d-transcendent-3', name: '🔮 Unity Consciousness Field', duration: '25 min',
-      scenes: [
-        { type: 'cosmos', bg: 'gold', icon: '🌟', text: 'One with everything', sub: 'Boundaries dissolving' },
-        { type: 'mandala', bg: 'purple', icon: '☯️', text: 'Yin and yang merge' },
-        { type: 'aurora', bg: 'gold', icon: '💫', text: 'Light body activation', sub: 'Vibration rising' },
-        { type: 'singularity', bg: 'purple', text: 'ALL IS ONE', sub: 'Unity realized' },
-        { type: 'aether', bg: 'gold', icon: '∞', text: 'Eternal presence', sub: '4D UNITY ACHIEVED' }
-      ]
-    },
-    
-    // ========== 4D THIRD EYE (3 presets) ==========
-    {
-      id: '4d-thirdeye-1', name: '👁️ 4D Pineal Activation', duration: '22 min',
-      scenes: [
-        { type: 'hologram', bg: 'purple', icon: '👁️', text: 'PINEAL GLAND IGNITION' },
-        { type: 'quantum', bg: 'blue', text: 'DMT MOLECULES AWAKENING' },
-        { type: 'mandala', bg: 'purple', icon: '🔮', text: 'Third eye opening sequence' },
-        { type: 'cosmos', bg: 'blue', icon: '✦', text: 'Inner cosmos revealed', sub: '936 Hz crown activation' },
-        { type: 'portal', bg: 'purple', text: 'VISION BEYOND SIGHT', sub: '4D PERCEPTION ONLINE' }
-      ]
-    },
-    {
-      id: '4d-thirdeye-2', name: '👁️ Crystalline Vision Matrix', duration: '22 min',
-      scenes: [
-        { type: 'crystalline', bg: 'purple', text: 'VISION CRYSTALS FORMING' },
-        { type: 'aether', bg: 'blue', icon: '💎', text: 'Clarity beyond measure', sub: 'Seeing true reality' },
-        { type: 'tesseract', bg: 'purple', text: 'HYPERDIMENSIONAL SIGHT' },
-        { type: 'aurora', bg: 'blue', icon: '👁️', text: 'Inner aurora illuminates', sub: 'Theta wave cascade' },
-        { type: 'singularity', bg: 'purple', text: 'ALL SEEN', sub: '4D VISION COMPLETE' }
-      ]
-    },
-    {
-      id: '4d-thirdeye-3', name: '👁️ Cosmic Perception Engine', duration: '22 min',
-      scenes: [
-        { type: 'cosmos', bg: 'blue', icon: '🌌', text: 'Universe within revealed', sub: 'As above, so below' },
-        { type: 'quantum', bg: 'purple', text: 'PHOTON VISION ACTIVATED' },
-        { type: 'mandala', bg: 'blue', icon: '🕉️', text: 'Ancient wisdom accessing' },
-        { type: 'hologram', bg: 'purple', icon: '✨', text: 'ENLIGHTENED PERCEPTION' },
-        { type: 'aether', bg: 'blue', icon: '👁️', text: 'See beyond the veil', sub: '4D INSIGHT UNLOCKED' }
-      ]
-    },
-    
-    // ========== 4D BODY RESTORE (3 presets) ==========
-    {
-      id: '4d-body-1', name: '🩹 4D Cellular Regeneration', duration: '22 min',
-      scenes: [
-        { type: 'quantum', bg: 'teal', text: 'CELLULAR QUANTUM HEALING' },
-        { type: 'hologram', bg: 'gold', icon: '🧬', text: 'DNA REPAIR SEQUENCE' },
-        { type: 'crystalline', bg: 'teal', text: 'New cells crystallizing' },
-        { type: 'aether', bg: 'gold', icon: '💚', text: 'Life force flowing', sub: '528 Hz miracle tone' },
-        { type: 'aurora', bg: 'teal', icon: '✨', text: 'Body renewed completely', sub: '4D HEALING COMPLETE' }
-      ]
-    },
-    {
-      id: '4d-body-2', name: '🩹 Biofield Harmonizer', duration: '22 min',
-      scenes: [
-        { type: 'aether', bg: 'gold', icon: '⚛️', text: 'Biofield recalibrating', sub: '7.83 Hz Earth resonance' },
-        { type: 'mandala', bg: 'teal', icon: '🌿', text: 'Energy centers aligning' },
-        { type: 'tesseract', bg: 'gold', text: 'MULTIDIMENSIONAL HEALING' },
-        { type: 'cosmos', bg: 'teal', icon: '💫', text: 'Cosmic healing energy', sub: 'Every cell vibrating' },
-        { type: 'hologram', bg: 'gold', icon: '❤️', text: 'VITALITY RESTORED' }
-      ]
-    },
-    {
-      id: '4d-body-3', name: '🩹 Rejuvenation Matrix', duration: '22 min',
-      scenes: [
-        { type: 'portal', bg: 'teal', text: 'YOUTH GATEWAY', sub: 'Turn back cellular time' },
-        { type: 'quantum', bg: 'gold', text: 'MITOCHONDRIA SUPERCHARGED' },
-        { type: 'aurora', bg: 'teal', icon: '🌟', text: 'Radiant energy flowing', sub: 'Deep tissue renewal' },
-        { type: 'singularity', bg: 'gold', text: 'AGING REVERSED', sub: 'At quantum level' },
-        { type: 'crystalline', bg: 'teal', text: 'Body of light activated', sub: '4D REJUVENATION' }
-      ]
-    },
-    
-    // ========== 4D SPACE CLEAR (3 presets) ==========
-    {
-      id: '4d-space-1', name: '✨ 4D Space Purification', duration: '18 min',
-      scenes: [
-        { type: 'portal', bg: 'teal', text: 'DIMENSIONAL CLEANSE', sub: 'Purifying all planes' },
-        { type: 'hologram', bg: 'gold', icon: '✨', text: 'NEGATIVE ENERGY DISSOLVED' },
-        { type: 'aether', bg: 'teal', icon: '🌬️', text: 'Sacred wind flowing', sub: '528 Hz transformation' },
-        { type: 'crystalline', bg: 'gold', text: 'Pure light crystallizing' },
-        { type: 'cosmos', bg: 'teal', icon: '🌟', text: 'Space sanctified', sub: '4D PURIFICATION COMPLETE' }
-      ]
-    },
-    {
-      id: '4d-space-2', name: '✨ Sacred Geometry Cleanse', duration: '18 min',
-      scenes: [
-        { type: 'mandala', bg: 'gold', icon: '✡️', text: 'Sacred geometry activated' },
-        { type: 'tesseract', bg: 'teal', text: 'HYPERCUBE PROTECTION' },
-        { type: 'aurora', bg: 'gold', icon: '🔔', text: 'Harmonics purifying', sub: 'Solfeggio frequencies' },
-        { type: 'quantum', bg: 'teal', text: 'SPACE REORGANIZED' },
-        { type: 'aether', bg: 'gold', icon: '💎', text: 'Crystal clear energy', sub: '4D SACRED SPACE' }
-      ]
-    },
-    {
-      id: '4d-space-3', name: '✨ Cosmic Room Reset', duration: '18 min',
-      scenes: [
-        { type: 'singularity', bg: 'teal', text: 'ALL DENSITY CONSUMED', sub: 'Negativity absorbed' },
-        { type: 'cosmos', bg: 'gold', icon: '🌌', text: 'Cosmic light filling', sub: 'From void to vibrance' },
-        { type: 'hologram', bg: 'teal', icon: '🕉️', text: 'OM FREQUENCY RADIATING' },
-        { type: 'crystalline', bg: 'gold', text: 'New energy crystallized' },
-        { type: 'portal', bg: 'teal', text: 'DIMENSIONAL RESET', sub: '4D SPACE RENEWED' }
-      ]
-    },
   ],
   
   // ========== PREMIUM SHOWCASE - Sophisticated 3D videos for each Premium Mode ==========
@@ -6485,6 +6269,233 @@ const PRESETS = {
         { type: 'hypnotic', bg: 'gold', icon: '🎯', text: '9 sacred tones • OM carrier' },
         { type: 'neon', bg: 'teal', text: 'FREE', subtext: 'Sacred sound, $0' },
         { type: 'pulse3d', bg: 'teal', text: 'Transform any room into a temple' }
+      ]
+    },
+  ],
+  
+  // ========== 4D FUTURISTIC - Next Generation Consciousness Technology ==========
+  '4d': [
+    // ========== 4D DEEP SLEEP (3 presets) ==========
+    {
+      id: '4d-sleep-1', name: '🔮 4D Sleep Portal', duration: '20 min',
+      scenes: [
+        { type: 'portal', bg: 'purple', text: 'DIMENSIONAL GATEWAY', sub: 'Step through to deep sleep' },
+        { type: 'tesseract', bg: 'blue', text: 'HYPERCUBE DESCENT' },
+        { type: 'singularity', bg: 'purple', text: 'EVENT HORIZON', sub: '0.2 Hz consciousness collapse' },
+        { type: 'aether', bg: 'blue', icon: '💤', text: 'Float beyond time', sub: 'Where dreams crystallize' },
+        { type: 'cosmos', bg: 'purple', icon: '🌌', text: 'Infinite rest awaits', sub: '4D SLEEP ACTIVATED' }
+      ]
+    },
+    {
+      id: '4d-sleep-2', name: '🔮 Quantum Sleep Field', duration: '20 min',
+      scenes: [
+        { type: 'quantum', bg: 'purple', text: 'QUANTUM FIELD INITIALIZING' },
+        { type: 'hologram', bg: 'blue', icon: '🧬', text: 'DNA REGENERATION PROTOCOL' },
+        { type: 'aurora', bg: 'teal', icon: '🌙', text: 'Brainwave synchronization', sub: 'Alpha → Theta → Delta → Ultra' },
+        { type: 'crystalline', bg: 'purple', text: 'Neural pathways crystallizing' },
+        { type: 'aether', bg: 'blue', icon: '✦', text: 'Sleep state locked', sub: 'QUANTUM COHERENCE' }
+      ]
+    },
+    {
+      id: '4d-sleep-3', name: '🔮 Tesseract Dreamstate', duration: '20 min',
+      scenes: [
+        { type: 'tesseract', bg: 'blue', text: '4TH DIMENSION ACCESSED' },
+        { type: 'mandala', bg: 'purple', icon: '🔮', text: 'Sacred geometry alignment' },
+        { type: 'cosmos', bg: 'blue', icon: '💫', text: 'Floating through starfields', sub: 'Beyond physical form' },
+        { type: 'singularity', bg: 'purple', text: 'CONSCIOUSNESS FOLD', sub: 'Entering dreamtime' },
+        { type: 'aurora', bg: 'blue', icon: '🌌', text: 'Rest beyond measure', sub: '4D DREAMSTATE COMPLETE' }
+      ]
+    },
+    
+    // ========== 4D ANXIETY RELIEF (3 presets) ==========
+    {
+      id: '4d-anxiety-1', name: '🦋 4D Calm Matrix', duration: '18 min',
+      scenes: [
+        { type: 'hologram', bg: 'teal', icon: '🦋', text: 'SERENITY PROTOCOL ONLINE' },
+        { type: 'quantum', bg: 'blue', text: 'DISSOLVING STRESS PARTICLES' },
+        { type: 'aurora', bg: 'teal', icon: '💠', text: 'Northern lights of peace', sub: 'SMR waves flowing' },
+        { type: 'crystalline', bg: 'blue', text: 'Anxiety transformed to clarity' },
+        { type: 'aether', bg: 'teal', icon: '☯️', text: 'Perfect equilibrium', sub: '4D CALM ACHIEVED' }
+      ]
+    },
+    {
+      id: '4d-anxiety-2', name: '🦋 Ethereal Peace Engine', duration: '18 min',
+      scenes: [
+        { type: 'aether', bg: 'teal', icon: '🕊️', text: 'Ethereal calm descending', sub: '136.1 Hz OM carrier' },
+        { type: 'mandala', bg: 'blue', icon: '🌸', text: 'Heart chakra harmonics' },
+        { type: 'portal', bg: 'teal', text: 'GATEWAY TO STILLNESS', sub: 'Leave worry behind' },
+        { type: 'cosmos', bg: 'blue', icon: '✨', text: 'Infinite peace within', sub: 'Alpha-theta bridge' },
+        { type: 'hologram', bg: 'teal', icon: '💎', text: 'TRANQUILITY CRYSTALLIZED' }
+      ]
+    },
+    {
+      id: '4d-anxiety-3', name: '🦋 Cosmic Anxiety Dissolve', duration: '18 min',
+      scenes: [
+        { type: 'cosmos', bg: 'blue', icon: '🌟', text: 'Stress becomes stardust', sub: 'Perspective shifts' },
+        { type: 'tesseract', bg: 'teal', text: 'WORRY UNTANGLED' },
+        { type: 'aurora', bg: 'blue', icon: '🦋', text: 'Metamorphosis complete', sub: 'From tension to lightness' },
+        { type: 'quantum', bg: 'teal', text: 'PEACE AT PARTICLE LEVEL' },
+        { type: 'singularity', bg: 'blue', text: 'CALM SINGULARITY', sub: 'All stress consumed' }
+      ]
+    },
+    
+    // ========== 4D DEEP FOCUS (3 presets) ==========
+    {
+      id: '4d-focus-1', name: '⚡ 4D Focus Reactor', duration: '18 min',
+      scenes: [
+        { type: 'tesseract', bg: 'gold', text: 'NEURAL HYPERCUBE ONLINE' },
+        { type: 'quantum', bg: 'blue', text: 'COGNITION PARTICLES ALIGNED' },
+        { type: 'hologram', bg: 'gold', icon: '🧠', text: 'PREFRONTAL CORTEX BOOST' },
+        { type: 'crystalline', bg: 'blue', text: 'Thoughts crystallize perfectly' },
+        { type: 'cosmos', bg: 'gold', icon: '⚡', text: 'Limitless concentration', sub: '4D FOCUS ENGAGED' }
+      ]
+    },
+    {
+      id: '4d-focus-2', name: '⚡ Quantum Cognition Drive', duration: '18 min',
+      scenes: [
+        { type: 'quantum', bg: 'blue', text: 'QUANTUM COMPUTING MODE' },
+        { type: 'mandala', bg: 'gold', icon: '🎯', text: 'Target lock: Genius state' },
+        { type: 'aurora', bg: 'blue', icon: '💡', text: 'Ideas flowing like aurora', sub: 'SMR precision waves' },
+        { type: 'portal', bg: 'gold', text: 'FLOW STATE PORTAL', sub: 'Step into hyperfocus' },
+        { type: 'hologram', bg: 'blue', icon: '∞', text: 'INFINITE POTENTIAL' }
+      ]
+    },
+    {
+      id: '4d-focus-3', name: '⚡ Singularity Mind', duration: '18 min',
+      scenes: [
+        { type: 'singularity', bg: 'gold', text: 'ALL FOCUS CONVERGES', sub: 'Single point mastery' },
+        { type: 'aether', bg: 'blue', icon: '🔬', text: 'Pure mental clarity', sub: 'Beta-gamma precision' },
+        { type: 'tesseract', bg: 'gold', text: 'MULTIDIMENSIONAL THINKING' },
+        { type: 'crystalline', bg: 'blue', text: 'Diamond-sharp focus' },
+        { type: 'cosmos', bg: 'gold', icon: '✦', text: 'Cosmic intelligence unlocked', sub: '4D MIND ONLINE' }
+      ]
+    },
+    
+    // ========== 4D TRANSCENDENT (3 presets) ==========
+    {
+      id: '4d-transcendent-1', name: '🔮 4D Transcendence Gate', duration: '25 min',
+      scenes: [
+        { type: 'portal', bg: 'purple', text: 'TRANSCENDENCE GATEWAY', sub: 'Beyond ordinary awareness' },
+        { type: 'mandala', bg: 'gold', icon: '🕉️', text: 'Sacred geometry activation' },
+        { type: 'cosmos', bg: 'purple', icon: '✦', text: 'Dissolving into infinite', sub: 'Theta-delta merger' },
+        { type: 'singularity', bg: 'gold', text: 'EGO DISSOLUTION', sub: 'Pure awareness remains' },
+        { type: 'aurora', bg: 'purple', icon: '🌌', text: 'Cosmic consciousness', sub: '4D TRANSCENDENCE COMPLETE' }
+      ]
+    },
+    {
+      id: '4d-transcendent-2', name: '🔮 Akashic Field Access', duration: '25 min',
+      scenes: [
+        { type: 'aether', bg: 'purple', icon: '📜', text: 'Akashic records opening', sub: 'Universal memory field' },
+        { type: 'quantum', bg: 'gold', text: 'INFORMATION FIELD ACTIVATED' },
+        { type: 'hologram', bg: 'purple', icon: '👁️', text: 'ALL-KNOWING VISION' },
+        { type: 'crystalline', bg: 'gold', text: 'Wisdom crystallizing within' },
+        { type: 'tesseract', bg: 'purple', text: '4D ENLIGHTENMENT' }
+      ]
+    },
+    {
+      id: '4d-transcendent-3', name: '🔮 Unity Consciousness Field', duration: '25 min',
+      scenes: [
+        { type: 'cosmos', bg: 'gold', icon: '🌟', text: 'One with everything', sub: 'Boundaries dissolving' },
+        { type: 'mandala', bg: 'purple', icon: '☯️', text: 'Yin and yang merge' },
+        { type: 'aurora', bg: 'gold', icon: '💫', text: 'Light body activation', sub: 'Vibration rising' },
+        { type: 'singularity', bg: 'purple', text: 'ALL IS ONE', sub: 'Unity realized' },
+        { type: 'aether', bg: 'gold', icon: '∞', text: 'Eternal presence', sub: '4D UNITY ACHIEVED' }
+      ]
+    },
+    
+    // ========== 4D THIRD EYE (3 presets) ==========
+    {
+      id: '4d-thirdeye-1', name: '👁️ 4D Pineal Activation', duration: '22 min',
+      scenes: [
+        { type: 'hologram', bg: 'purple', icon: '👁️', text: 'PINEAL GLAND IGNITION' },
+        { type: 'quantum', bg: 'blue', text: 'DMT MOLECULES AWAKENING' },
+        { type: 'mandala', bg: 'purple', icon: '🔮', text: 'Third eye opening sequence' },
+        { type: 'cosmos', bg: 'blue', icon: '✦', text: 'Inner cosmos revealed', sub: '936 Hz crown activation' },
+        { type: 'portal', bg: 'purple', text: 'VISION BEYOND SIGHT', sub: '4D PERCEPTION ONLINE' }
+      ]
+    },
+    {
+      id: '4d-thirdeye-2', name: '👁️ Crystalline Vision Matrix', duration: '22 min',
+      scenes: [
+        { type: 'crystalline', bg: 'purple', text: 'VISION CRYSTALS FORMING' },
+        { type: 'aether', bg: 'blue', icon: '💎', text: 'Clarity beyond measure', sub: 'Seeing true reality' },
+        { type: 'tesseract', bg: 'purple', text: 'HYPERDIMENSIONAL SIGHT' },
+        { type: 'aurora', bg: 'blue', icon: '👁️', text: 'Inner aurora illuminates', sub: 'Theta wave cascade' },
+        { type: 'singularity', bg: 'purple', text: 'ALL SEEN', sub: '4D VISION COMPLETE' }
+      ]
+    },
+    {
+      id: '4d-thirdeye-3', name: '👁️ Cosmic Perception Engine', duration: '22 min',
+      scenes: [
+        { type: 'cosmos', bg: 'blue', icon: '🌌', text: 'Universe within revealed', sub: 'As above, so below' },
+        { type: 'quantum', bg: 'purple', text: 'PHOTON VISION ACTIVATED' },
+        { type: 'mandala', bg: 'blue', icon: '🕉️', text: 'Ancient wisdom accessing' },
+        { type: 'hologram', bg: 'purple', icon: '✨', text: 'ENLIGHTENED PERCEPTION' },
+        { type: 'aether', bg: 'blue', icon: '👁️', text: 'See beyond the veil', sub: '4D INSIGHT UNLOCKED' }
+      ]
+    },
+    
+    // ========== 4D BODY RESTORE (3 presets) ==========
+    {
+      id: '4d-body-1', name: '🩹 4D Cellular Regeneration', duration: '22 min',
+      scenes: [
+        { type: 'quantum', bg: 'teal', text: 'CELLULAR QUANTUM HEALING' },
+        { type: 'hologram', bg: 'gold', icon: '🧬', text: 'DNA REPAIR SEQUENCE' },
+        { type: 'crystalline', bg: 'teal', text: 'New cells crystallizing' },
+        { type: 'aether', bg: 'gold', icon: '💚', text: 'Life force flowing', sub: '528 Hz miracle tone' },
+        { type: 'aurora', bg: 'teal', icon: '✨', text: 'Body renewed completely', sub: '4D HEALING COMPLETE' }
+      ]
+    },
+    {
+      id: '4d-body-2', name: '🩹 Biofield Harmonizer', duration: '22 min',
+      scenes: [
+        { type: 'aether', bg: 'gold', icon: '⚛️', text: 'Biofield recalibrating', sub: '7.83 Hz Earth resonance' },
+        { type: 'mandala', bg: 'teal', icon: '🌿', text: 'Energy centers aligning' },
+        { type: 'tesseract', bg: 'gold', text: 'MULTIDIMENSIONAL HEALING' },
+        { type: 'cosmos', bg: 'teal', icon: '💫', text: 'Cosmic healing energy', sub: 'Every cell vibrating' },
+        { type: 'hologram', bg: 'gold', icon: '❤️', text: 'VITALITY RESTORED' }
+      ]
+    },
+    {
+      id: '4d-body-3', name: '🩹 Rejuvenation Matrix', duration: '22 min',
+      scenes: [
+        { type: 'portal', bg: 'teal', text: 'YOUTH GATEWAY', sub: 'Turn back cellular time' },
+        { type: 'quantum', bg: 'gold', text: 'MITOCHONDRIA SUPERCHARGED' },
+        { type: 'aurora', bg: 'teal', icon: '🌟', text: 'Radiant energy flowing', sub: 'Deep tissue renewal' },
+        { type: 'singularity', bg: 'gold', text: 'AGING REVERSED', sub: 'At quantum level' },
+        { type: 'crystalline', bg: 'teal', text: 'Body of light activated', sub: '4D REJUVENATION' }
+      ]
+    },
+    
+    // ========== 4D SPACE CLEAR (3 presets) ==========
+    {
+      id: '4d-space-1', name: '✨ 4D Space Purification', duration: '18 min',
+      scenes: [
+        { type: 'portal', bg: 'teal', text: 'DIMENSIONAL CLEANSE', sub: 'Purifying all planes' },
+        { type: 'hologram', bg: 'gold', icon: '✨', text: 'NEGATIVE ENERGY DISSOLVED' },
+        { type: 'aether', bg: 'teal', icon: '🌬️', text: 'Sacred wind flowing', sub: '528 Hz transformation' },
+        { type: 'crystalline', bg: 'gold', text: 'Pure light crystallizing' },
+        { type: 'cosmos', bg: 'teal', icon: '🌟', text: 'Space sanctified', sub: '4D PURIFICATION COMPLETE' }
+      ]
+    },
+    {
+      id: '4d-space-2', name: '✨ Sacred Geometry Cleanse', duration: '18 min',
+      scenes: [
+        { type: 'mandala', bg: 'gold', icon: '✡️', text: 'Sacred geometry activated' },
+        { type: 'tesseract', bg: 'teal', text: 'HYPERCUBE PROTECTION' },
+        { type: 'aurora', bg: 'gold', icon: '🔔', text: 'Harmonics purifying', sub: 'Solfeggio frequencies' },
+        { type: 'quantum', bg: 'teal', text: 'SPACE REORGANIZED' },
+        { type: 'aether', bg: 'gold', icon: '💎', text: 'Crystal clear energy', sub: '4D SACRED SPACE' }
+      ]
+    },
+    {
+      id: '4d-space-3', name: '✨ Cosmic Room Reset', duration: '18 min',
+      scenes: [
+        { type: 'singularity', bg: 'teal', text: 'ALL DENSITY CONSUMED', sub: 'Negativity absorbed' },
+        { type: 'cosmos', bg: 'gold', icon: '🌌', text: 'Cosmic light filling', sub: 'From void to vibrance' },
+        { type: 'hologram', bg: 'teal', icon: '🕉️', text: 'OM FREQUENCY RADIATING' },
+        { type: 'crystalline', bg: 'gold', text: 'New energy crystallized' },
+        { type: 'portal', bg: 'teal', text: 'DIMENSIONAL RESET', sub: '4D SPACE RENEWED' }
       ]
     },
   ],
@@ -7065,8 +7076,7 @@ class PromoPlayer {
       'transcendent': '🔮 Transcendent (25 min)',
       'third': '👁️ Third Eye (22 min)',
       'body': '🩹 Body Restore (22 min)',
-      'space': '✨ Space Clear (18 min)',
-      '4d-': '🔮 4D FUTURISTIC'
+      'space': '✨ Space Clear (18 min)'
     };
     
     Object.entries(PRESETS).forEach(([category, presets]) => {
@@ -7076,8 +7086,7 @@ class PromoPlayer {
         presets.forEach(p => {
           let subCat = 'other';
           // Determine subcategory based on ID prefix
-          if (p.id.startsWith('4d-')) subCat = '4d-';
-          else if (p.id.startsWith('deep-sleep')) subCat = 'deep-sleep';
+          if (p.id.startsWith('deep-sleep')) subCat = 'deep-sleep';
           else if (p.id.startsWith('sleep-')) subCat = 'sleep-';
           else if (p.id.startsWith('anxiety')) subCat = 'anxiety';
           else if (p.id.startsWith('focus') || p.id.startsWith('deep-focus')) subCat = 'focus';
@@ -7186,7 +7195,8 @@ class PromoPlayer {
       viral: '🔥 Viral Hooks',
       manifestation: '🌟 Manifestation',
       advanced: '🚀 Advanced Modes',
-      premium: '👑 Premium Showcase'
+      premium: '👑 Premium Showcase',
+      '4d': '🔮 4D FUTURISTIC'
     };
     return labels[cat] || cat;
   }
