@@ -95,7 +95,8 @@ select {
   background-repeat: no-repeat;
   background-position: right 12px center;
   width: 100%;
-  min-width: 0;
+  min-width: 300px;
+  max-width: 100%;
 }
 
 select.category {
@@ -106,20 +107,17 @@ select.category {
 select option { 
   background: #0a0a1a;
   padding: 8px 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  min-width: 280px;
 }
 
 select option.category-header {
   background: linear-gradient(90deg, #1a1a2e 0%, #0a0a1a 100%) !important;
   color: #d4af37 !important;
   font-weight: 600 !important;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   padding: 6px 8px !important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 /* Action buttons */
