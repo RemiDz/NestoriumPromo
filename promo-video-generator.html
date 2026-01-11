@@ -2409,8 +2409,11 @@ select option.category-header {
 
 .vortex-particle {
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: 5px;
   height: 5px;
+  margin: -2.5px;
   background: #fff;
   border-radius: 50%;
   animation: particleSpiral 3s linear infinite;
@@ -2760,6 +2763,16 @@ select option.category-header {
   box-sizing: border-box;
 }
 
+.pulse3d-orb-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+}
+
 .pulse3d-orb {
   width: 120px;
   height: 120px;
@@ -2776,6 +2789,7 @@ select option.category-header {
   animation: orb3dPulse 2s ease-in-out infinite, orb3dRotate 6s linear infinite;
   transform-style: preserve-3d;
   flex-shrink: 0;
+  z-index: 2;
   position: relative;
   z-index: 2;
 }
@@ -2792,14 +2806,20 @@ select option.category-header {
 
 .pulse3d-rings {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
   z-index: 1;
 }
 
 .pulse3d-ring {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border: 2px solid rgba(155, 126, 217, 0.5);
   border-radius: 50%;
   animation: ring3dExpand 2s ease-out infinite;
@@ -2810,8 +2830,8 @@ select option.category-header {
 .pulse3d-ring:nth-child(3) { animation-delay: 1s; }
 
 @keyframes ring3dExpand {
-  0% { transform: scale(0.8); opacity: 1; }
-  100% { transform: scale(1.8); opacity: 0; }
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
 }
 
 .pulse3d-text {
@@ -5353,12 +5373,14 @@ function renderSceneContent(scene) {
 
     case 'pulse3d':
       return `<div class="pulse3d-container">
-        <div class="pulse3d-rings">
-          <div class="pulse3d-ring"></div>
-          <div class="pulse3d-ring"></div>
-          <div class="pulse3d-ring"></div>
+        <div class="pulse3d-orb-wrapper">
+          <div class="pulse3d-rings">
+            <div class="pulse3d-ring"></div>
+            <div class="pulse3d-ring"></div>
+            <div class="pulse3d-ring"></div>
+          </div>
+          <div class="pulse3d-orb"></div>
         </div>
-        <div class="pulse3d-orb"></div>
         <div class="pulse3d-text">${scene.text}</div>
       </div>`;
 
