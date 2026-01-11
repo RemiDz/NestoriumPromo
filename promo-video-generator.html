@@ -131,8 +131,9 @@ select option.category-header {
   background: rgba(0, 0, 0, 0.85);
   z-index: 9999;
   justify-content: center;
-  align-items: flex-end;
-  padding-bottom: env(safe-area-inset-bottom);
+  align-items: center;
+  padding: 20px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
 }
 
 .mobile-dropdown-overlay.active {
@@ -140,13 +141,16 @@ select option.category-header {
 }
 
 .mobile-dropdown-container {
-  width: 100%;
+  width: 90%;
+  max-width: 400px;
   max-height: 70vh;
   background: #1a1a2e;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
 }
 
 .mobile-dropdown-header {
