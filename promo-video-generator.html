@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a1a">
 <title>Nestorium Video Generator</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Quicksand:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Quicksand:wght@300;400;500;600&family=Space+Mono&family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -2848,6 +2848,1062 @@ select option.category-header {
   100% { opacity: 1; transform: translateY(0) rotateX(0); }
 }
 
+/* ========== 4D FUTURISTIC ANIMATIONS ========== */
+
+/* HOLOGRAM - Holographic projection with scan lines */
+.hologram-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 85%;
+  perspective: 1200px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.hologram-projection {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  animation: hologramFloat 4s ease-in-out infinite;
+}
+
+.hologram-core {
+  font-size: 4rem;
+  filter: 
+    drop-shadow(0 0 20px rgba(0, 255, 255, 0.8))
+    drop-shadow(0 0 40px rgba(0, 255, 255, 0.4))
+    drop-shadow(0 0 60px rgba(0, 200, 255, 0.3));
+  animation: hologramPulse 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+.hologram-scanlines {
+  position: absolute;
+  inset: -20px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 255, 0.03) 2px,
+    rgba(0, 255, 255, 0.03) 4px
+  );
+  animation: scanlineMove 3s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hologram-rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%) rotateX(70deg);
+  transform-style: preserve-3d;
+}
+
+.hologram-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(0, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: holoRingExpand 3s ease-out infinite;
+}
+
+.hologram-ring:nth-child(1) { width: 80px; height: 80px; animation-delay: 0s; }
+.hologram-ring:nth-child(2) { width: 80px; height: 80px; animation-delay: 0.5s; }
+.hologram-ring:nth-child(3) { width: 80px; height: 80px; animation-delay: 1s; }
+.hologram-ring:nth-child(4) { width: 80px; height: 80px; animation-delay: 1.5s; }
+
+@keyframes hologramFloat {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-10px) rotateY(180deg); }
+}
+
+@keyframes hologramPulse {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes scanlineMove {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes holoRingExpand {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; border-width: 2px; }
+  100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; border-width: 0.5px; }
+}
+
+.hologram-text {
+  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00ffff;
+  margin-top: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 
+    0 0 10px rgba(0, 255, 255, 0.8),
+    0 0 20px rgba(0, 255, 255, 0.5),
+    0 0 30px rgba(0, 200, 255, 0.3);
+  animation: holoTextGlitch 4s ease-in-out infinite;
+}
+
+@keyframes holoTextGlitch {
+  0%, 95%, 100% { transform: translateX(0); filter: hue-rotate(0deg); }
+  96% { transform: translateX(-2px); filter: hue-rotate(90deg); }
+  97% { transform: translateX(2px); filter: hue-rotate(-90deg); }
+  98% { transform: translateX(-1px); filter: hue-rotate(180deg); }
+}
+
+/* QUANTUM - Quantum field visualization */
+.quantum-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 85%;
+  perspective: 1000px;
+  padding: 15px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.quantum-field {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantum-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #fff 0%, rgba(138, 43, 226, 0.8) 50%, transparent 100%);
+  border-radius: 50%;
+  animation: quantumOrbit 4s linear infinite;
+}
+
+.quantum-particle:nth-child(1) { --orbit-size: 30px; --orbit-speed: 3s; animation-delay: 0s; }
+.quantum-particle:nth-child(2) { --orbit-size: 50px; --orbit-speed: 4s; animation-delay: 0.3s; }
+.quantum-particle:nth-child(3) { --orbit-size: 70px; --orbit-speed: 5s; animation-delay: 0.6s; }
+.quantum-particle:nth-child(4) { --orbit-size: 50px; --orbit-speed: 3.5s; animation-delay: 0.9s; }
+.quantum-particle:nth-child(5) { --orbit-size: 30px; --orbit-speed: 2.5s; animation-delay: 1.2s; }
+.quantum-particle:nth-child(6) { --orbit-size: 70px; --orbit-speed: 6s; animation-delay: 1.5s; }
+
+@keyframes quantumOrbit {
+  0% { transform: rotate(0deg) translateX(var(--orbit-size, 50px)) rotate(0deg); opacity: 0.3; }
+  25% { opacity: 1; }
+  50% { transform: rotate(180deg) translateX(var(--orbit-size, 50px)) rotate(-180deg); opacity: 0.3; }
+  75% { opacity: 1; }
+  100% { transform: rotate(360deg) translateX(var(--orbit-size, 50px)) rotate(-360deg); opacity: 0.3; }
+}
+
+.quantum-nucleus {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 30% 30%, 
+    #fff 0%,
+    rgba(138, 43, 226, 0.9) 30%,
+    rgba(75, 0, 130, 0.7) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 0 30px rgba(138, 43, 226, 0.8),
+    0 0 60px rgba(75, 0, 130, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
+  animation: nucleusPulse 2s ease-in-out infinite;
+}
+
+@keyframes nucleusPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(138, 43, 226, 0.8), 0 0 60px rgba(75, 0, 130, 0.5); }
+  50% { transform: scale(1.1); box-shadow: 0 0 50px rgba(138, 43, 226, 1), 0 0 100px rgba(75, 0, 130, 0.7); }
+}
+
+.quantum-wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  border-radius: 50%;
+  animation: quantumWave 3s ease-out infinite;
+}
+
+.quantum-wave:nth-child(1) { animation-delay: 0s; }
+.quantum-wave:nth-child(2) { animation-delay: 1s; }
+.quantum-wave:nth-child(3) { animation-delay: 2s; }
+
+@keyframes quantumWave {
+  0% { transform: scale(0.3); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.quantum-text {
+  font-family: 'Rajdhani', 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #e0d0ff;
+  margin-top: 20px;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+  animation: quantumTextFade 1.5s ease-out;
+}
+
+@keyframes quantumTextFade {
+  0% { opacity: 0; transform: scale(0.8); filter: blur(10px); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+/* AURORA - Northern lights flowing effect */
+.aurora-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.aurora-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+    #0a0a1a 0%,
+    #0d1526 30%,
+    #0f1f33 60%,
+    #0a1628 100%
+  );
+}
+
+.aurora-lights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 70%;
+  background: 
+    linear-gradient(180deg, 
+      transparent 0%,
+      rgba(0, 255, 150, 0.1) 20%,
+      rgba(0, 200, 255, 0.15) 40%,
+      rgba(100, 0, 255, 0.1) 60%,
+      transparent 80%
+    );
+  filter: blur(30px);
+  animation: auroraWave 8s ease-in-out infinite;
+  transform-origin: center top;
+}
+
+.aurora-lights::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(0, 255, 200, 0.2) 20%,
+      rgba(150, 0, 255, 0.15) 50%,
+      rgba(0, 255, 150, 0.2) 80%,
+      transparent 100%
+    );
+  animation: auroraShift 12s ease-in-out infinite;
+}
+
+@keyframes auroraWave {
+  0%, 100% { transform: translateX(-25%) scaleY(1) skewX(0deg); }
+  33% { transform: translateX(-20%) scaleY(1.2) skewX(5deg); }
+  66% { transform: translateX(-30%) scaleY(0.9) skewX(-5deg); }
+}
+
+@keyframes auroraShift {
+  0%, 100% { opacity: 0.6; filter: hue-rotate(0deg) blur(30px); }
+  50% { opacity: 0.9; filter: hue-rotate(30deg) blur(25px); }
+}
+
+.aurora-stars {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 160px 20px, #fff, transparent),
+    radial-gradient(2px 2px at 200px 60px, rgba(255,255,255,0.7), transparent);
+  background-size: 250px 100px;
+  animation: starsTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes starsTwinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.aurora-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.aurora-icon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 30px rgba(0, 255, 200, 0.8));
+  animation: auroraIconFloat 4s ease-in-out infinite;
+}
+
+@keyframes auroraIconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.aurora-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #e0fff0;
+  margin-top: 20px;
+  text-align: center;
+  text-shadow: 
+    0 0 20px rgba(0, 255, 200, 0.5),
+    0 0 40px rgba(0, 200, 255, 0.3);
+  letter-spacing: 2px;
+}
+
+.aurora-sub {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(200, 255, 230, 0.7);
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* MANDALA - Sacred geometry mandala */
+.mandala-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 85%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.mandala-wrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mandala-ring {
+  position: absolute;
+  border: 2px solid;
+  border-radius: 50%;
+  animation: mandalaRotate linear infinite;
+}
+
+.mandala-ring:nth-child(1) { 
+  width: 160px; height: 160px; 
+  border-color: rgba(212, 175, 55, 0.8);
+  animation-duration: 20s;
+}
+.mandala-ring:nth-child(2) { 
+  width: 130px; height: 130px; 
+  border-color: rgba(155, 126, 217, 0.7);
+  animation-duration: 15s;
+  animation-direction: reverse;
+}
+.mandala-ring:nth-child(3) { 
+  width: 100px; height: 100px; 
+  border-color: rgba(94, 231, 223, 0.6);
+  animation-duration: 12s;
+}
+.mandala-ring:nth-child(4) { 
+  width: 70px; height: 70px; 
+  border-color: rgba(232, 180, 184, 0.5);
+  animation-duration: 10s;
+  animation-direction: reverse;
+}
+
+.mandala-petal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 15px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+  transform-origin: left center;
+  border-radius: 50%;
+  animation: mandalaPetalGlow 3s ease-in-out infinite;
+}
+
+.mandala-petal:nth-child(1) { transform: rotate(0deg); animation-delay: 0s; }
+.mandala-petal:nth-child(2) { transform: rotate(45deg); animation-delay: 0.25s; }
+.mandala-petal:nth-child(3) { transform: rotate(90deg); animation-delay: 0.5s; }
+.mandala-petal:nth-child(4) { transform: rotate(135deg); animation-delay: 0.75s; }
+.mandala-petal:nth-child(5) { transform: rotate(180deg); animation-delay: 1s; }
+.mandala-petal:nth-child(6) { transform: rotate(225deg); animation-delay: 1.25s; }
+.mandala-petal:nth-child(7) { transform: rotate(270deg); animation-delay: 1.5s; }
+.mandala-petal:nth-child(8) { transform: rotate(315deg); animation-delay: 1.75s; }
+
+@keyframes mandalaRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes mandalaPetalGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.mandala-center {
+  position: absolute;
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+  animation: mandalaCenterPulse 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes mandalaCenterPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(180deg); }
+}
+
+.mandala-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #f5f0e8;
+  margin-top: 20px;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+}
+
+/* PORTAL - Interdimensional portal */
+.portal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 85%;
+  perspective: 1500px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.portal-gateway {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  transform-style: preserve-3d;
+  animation: portalRotate 15s linear infinite;
+}
+
+.portal-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 3px solid;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: portalRingPulse 2s ease-in-out infinite;
+}
+
+.portal-ring:nth-child(1) {
+  width: 160px; height: 160px;
+  border-color: rgba(147, 51, 234, 0.9);
+  transform: translate(-50%, -50%) rotateX(60deg);
+  animation-delay: 0s;
+}
+.portal-ring:nth-child(2) {
+  width: 130px; height: 130px;
+  border-color: rgba(59, 130, 246, 0.8);
+  transform: translate(-50%, -50%) rotateX(60deg) rotateZ(30deg);
+  animation-delay: 0.3s;
+}
+.portal-ring:nth-child(3) {
+  width: 100px; height: 100px;
+  border-color: rgba(236, 72, 153, 0.7);
+  transform: translate(-50%, -50%) rotateX(60deg) rotateZ(60deg);
+  animation-delay: 0.6s;
+}
+.portal-ring:nth-child(4) {
+  width: 70px; height: 70px;
+  border-color: rgba(34, 211, 238, 0.6);
+  transform: translate(-50%, -50%) rotateX(60deg) rotateZ(90deg);
+  animation-delay: 0.9s;
+}
+
+.portal-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle,
+    #fff 0%,
+    rgba(147, 51, 234, 0.8) 30%,
+    rgba(0, 0, 30, 0.9) 70%,
+    #000 100%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 30px rgba(147, 51, 234, 0.8),
+    0 0 60px rgba(59, 130, 246, 0.5),
+    inset 0 0 30px rgba(0, 0, 0, 0.9);
+  animation: portalCorePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes portalRotate {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+@keyframes portalRingPulse {
+  0%, 100% { opacity: 0.6; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.3); }
+}
+
+@keyframes portalCorePulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.15); }
+}
+
+.portal-text {
+  font-family: 'Rajdhani', 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #e0d0ff;
+  margin-top: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(147, 51, 234, 0.8);
+}
+
+.portal-sub {
+  font-size: 0.85rem;
+  color: rgba(200, 180, 255, 0.7);
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* COSMOS - Deep space star field */
+.cosmos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center,
+    #0d0d2b 0%,
+    #050510 50%,
+    #000 100%
+  );
+}
+
+.cosmos-stars {
+  position: absolute;
+  inset: 0;
+  animation: cosmosMove 60s linear infinite;
+}
+
+.cosmos-star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: cosmosStarTwinkle 2s ease-in-out infinite;
+}
+
+.cosmos-nebula {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(ellipse at center,
+    rgba(147, 51, 234, 0.15) 0%,
+    rgba(59, 130, 246, 0.1) 30%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  animation: nebulaFloat 10s ease-in-out infinite;
+}
+
+@keyframes cosmosMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20%); }
+}
+
+@keyframes cosmosStarTwinkle {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes nebulaFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -20px) scale(1.1); }
+}
+
+.cosmos-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.cosmos-icon {
+  font-size: 4rem;
+  filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.8));
+  animation: cosmosIconPulse 3s ease-in-out infinite;
+}
+
+@keyframes cosmosIconPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.8)); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 0 50px rgba(147, 51, 234, 1)); }
+}
+
+.cosmos-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #f0e8ff;
+  margin-top: 20px;
+  text-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
+}
+
+.cosmos-sub {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(200, 190, 255, 0.7);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* TESSERACT - 4D Hypercube */
+.tesseract-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 85%;
+  perspective: 1200px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.tesseract-cube {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  transform-style: preserve-3d;
+  animation: tesseractRotate 10s linear infinite;
+}
+
+.tesseract-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(0, 255, 255, 0.6);
+  background: rgba(0, 255, 255, 0.05);
+  box-shadow: inset 0 0 30px rgba(0, 255, 255, 0.1);
+}
+
+.tesseract-face:nth-child(1) { transform: rotateY(0deg) translateZ(60px); }
+.tesseract-face:nth-child(2) { transform: rotateY(90deg) translateZ(60px); }
+.tesseract-face:nth-child(3) { transform: rotateY(180deg) translateZ(60px); }
+.tesseract-face:nth-child(4) { transform: rotateY(270deg) translateZ(60px); }
+.tesseract-face:nth-child(5) { transform: rotateX(90deg) translateZ(60px); }
+.tesseract-face:nth-child(6) { transform: rotateX(-90deg) translateZ(60px); }
+
+.tesseract-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+  animation: tesseractInnerRotate 8s linear infinite reverse;
+}
+
+.tesseract-inner .tesseract-face {
+  border-color: rgba(255, 0, 255, 0.6);
+  background: rgba(255, 0, 255, 0.05);
+}
+
+.tesseract-inner .tesseract-face:nth-child(1) { transform: rotateY(0deg) translateZ(30px); }
+.tesseract-inner .tesseract-face:nth-child(2) { transform: rotateY(90deg) translateZ(30px); }
+.tesseract-inner .tesseract-face:nth-child(3) { transform: rotateY(180deg) translateZ(30px); }
+.tesseract-inner .tesseract-face:nth-child(4) { transform: rotateY(270deg) translateZ(30px); }
+.tesseract-inner .tesseract-face:nth-child(5) { transform: rotateX(90deg) translateZ(30px); }
+.tesseract-inner .tesseract-face:nth-child(6) { transform: rotateX(-90deg) translateZ(30px); }
+
+.tesseract-connector {
+  position: absolute;
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(rgba(0, 255, 255, 0.8), rgba(255, 0, 255, 0.8));
+  transform-origin: top center;
+}
+
+@keyframes tesseractRotate {
+  0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+@keyframes tesseractInnerRotate {
+  0% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(360deg) rotateY(360deg); }
+}
+
+.tesseract-text {
+  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #00ffff;
+  margin-top: 25px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 
+    0 0 10px rgba(0, 255, 255, 0.8),
+    0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+/* AETHER - Ethereal flowing energy */
+.aether-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0a0a1a 100%);
+}
+
+.aether-wisps {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.aether-wisp {
+  position: absolute;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: wispFloat 6s ease-in-out infinite;
+}
+
+.aether-wisp:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; --wisp-color: rgba(155, 126, 217, 0.8); }
+.aether-wisp:nth-child(2) { top: 40%; left: 60%; animation-delay: 1s; --wisp-color: rgba(94, 231, 223, 0.8); }
+.aether-wisp:nth-child(3) { top: 60%; left: 20%; animation-delay: 2s; --wisp-color: rgba(212, 175, 55, 0.8); }
+.aether-wisp:nth-child(4) { top: 80%; left: 50%; animation-delay: 3s; --wisp-color: rgba(232, 180, 184, 0.8); }
+.aether-wisp:nth-child(5) { top: 30%; left: 80%; animation-delay: 4s; --wisp-color: rgba(155, 126, 217, 0.8); }
+
+@keyframes wispFloat {
+  0% { transform: translateX(-50px) scaleX(0.5); opacity: 0; }
+  50% { transform: translateX(50px) scaleX(1.5); opacity: 1; }
+  100% { transform: translateX(150px) scaleX(0.5); opacity: 0; }
+}
+
+.aether-orb {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(155, 126, 217, 0.3) 30%,
+    rgba(94, 231, 223, 0.2) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 0 60px rgba(155, 126, 217, 0.4),
+    0 0 100px rgba(94, 231, 223, 0.2),
+    inset 0 0 40px rgba(255, 255, 255, 0.1);
+  animation: aetherOrbPulse 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+.aether-orb::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border: 1px solid rgba(155, 126, 217, 0.3);
+  border-radius: 50%;
+  animation: aetherRing 3s ease-in-out infinite;
+}
+
+@keyframes aetherOrbPulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.2); }
+}
+
+@keyframes aetherRing {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.aether-icon {
+  position: absolute;
+  font-size: 2.5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+}
+
+.aether-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.aether-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #f5f0ff;
+  margin-top: 25px;
+  text-align: center;
+  text-shadow: 0 0 30px rgba(155, 126, 217, 0.5);
+  letter-spacing: 1px;
+}
+
+.aether-sub {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(200, 190, 230, 0.7);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* CRYSTALLINE - Crystal grid formation */
+.crystalline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 85%;
+  perspective: 1000px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.crystalline-grid {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  transform-style: preserve-3d;
+  animation: crystallineRotate 12s linear infinite;
+}
+
+.crystal {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 40px solid rgba(94, 231, 223, 0.6);
+  filter: drop-shadow(0 0 10px rgba(94, 231, 223, 0.8));
+  animation: crystalGlow 2s ease-in-out infinite;
+}
+
+.crystal:nth-child(1) { top: 10%; left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+.crystal:nth-child(2) { top: 40%; left: 20%; animation-delay: 0.3s; border-bottom-color: rgba(155, 126, 217, 0.6); }
+.crystal:nth-child(3) { top: 40%; right: 20%; animation-delay: 0.6s; border-bottom-color: rgba(212, 175, 55, 0.6); }
+.crystal:nth-child(4) { top: 70%; left: 35%; animation-delay: 0.9s; border-bottom-color: rgba(232, 180, 184, 0.6); }
+.crystal:nth-child(5) { top: 70%; right: 35%; animation-delay: 1.2s; border-bottom-color: rgba(94, 231, 223, 0.6); }
+.crystal:nth-child(6) { top: 50%; left: 50%; transform: translateX(-50%); animation-delay: 1.5s; border-bottom-color: rgba(255, 255, 255, 0.8); }
+
+.crystal-connector {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(94, 231, 223, 0.4), transparent);
+  animation: connectorPulse 2s ease-in-out infinite;
+}
+
+@keyframes crystallineRotate {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+@keyframes crystalGlow {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(94, 231, 223, 0.6)); opacity: 0.7; }
+  50% { filter: drop-shadow(0 0 25px rgba(94, 231, 223, 1)); opacity: 1; }
+}
+
+@keyframes connectorPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.crystalline-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #e0ffff;
+  margin-top: 20px;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(94, 231, 223, 0.6);
+}
+
+/* SINGULARITY - Black hole/wormhole effect */
+.singularity-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at center,
+    #0a0a0a 0%,
+    #050505 40%,
+    #000 100%
+  );
+}
+
+.singularity-accretion {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 100, 0, 0.3) 30deg,
+    rgba(255, 200, 0, 0.5) 60deg,
+    rgba(255, 255, 200, 0.7) 90deg,
+    rgba(255, 200, 0, 0.5) 120deg,
+    rgba(255, 100, 0, 0.3) 150deg,
+    transparent 180deg,
+    rgba(100, 0, 255, 0.3) 210deg,
+    rgba(150, 0, 255, 0.5) 240deg,
+    rgba(200, 150, 255, 0.7) 270deg,
+    rgba(150, 0, 255, 0.5) 300deg,
+    rgba(100, 0, 255, 0.3) 330deg,
+    transparent 360deg
+  );
+  transform: rotateX(75deg);
+  animation: accretionRotate 8s linear infinite;
+  filter: blur(3px);
+}
+
+.singularity-core {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at center,
+    #000 0%,
+    #000 60%,
+    rgba(255, 200, 100, 0.8) 70%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 0 50px rgba(0, 0, 0, 0.9),
+    0 0 100px rgba(0, 0, 0, 0.8),
+    inset 0 0 50px rgba(0, 0, 0, 1);
+  z-index: 2;
+}
+
+.singularity-lensing {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px solid rgba(255, 200, 100, 0.3);
+  border-radius: 50%;
+  animation: lensingPulse 3s ease-in-out infinite;
+}
+
+@keyframes accretionRotate {
+  0% { transform: rotateX(75deg) rotateZ(0deg); }
+  100% { transform: rotateX(75deg) rotateZ(360deg); }
+}
+
+@keyframes lensingPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.singularity-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.singularity-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 
+    0 0 20px rgba(255, 200, 100, 0.8),
+    0 0 40px rgba(255, 150, 0, 0.5);
+}
+
+.singularity-sub {
+  font-size: 0.8rem;
+  color: rgba(255, 200, 150, 0.7);
+  margin-top: 8px;
+  text-align: center;
+}
+
 /* MATRIX - Matrix Rain Effect */
 .matrix-container {
   display: flex;
@@ -2936,7 +3992,7 @@ select option.category-header {
   <a href="index.html" class="back-btn">←</a>
   <div class="header-title">
     <h1>✧ Nestorium Promo</h1>
-    <span id="presetCount">152 presets</span>
+    <span id="presetCount">173 presets</span>
   </div>
 </header>
 
@@ -4838,6 +5894,232 @@ const PRESETS = {
         { type: 'hypnotic', bg: 'teal', icon: '🌟', text: 'Pure and clear' }
       ]
     },
+    
+    // ========== 4D FUTURISTIC PRESETS - Next Generation Consciousness Tech ==========
+    
+    // ========== 4D DEEP SLEEP (3 presets) ==========
+    {
+      id: '4d-sleep-1', name: '🔮 4D Sleep Portal', duration: '20 min',
+      scenes: [
+        { type: 'portal', bg: 'purple', text: 'DIMENSIONAL GATEWAY', sub: 'Step through to deep sleep' },
+        { type: 'tesseract', bg: 'blue', text: 'HYPERCUBE DESCENT' },
+        { type: 'singularity', bg: 'purple', text: 'EVENT HORIZON', sub: '0.2 Hz consciousness collapse' },
+        { type: 'aether', bg: 'blue', icon: '💤', text: 'Float beyond time', sub: 'Where dreams crystallize' },
+        { type: 'cosmos', bg: 'purple', icon: '🌌', text: 'Infinite rest awaits', sub: '4D SLEEP ACTIVATED' }
+      ]
+    },
+    {
+      id: '4d-sleep-2', name: '🔮 Quantum Sleep Field', duration: '20 min',
+      scenes: [
+        { type: 'quantum', bg: 'purple', text: 'QUANTUM FIELD INITIALIZING' },
+        { type: 'hologram', bg: 'blue', icon: '🧬', text: 'DNA REGENERATION PROTOCOL' },
+        { type: 'aurora', bg: 'teal', icon: '🌙', text: 'Brainwave synchronization', sub: 'Alpha → Theta → Delta → Ultra' },
+        { type: 'crystalline', bg: 'purple', text: 'Neural pathways crystallizing' },
+        { type: 'aether', bg: 'blue', icon: '✦', text: 'Sleep state locked', sub: 'QUANTUM COHERENCE' }
+      ]
+    },
+    {
+      id: '4d-sleep-3', name: '🔮 Tesseract Dreamstate', duration: '20 min',
+      scenes: [
+        { type: 'tesseract', bg: 'blue', text: '4TH DIMENSION ACCESSED' },
+        { type: 'mandala', bg: 'purple', icon: '🔮', text: 'Sacred geometry alignment' },
+        { type: 'cosmos', bg: 'blue', icon: '💫', text: 'Floating through starfields', sub: 'Beyond physical form' },
+        { type: 'singularity', bg: 'purple', text: 'CONSCIOUSNESS FOLD', sub: 'Entering dreamtime' },
+        { type: 'aurora', bg: 'blue', icon: '🌌', text: 'Rest beyond measure', sub: '4D DREAMSTATE COMPLETE' }
+      ]
+    },
+    
+    // ========== 4D ANXIETY RELIEF (3 presets) ==========
+    {
+      id: '4d-anxiety-1', name: '🦋 4D Calm Matrix', duration: '18 min',
+      scenes: [
+        { type: 'hologram', bg: 'teal', icon: '🦋', text: 'SERENITY PROTOCOL ONLINE' },
+        { type: 'quantum', bg: 'blue', text: 'DISSOLVING STRESS PARTICLES' },
+        { type: 'aurora', bg: 'teal', icon: '💠', text: 'Northern lights of peace', sub: 'SMR waves flowing' },
+        { type: 'crystalline', bg: 'blue', text: 'Anxiety transformed to clarity' },
+        { type: 'aether', bg: 'teal', icon: '☯️', text: 'Perfect equilibrium', sub: '4D CALM ACHIEVED' }
+      ]
+    },
+    {
+      id: '4d-anxiety-2', name: '🦋 Ethereal Peace Engine', duration: '18 min',
+      scenes: [
+        { type: 'aether', bg: 'teal', icon: '🕊️', text: 'Ethereal calm descending', sub: '136.1 Hz OM carrier' },
+        { type: 'mandala', bg: 'blue', icon: '🌸', text: 'Heart chakra harmonics' },
+        { type: 'portal', bg: 'teal', text: 'GATEWAY TO STILLNESS', sub: 'Leave worry behind' },
+        { type: 'cosmos', bg: 'blue', icon: '✨', text: 'Infinite peace within', sub: 'Alpha-theta bridge' },
+        { type: 'hologram', bg: 'teal', icon: '💎', text: 'TRANQUILITY CRYSTALLIZED' }
+      ]
+    },
+    {
+      id: '4d-anxiety-3', name: '🦋 Cosmic Anxiety Dissolve', duration: '18 min',
+      scenes: [
+        { type: 'cosmos', bg: 'blue', icon: '🌟', text: 'Stress becomes stardust', sub: 'Perspective shifts' },
+        { type: 'tesseract', bg: 'teal', text: 'WORRY UNTANGLED' },
+        { type: 'aurora', bg: 'blue', icon: '🦋', text: 'Metamorphosis complete', sub: 'From tension to lightness' },
+        { type: 'quantum', bg: 'teal', text: 'PEACE AT PARTICLE LEVEL' },
+        { type: 'singularity', bg: 'blue', text: 'CALM SINGULARITY', sub: 'All stress consumed' }
+      ]
+    },
+    
+    // ========== 4D DEEP FOCUS (3 presets) ==========
+    {
+      id: '4d-focus-1', name: '⚡ 4D Focus Reactor', duration: '18 min',
+      scenes: [
+        { type: 'tesseract', bg: 'gold', text: 'NEURAL HYPERCUBE ONLINE' },
+        { type: 'quantum', bg: 'blue', text: 'COGNITION PARTICLES ALIGNED' },
+        { type: 'hologram', bg: 'gold', icon: '🧠', text: 'PREFRONTAL CORTEX BOOST' },
+        { type: 'crystalline', bg: 'blue', text: 'Thoughts crystallize perfectly' },
+        { type: 'cosmos', bg: 'gold', icon: '⚡', text: 'Limitless concentration', sub: '4D FOCUS ENGAGED' }
+      ]
+    },
+    {
+      id: '4d-focus-2', name: '⚡ Quantum Cognition Drive', duration: '18 min',
+      scenes: [
+        { type: 'quantum', bg: 'blue', text: 'QUANTUM COMPUTING MODE' },
+        { type: 'mandala', bg: 'gold', icon: '🎯', text: 'Target lock: Genius state' },
+        { type: 'aurora', bg: 'blue', icon: '💡', text: 'Ideas flowing like aurora', sub: 'SMR precision waves' },
+        { type: 'portal', bg: 'gold', text: 'FLOW STATE PORTAL', sub: 'Step into hyperfocus' },
+        { type: 'hologram', bg: 'blue', icon: '∞', text: 'INFINITE POTENTIAL' }
+      ]
+    },
+    {
+      id: '4d-focus-3', name: '⚡ Singularity Mind', duration: '18 min',
+      scenes: [
+        { type: 'singularity', bg: 'gold', text: 'ALL FOCUS CONVERGES', sub: 'Single point mastery' },
+        { type: 'aether', bg: 'blue', icon: '🔬', text: 'Pure mental clarity', sub: 'Beta-gamma precision' },
+        { type: 'tesseract', bg: 'gold', text: 'MULTIDIMENSIONAL THINKING' },
+        { type: 'crystalline', bg: 'blue', text: 'Diamond-sharp focus' },
+        { type: 'cosmos', bg: 'gold', icon: '✦', text: 'Cosmic intelligence unlocked', sub: '4D MIND ONLINE' }
+      ]
+    },
+    
+    // ========== 4D TRANSCENDENT (3 presets) ==========
+    {
+      id: '4d-transcendent-1', name: '🔮 4D Transcendence Gate', duration: '25 min',
+      scenes: [
+        { type: 'portal', bg: 'purple', text: 'TRANSCENDENCE GATEWAY', sub: 'Beyond ordinary awareness' },
+        { type: 'mandala', bg: 'gold', icon: '🕉️', text: 'Sacred geometry activation' },
+        { type: 'cosmos', bg: 'purple', icon: '✦', text: 'Dissolving into infinite', sub: 'Theta-delta merger' },
+        { type: 'singularity', bg: 'gold', text: 'EGO DISSOLUTION', sub: 'Pure awareness remains' },
+        { type: 'aurora', bg: 'purple', icon: '🌌', text: 'Cosmic consciousness', sub: '4D TRANSCENDENCE COMPLETE' }
+      ]
+    },
+    {
+      id: '4d-transcendent-2', name: '🔮 Akashic Field Access', duration: '25 min',
+      scenes: [
+        { type: 'aether', bg: 'purple', icon: '📜', text: 'Akashic records opening', sub: 'Universal memory field' },
+        { type: 'quantum', bg: 'gold', text: 'INFORMATION FIELD ACTIVATED' },
+        { type: 'hologram', bg: 'purple', icon: '👁️', text: 'ALL-KNOWING VISION' },
+        { type: 'crystalline', bg: 'gold', text: 'Wisdom crystallizing within' },
+        { type: 'tesseract', bg: 'purple', text: '4D ENLIGHTENMENT' }
+      ]
+    },
+    {
+      id: '4d-transcendent-3', name: '🔮 Unity Consciousness Field', duration: '25 min',
+      scenes: [
+        { type: 'cosmos', bg: 'gold', icon: '🌟', text: 'One with everything', sub: 'Boundaries dissolving' },
+        { type: 'mandala', bg: 'purple', icon: '☯️', text: 'Yin and yang merge' },
+        { type: 'aurora', bg: 'gold', icon: '💫', text: 'Light body activation', sub: 'Vibration rising' },
+        { type: 'singularity', bg: 'purple', text: 'ALL IS ONE', sub: 'Unity realized' },
+        { type: 'aether', bg: 'gold', icon: '∞', text: 'Eternal presence', sub: '4D UNITY ACHIEVED' }
+      ]
+    },
+    
+    // ========== 4D THIRD EYE (3 presets) ==========
+    {
+      id: '4d-thirdeye-1', name: '👁️ 4D Pineal Activation', duration: '22 min',
+      scenes: [
+        { type: 'hologram', bg: 'purple', icon: '👁️', text: 'PINEAL GLAND IGNITION' },
+        { type: 'quantum', bg: 'blue', text: 'DMT MOLECULES AWAKENING' },
+        { type: 'mandala', bg: 'purple', icon: '🔮', text: 'Third eye opening sequence' },
+        { type: 'cosmos', bg: 'blue', icon: '✦', text: 'Inner cosmos revealed', sub: '936 Hz crown activation' },
+        { type: 'portal', bg: 'purple', text: 'VISION BEYOND SIGHT', sub: '4D PERCEPTION ONLINE' }
+      ]
+    },
+    {
+      id: '4d-thirdeye-2', name: '👁️ Crystalline Vision Matrix', duration: '22 min',
+      scenes: [
+        { type: 'crystalline', bg: 'purple', text: 'VISION CRYSTALS FORMING' },
+        { type: 'aether', bg: 'blue', icon: '💎', text: 'Clarity beyond measure', sub: 'Seeing true reality' },
+        { type: 'tesseract', bg: 'purple', text: 'HYPERDIMENSIONAL SIGHT' },
+        { type: 'aurora', bg: 'blue', icon: '👁️', text: 'Inner aurora illuminates', sub: 'Theta wave cascade' },
+        { type: 'singularity', bg: 'purple', text: 'ALL SEEN', sub: '4D VISION COMPLETE' }
+      ]
+    },
+    {
+      id: '4d-thirdeye-3', name: '👁️ Cosmic Perception Engine', duration: '22 min',
+      scenes: [
+        { type: 'cosmos', bg: 'blue', icon: '🌌', text: 'Universe within revealed', sub: 'As above, so below' },
+        { type: 'quantum', bg: 'purple', text: 'PHOTON VISION ACTIVATED' },
+        { type: 'mandala', bg: 'blue', icon: '🕉️', text: 'Ancient wisdom accessing' },
+        { type: 'hologram', bg: 'purple', icon: '✨', text: 'ENLIGHTENED PERCEPTION' },
+        { type: 'aether', bg: 'blue', icon: '👁️', text: 'See beyond the veil', sub: '4D INSIGHT UNLOCKED' }
+      ]
+    },
+    
+    // ========== 4D BODY RESTORE (3 presets) ==========
+    {
+      id: '4d-body-1', name: '🩹 4D Cellular Regeneration', duration: '22 min',
+      scenes: [
+        { type: 'quantum', bg: 'teal', text: 'CELLULAR QUANTUM HEALING' },
+        { type: 'hologram', bg: 'gold', icon: '🧬', text: 'DNA REPAIR SEQUENCE' },
+        { type: 'crystalline', bg: 'teal', text: 'New cells crystallizing' },
+        { type: 'aether', bg: 'gold', icon: '💚', text: 'Life force flowing', sub: '528 Hz miracle tone' },
+        { type: 'aurora', bg: 'teal', icon: '✨', text: 'Body renewed completely', sub: '4D HEALING COMPLETE' }
+      ]
+    },
+    {
+      id: '4d-body-2', name: '🩹 Biofield Harmonizer', duration: '22 min',
+      scenes: [
+        { type: 'aether', bg: 'gold', icon: '⚛️', text: 'Biofield recalibrating', sub: '7.83 Hz Earth resonance' },
+        { type: 'mandala', bg: 'teal', icon: '🌿', text: 'Energy centers aligning' },
+        { type: 'tesseract', bg: 'gold', text: 'MULTIDIMENSIONAL HEALING' },
+        { type: 'cosmos', bg: 'teal', icon: '💫', text: 'Cosmic healing energy', sub: 'Every cell vibrating' },
+        { type: 'hologram', bg: 'gold', icon: '❤️', text: 'VITALITY RESTORED' }
+      ]
+    },
+    {
+      id: '4d-body-3', name: '🩹 Rejuvenation Matrix', duration: '22 min',
+      scenes: [
+        { type: 'portal', bg: 'teal', text: 'YOUTH GATEWAY', sub: 'Turn back cellular time' },
+        { type: 'quantum', bg: 'gold', text: 'MITOCHONDRIA SUPERCHARGED' },
+        { type: 'aurora', bg: 'teal', icon: '🌟', text: 'Radiant energy flowing', sub: 'Deep tissue renewal' },
+        { type: 'singularity', bg: 'gold', text: 'AGING REVERSED', sub: 'At quantum level' },
+        { type: 'crystalline', bg: 'teal', text: 'Body of light activated', sub: '4D REJUVENATION' }
+      ]
+    },
+    
+    // ========== 4D SPACE CLEAR (3 presets) ==========
+    {
+      id: '4d-space-1', name: '✨ 4D Space Purification', duration: '18 min',
+      scenes: [
+        { type: 'portal', bg: 'teal', text: 'DIMENSIONAL CLEANSE', sub: 'Purifying all planes' },
+        { type: 'hologram', bg: 'gold', icon: '✨', text: 'NEGATIVE ENERGY DISSOLVED' },
+        { type: 'aether', bg: 'teal', icon: '🌬️', text: 'Sacred wind flowing', sub: '528 Hz transformation' },
+        { type: 'crystalline', bg: 'gold', text: 'Pure light crystallizing' },
+        { type: 'cosmos', bg: 'teal', icon: '🌟', text: 'Space sanctified', sub: '4D PURIFICATION COMPLETE' }
+      ]
+    },
+    {
+      id: '4d-space-2', name: '✨ Sacred Geometry Cleanse', duration: '18 min',
+      scenes: [
+        { type: 'mandala', bg: 'gold', icon: '✡️', text: 'Sacred geometry activated' },
+        { type: 'tesseract', bg: 'teal', text: 'HYPERCUBE PROTECTION' },
+        { type: 'aurora', bg: 'gold', icon: '🔔', text: 'Harmonics purifying', sub: 'Solfeggio frequencies' },
+        { type: 'quantum', bg: 'teal', text: 'SPACE REORGANIZED' },
+        { type: 'aether', bg: 'gold', icon: '💎', text: 'Crystal clear energy', sub: '4D SACRED SPACE' }
+      ]
+    },
+    {
+      id: '4d-space-3', name: '✨ Cosmic Room Reset', duration: '18 min',
+      scenes: [
+        { type: 'singularity', bg: 'teal', text: 'ALL DENSITY CONSUMED', sub: 'Negativity absorbed' },
+        { type: 'cosmos', bg: 'gold', icon: '🌌', text: 'Cosmic light filling', sub: 'From void to vibrance' },
+        { type: 'hologram', bg: 'teal', icon: '🕉️', text: 'OM FREQUENCY RADIATING' },
+        { type: 'crystalline', bg: 'gold', text: 'New energy crystallized' },
+        { type: 'portal', bg: 'teal', text: 'DIMENSIONAL RESET', sub: '4D SPACE RENEWED' }
+      ]
+    },
   ],
   
   // ========== PREMIUM SHOWCASE - Sophisticated 3D videos for each Premium Mode ==========
@@ -5395,6 +6677,168 @@ function renderSceneContent(scene) {
         <div class="matrix-text">${scene.text}</div>
         <div class="matrix-sub">${scene.sub || ''}</div>
       </div>`;
+
+    // ========== 4D FUTURISTIC SCENE TYPES ==========
+    
+    case 'hologram':
+      return `<div class="hologram-container">
+        <div class="hologram-projection">
+          <div class="hologram-rings">
+            <div class="hologram-ring"></div>
+            <div class="hologram-ring"></div>
+            <div class="hologram-ring"></div>
+            <div class="hologram-ring"></div>
+          </div>
+          <div class="hologram-core">${scene.icon || '◈'}</div>
+          <div class="hologram-scanlines"></div>
+        </div>
+        <div class="hologram-text">${scene.text}</div>
+      </div>`;
+
+    case 'quantum':
+      return `<div class="quantum-container">
+        <div class="quantum-field">
+          <div class="quantum-wave"></div>
+          <div class="quantum-wave"></div>
+          <div class="quantum-wave"></div>
+          <div class="quantum-particle"></div>
+          <div class="quantum-particle"></div>
+          <div class="quantum-particle"></div>
+          <div class="quantum-particle"></div>
+          <div class="quantum-particle"></div>
+          <div class="quantum-particle"></div>
+          <div class="quantum-nucleus"></div>
+        </div>
+        <div class="quantum-text">${scene.text}</div>
+      </div>`;
+
+    case 'aurora':
+      return `<div class="aurora-container">
+        <div class="aurora-sky"></div>
+        <div class="aurora-lights"></div>
+        <div class="aurora-stars"></div>
+        <div class="aurora-content">
+          <div class="aurora-icon">${scene.icon || '✦'}</div>
+          <div class="aurora-text">${scene.text}</div>
+          <div class="aurora-sub">${scene.sub || ''}</div>
+        </div>
+      </div>`;
+
+    case 'mandala':
+      return `<div class="mandala-container">
+        <div class="mandala-wrapper">
+          <div class="mandala-ring"></div>
+          <div class="mandala-ring"></div>
+          <div class="mandala-ring"></div>
+          <div class="mandala-ring"></div>
+          <div class="mandala-petal"></div>
+          <div class="mandala-petal"></div>
+          <div class="mandala-petal"></div>
+          <div class="mandala-petal"></div>
+          <div class="mandala-petal"></div>
+          <div class="mandala-petal"></div>
+          <div class="mandala-petal"></div>
+          <div class="mandala-petal"></div>
+          <div class="mandala-center">${scene.icon || '❂'}</div>
+        </div>
+        <div class="mandala-text">${scene.text}</div>
+      </div>`;
+
+    case 'portal':
+      return `<div class="portal-container">
+        <div class="portal-gateway">
+          <div class="portal-ring"></div>
+          <div class="portal-ring"></div>
+          <div class="portal-ring"></div>
+          <div class="portal-ring"></div>
+          <div class="portal-core"></div>
+        </div>
+        <div class="portal-text">${scene.text}</div>
+        <div class="portal-sub">${scene.sub || ''}</div>
+      </div>`;
+
+    case 'cosmos':
+      const starCount = 50;
+      const stars = Array.from({length: starCount}, () => {
+        const size = Math.random() * 2 + 1;
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const delay = Math.random() * 2;
+        return `<div class="cosmos-star" style="width:${size}px;height:${size}px;left:${x}%;top:${y}%;animation-delay:${delay}s;"></div>`;
+      }).join('');
+      return `<div class="cosmos-container">
+        <div class="cosmos-nebula" style="top:-50px;left:-50px;"></div>
+        <div class="cosmos-nebula" style="bottom:-50px;right:-50px;"></div>
+        <div class="cosmos-stars">${stars}</div>
+        <div class="cosmos-content">
+          <div class="cosmos-icon">${scene.icon || '✦'}</div>
+          <div class="cosmos-text">${scene.text}</div>
+          <div class="cosmos-sub">${scene.sub || ''}</div>
+        </div>
+      </div>`;
+
+    case 'tesseract':
+      return `<div class="tesseract-container">
+        <div class="tesseract-cube">
+          <div class="tesseract-face"></div>
+          <div class="tesseract-face"></div>
+          <div class="tesseract-face"></div>
+          <div class="tesseract-face"></div>
+          <div class="tesseract-face"></div>
+          <div class="tesseract-face"></div>
+          <div class="tesseract-inner">
+            <div class="tesseract-face"></div>
+            <div class="tesseract-face"></div>
+            <div class="tesseract-face"></div>
+            <div class="tesseract-face"></div>
+            <div class="tesseract-face"></div>
+            <div class="tesseract-face"></div>
+          </div>
+        </div>
+        <div class="tesseract-text">${scene.text}</div>
+      </div>`;
+
+    case 'aether':
+      return `<div class="aether-container">
+        <div class="aether-wisps">
+          <div class="aether-wisp"></div>
+          <div class="aether-wisp"></div>
+          <div class="aether-wisp"></div>
+          <div class="aether-wisp"></div>
+          <div class="aether-wisp"></div>
+        </div>
+        <div class="aether-content">
+          <div class="aether-orb">
+            <div class="aether-icon">${scene.icon || '◎'}</div>
+          </div>
+          <div class="aether-text">${scene.text}</div>
+          <div class="aether-sub">${scene.sub || ''}</div>
+        </div>
+      </div>`;
+
+    case 'crystalline':
+      return `<div class="crystalline-container">
+        <div class="crystalline-grid">
+          <div class="crystal"></div>
+          <div class="crystal"></div>
+          <div class="crystal"></div>
+          <div class="crystal"></div>
+          <div class="crystal"></div>
+          <div class="crystal"></div>
+        </div>
+        <div class="crystalline-text">${scene.text}</div>
+      </div>`;
+
+    case 'singularity':
+      return `<div class="singularity-container">
+        <div class="singularity-accretion"></div>
+        <div class="singularity-content">
+          <div class="singularity-lensing"></div>
+          <div class="singularity-core"></div>
+          <div class="singularity-text">${scene.text}</div>
+          <div class="singularity-sub">${scene.sub || ''}</div>
+        </div>
+      </div>`;
     
     default:
       return `<div class="hook-text gradient">${scene.text || ''}</div>`;
@@ -5621,7 +7065,8 @@ class PromoPlayer {
       'transcendent': '🔮 Transcendent (25 min)',
       'third': '👁️ Third Eye (22 min)',
       'body': '🩹 Body Restore (22 min)',
-      'space': '✨ Space Clear (18 min)'
+      'space': '✨ Space Clear (18 min)',
+      '4d-': '🔮 4D FUTURISTIC'
     };
     
     Object.entries(PRESETS).forEach(([category, presets]) => {
@@ -5631,7 +7076,8 @@ class PromoPlayer {
         presets.forEach(p => {
           let subCat = 'other';
           // Determine subcategory based on ID prefix
-          if (p.id.startsWith('deep-sleep')) subCat = 'deep-sleep';
+          if (p.id.startsWith('4d-')) subCat = '4d-';
+          else if (p.id.startsWith('deep-sleep')) subCat = 'deep-sleep';
           else if (p.id.startsWith('sleep-')) subCat = 'sleep-';
           else if (p.id.startsWith('anxiety')) subCat = 'anxiety';
           else if (p.id.startsWith('focus') || p.id.startsWith('deep-focus')) subCat = 'focus';
