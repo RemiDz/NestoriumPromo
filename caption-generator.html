@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a1a">
+<title>Nestorium Captions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Quicksand:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+  color: #f5f0e8;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Top Header with Back */
+.top-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  padding-top: calc(12px + env(safe-area-inset-top));
+  background: rgba(10, 10, 20, 0.98);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(155, 126, 217, 0.15);
+  border: 1px solid rgba(155, 126, 217, 0.3);
+  border-radius: 12px;
+  color: #9b7ed9;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.top-header-content {
+  flex: 1;
+}
+
+.top-header-content h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: #d4af37;
+}
+
+.top-header-content span {
+  font-size: 0.7rem;
+  color: rgba(245, 240, 232, 0.5);
+}
+
+.main-content {
+  padding: 15px;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom));
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: rgba(155, 126, 217, 0.15);
+  border: 1px solid rgba(155, 126, 217, 0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+.stat strong { color: #d4af37; }
+
+.container { max-width: 1400px; margin: 0 auto; }
+
+/* Mobile controls */
+.mobile-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.mobile-controls select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid rgba(155, 126, 217, 0.4);
+  background: rgba(155, 126, 217, 0.1);
+  color: #f5f0e8;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239b7ed9'%3E%3Cpath d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.mobile-controls select option { background: #0a0a1a; }
+
+.search-box {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f5f0e8;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  border-radius: 12px;
+}
+
+.search-box::placeholder { color: rgba(245, 240, 232, 0.4); }
+
+/* Desktop controls - hidden on mobile */
+.controls {
+  display: none;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 8px 14px;
+  background: rgba(155, 126, 217, 0.1);
+  border: 1px solid rgba(155, 126, 217, 0.3);
+  color: #f5f0e8;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.75rem;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+  background: rgba(212, 175, 55, 0.3);
+  border-color: #d4af37;
+  color: #d4af37;
+}
+
+.captions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (min-width: 600px) {
+  .mobile-controls { display: none; }
+  .controls { display: flex; }
+  .captions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+  }
+}
+
+.caption-card {
+  background: rgba(20, 18, 35, 0.85);
+  border: 1px solid rgba(155, 126, 217, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.caption-card:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+}
+
+.caption-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.caption-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(212, 175, 55, 0.15);
+  border-radius: 12px;
+  font-size: 0.7rem;
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.caption-meta {
+  font-size: 0.7rem;
+  color: rgba(245, 240, 232, 0.5);
+  font-style: italic;
+}
+
+.caption-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(245, 240, 232, 0.92);
+  white-space: pre-line;
+  margin-bottom: 12px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.caption-text::-webkit-scrollbar { width: 4px; }
+.caption-text::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 2px; }
+.caption-text::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.3); border-radius: 2px; }
+
+.caption-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.copy-btn {
+  padding: 8px 16px;
+  background: rgba(94, 231, 223, 0.12);
+  border: 1px solid rgba(94, 231, 223, 0.3);
+  color: #5ee7df;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.8rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copy-btn:hover { background: rgba(94, 231, 223, 0.25); }
+.copy-btn.copied {
+  background: rgba(155, 126, 217, 0.25);
+  border-color: rgba(155, 126, 217, 0.5);
+  color: #9b7ed9;
+}
+
+.char-count {
+  font-size: 0.7rem;
+  color: rgba(245, 240, 232, 0.4);
+}
+
+.notification {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  padding: 12px 22px;
+  background: rgba(94, 231, 223, 0.95);
+  color: #0a0a1a;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.notification.show { transform: translateY(0); opacity: 1; }
+
+.hashtag-section {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.hashtag-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.hashtag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.hashtag-card {
+  background: rgba(20, 18, 35, 0.8);
+  border: 1px solid rgba(155, 126, 217, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.hashtag-card h3 {
+  font-size: 1rem;
+  color: #d4af37;
+  margin-bottom: 12px;
+}
+
+.hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.hashtag {
+  padding: 5px 10px;
+  background: rgba(94, 231, 223, 0.1);
+  border: 1px solid rgba(94, 231, 223, 0.2);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: #5ee7df;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(245, 240, 232, 0.5);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .captions-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <a href="index.html" class="back-btn">←</a>
+  <div class="top-header-content">
+    <h1>✧ Captions</h1>
+    <span id="presetCount">65+ captions</span>
+  </div>
+</header>
+
+<div class="main-content">
+
+<div class="stats">
+  <div class="stat"><strong id="totalCount">0</strong> Captions</div>
+  <div class="stat"><strong id="visibleCount">0</strong> Showing</div>
+</div>
+
+<div class="container">
+  
+  <!-- Mobile Controls -->
+  <div class="mobile-controls">
+    <select id="categorySelectMobile">
+      <option value="all">📚 All Categories</option>
+      <option value="sleep">😴 Sleep</option>
+      <option value="focus">🎯 Focus</option>
+      <option value="meditation">🧘 Meditation</option>
+      <option value="manifestation">✨ Manifestation</option>
+      <option value="anxiety">💜 Anxiety</option>
+      <option value="science">🧠 Science</option>
+      <option value="story">📖 Stories</option>
+      <option value="curiosity">🔮 Curiosity</option>
+      <option value="quick">⚡ Quick</option>
+      <option value="advanced">🚀 Advanced</option>
+    </select>
+    <input type="text" class="search-box" placeholder="🔍 Search captions..." id="searchBoxMobile">
+  </div>
+
+  <!-- Desktop Controls -->
+  <div class="controls">
+    <button class="filter-btn active" data-filter="all">📚 All</button>
+    <button class="filter-btn" data-filter="sleep">😴 Sleep</button>
+    <button class="filter-btn" data-filter="focus">🎯 Focus</button>
+    <button class="filter-btn" data-filter="meditation">🧘 Meditation</button>
+    <button class="filter-btn" data-filter="manifestation">✨ Manifestation</button>
+    <button class="filter-btn" data-filter="anxiety">💜 Anxiety</button>
+    <button class="filter-btn" data-filter="science">🧠 Science</button>
+    <button class="filter-btn" data-filter="story">📖 Stories</button>
+    <button class="filter-btn" data-filter="curiosity">🔮 Curiosity</button>
+    <button class="filter-btn" data-filter="quick">⚡ Quick</button>
+    <button class="filter-btn" data-filter="advanced">🚀 Advanced</button>
+    <input type="text" class="search-box" placeholder="🔍 Search..." id="searchBox">
+  </div>
+  
+  <div class="captions-grid" id="captionsGrid"></div>
+  <div class="no-results" id="noResults" style="display:none;">No captions found</div>
+  
+  <div class="hashtag-section">
+    <h2>🏷️ Hashtag Collections</h2>
+    <div class="hashtag-grid" id="hashtagGrid"></div>
+  </div>
+  
+</div>
+</div>
+
+<div class="notification" id="notification">✓ Copied!</div>
+
+<script>
+const CAPTIONS = [
+  // ========== SLEEP - Personal Stories & Discoveries ==========
+  {
+    id: 1, category: 'sleep', label: '😴 Sleep', title: 'The 3 AM Discovery',
+    text: `3 AM. Still staring at the ceiling? 😶
+
+I tried everything. Melatonin made me groggy. Weighted blankets felt claustrophobic. That "sleepy time" tea everyone swears by? Nothing.
+
+Then I stumbled onto something called binaural beats during a 4 AM rabbit hole. Skeptical doesn't cover it.
+
+Here's what I learned: your brain produces Delta waves (1-4 Hz) during deep sleep. But sometimes it forgets how to get there. Like a car stuck in high gear.
+
+Binaural beats are basically a frequency guide. You play slightly different tones in each ear, and your brain produces a third frequency matching the difference.
+
+1 Hz difference = Delta waves = your brain goes "oh, we're sleeping now."
+
+I was out in 12 minutes. Not exaggerating.
+
+The tool I use is completely free: nestorlab.app
+
+Put on headphones, keep the volume low, and let the frequency do what melatonin couldn't.
+
+Some things sound too good to be true. This one just... works. 🌙
+
+#insomnia #sleephack #binauralbeats #cantsleep #3am #deepsleep #sleepscience`
+  },
+  {
+    id: 2, category: 'sleep', label: '😴 Sleep', title: 'The Insomniac Confession',
+    text: `Confession: I was that person who said "I'll sleep when I'm dead."
+
+Then I stopped sleeping. For real. Weeks of 3-4 hour nights. My brain felt like static. Every emotion was amplified. I cried at a commercial about paper towels.
+
+Doctors wanted to prescribe things. I wanted to understand what was happening first.
+
+So I learned about brainwaves.
+
+Turns out my brain was stuck producing Beta waves (alert, anxious frequencies) even at night. It literally didn't know how to downshift.
+
+Binaural beats taught it again.
+
+Not instantly. But within a week of using 1-3 Hz Delta frequencies before bed, something shifted. My sleep architecture started healing itself.
+
+Now I sleep 7-8 hours. I dream again. I don't cry at commercials anymore (mostly).
+
+The tool is free: nestorlab.app
+
+If your brain forgot how to sleep, maybe it just needs a reminder of what that frequency feels like.
+
+You're not broken. Your brain might just need recalibration. 💜
+
+#insomniarecovery #sleephealing #binauralbeats #brainwaves #mentalhealthmatters`
+  },
+  {
+    id: 3, category: 'sleep', label: '😴 Sleep', title: 'Partner Sleep Story',
+    text: `My partner and I had a problem.
+
+She falls asleep in 30 seconds. I take 2 hours. By the time I'm drowsy, she's in REM. My tossing wakes her. Her sighing frustrates me. Neither of us wins.
+
+We tried separate bedtimes. Felt lonely.
+We tried her reading while I settled. She got bored.
+We tried white noise. It annoyed both of us.
+
+Then we discovered something weird: synchronized binaural beats.
+
+Both of us, wireless earbuds, same Delta frequency, same time.
+
+Here's what happens: we both drift into sleep mode together. The frequency syncs us somehow. We fall asleep within minutes of each other now.
+
+The intimacy of falling asleep together — I didn't realize how much I missed it until we got it back.
+
+nestorlab.app is what we use. Free, no accounts, just frequencies.
+
+Sometimes the solution to relationship problems is... physics? 💑
+
+#couplegoals #sleeptogether #binauralbeats #relationshiphacks #bedtime`
+  },
+  {
+    id: 4, category: 'sleep', label: '😴 Sleep', title: 'Shift Worker Reality',
+    text: `Night shift workers don't talk enough about how weird it feels to sleep when the sun is screaming at you.
+
+Your body knows it's 2 PM. Your blackout curtains don't fool your circadian rhythm. You lie there, exhausted but wired.
+
+I work ICU nights. Three 12-hour shifts, then flip back to days. My body was in constant temporal confusion.
+
+Started using Delta binaural beats (1-2 Hz) every time I needed to sleep, regardless of what time it was.
+
+Something about the consistency helped. My brain stopped caring whether the sun was up. It heard that frequency and knew: we're doing sleep now.
+
+Not a miracle cure. Still hard. But I went from 4 hours of broken sleep to solid 6-hour chunks.
+
+For shift workers, that's everything.
+
+nestorlab.app — free, no guilt-inducing subscription.
+
+You're doing hard work that the world needs. You deserve real rest. 🏥
+
+#nightshift #shiftwork #nursesoftiktok #healthcareworker #binauralbeats #sleepanytime`
+  },
+  {
+    id: 5, category: 'sleep', label: '😴 Sleep', title: 'The Jet Lag Experiment',
+    text: `I fly internationally for work. A lot. Tokyo to London to New York in one month kind of thing.
+
+Jet lag used to destroy me. That fuzzy exhaustion where you can't sleep when you should and can't stay awake when you need to. Days of being a zombie.
+
+I started experimenting with binaural beats as a reset tool.
+
+The protocol I developed:
+
+When I need to sleep (new timezone):
+→ 1-2 Hz Delta beats, 30 minutes before desired sleep time
+
+When I need to wake up alert:
+→ 18-20 Hz Beta beats for 15 minutes with my coffee
+
+I'm essentially telling my brain what timezone we're in now through frequency.
+
+It doesn't eliminate jet lag completely, but I went from 4-5 days of adjustment to about 1.5 days.
+
+For someone who flies every other week, that's life-changing.
+
+nestorlab.app is what I use on every flight.
+
+Your brain is more adaptable than you think. Sometimes it just needs clear instructions. ✈️
+
+#jetlag #travelhack #businesstravel #binauralbeats #frequenttraveler #digitalnomad`
+  },
+  {
+    id: 6, category: 'sleep', label: '😴 Sleep', title: 'New Parent Survival',
+    text: `To the new parents running on fumes:
+
+You know that thing where you finally get the baby to sleep, lie down, and... nothing? Your body is exhausted but your brain is on high alert waiting for the next cry?
+
+That was me for months. Hypervigilance. Even when I could sleep, I couldn't.
+
+A friend who's also a neuroscience PhD suggested binaural beats. "Get your nervous system out of threat-detection mode," she said.
+
+Delta frequencies (1-3 Hz) + noise-canceling earbuds became my secret weapon.
+
+The beats override the vigilance. They tell your brain: "Someone else is on watch. You can rest now."
+
+Even 20 minutes of genuine rest between feeds changed everything.
+
+nestorlab.app — free, no setup, just frequency.
+
+You can't pour from an empty cup. But you can refill it faster than you thought. 💜
+
+#newparent #newborn #parentlife #sleepdeprived #binauralbeats #momlife #dadlife`
+  },
+  {
+    id: 7, category: 'sleep', label: '😴 Sleep', title: 'Sleep Architecture',
+    text: `Here's something most people don't know: sleep quantity ≠ sleep quality.
+
+You can spend 8 hours in bed and still wake up exhausted because you're not getting enough deep sleep.
+
+Deep sleep (Delta waves, 1-4 Hz) is when your body actually repairs. When your brain consolidates memory. When growth hormone releases. It's the good stuff.
+
+Most adults get 60-90 minutes of deep sleep per night. Some of us get way less.
+
+I started tracking my sleep with a watch. My deep sleep was averaging 35 minutes. Terrible.
+
+Then I added binaural beats at 1-2 Hz before bed.
+
+Within two weeks: deep sleep averaging 85 minutes. Same time in bed. Completely different quality of rest.
+
+I wake up feeling like a different human.
+
+nestorlab.app — the tool that literally improved my sleep architecture for free.
+
+Stop counting hours. Start counting depth. 📊
+
+#sleepquality #deepsleep #sleeptracking #binauralbeats #recovery #biohacking`
+  },
+  {
+    id: 8, category: 'sleep', label: '😴 Sleep', title: 'Anxiety at Midnight',
+    text: `That thing where your brain waits until midnight to remind you of every awkward thing you said in 2009?
+
+Yeah. That.
+
+The problem isn't the thoughts. It's that your brain is in the wrong frequency to dismiss them. At night, you should be in Delta or Theta (slow, sleepy waves). Instead, you're in Beta (alert, analytical).
+
+Beta brain + dark room = perfect storm for rumination.
+
+When this happens now, I don't fight the thoughts. I put on 1-2 Hz Delta binaural beats and let my brain frequency shift.
+
+The embarrassing memories don't disappear. But they lose their power. They become just... thoughts. And then sleep comes.
+
+It's not about controlling your mind. It's about changing the environment your mind is operating in.
+
+nestorlab.app — free frequency shifts on demand.
+
+Your past doesn't deserve your present sleep. 🌙
+
+#nightanxiety #rumination #binauralbeats #mentalhealthtips #sleephelp`
+  },
+
+  // ========== FOCUS - Deep Work & Concentration ==========
+  {
+    id: 9, category: 'focus', label: '🎯 Focus', title: 'The Scientist Secret',
+    text: `POV: You discover what cognitive neuroscientists actually use when they need to focus.
+
+Not coffee (though they drink that too).
+Not productivity apps.
+Not Pomodoro timers.
+
+40 Hz.
+
+That's the Gamma brainwave frequency associated with peak cognitive performance. Higher learning. Information synthesis. That state where everything just... clicks.
+
+When you listen to two frequencies slightly apart (one in each ear), your brain generates a third frequency matching the difference. 400 Hz left + 440 Hz right = 40 Hz brain entrainment.
+
+Researchers studying cognition use this on themselves. It's not a secret. It's just not marketed.
+
+Now you know.
+
+nestorlab.app lets you dial in any frequency. Free. No signup. No algorithm. Just physics.
+
+Some advantages aren't unfair. They're just unknown.
+
+Now you know. 🧠
+
+#focushack #productivity #binauralbeats #brainscience #deepwork #cognitiveenhancement`
+  },
+  {
+    id: 10, category: 'focus', label: '🎯 Focus', title: 'ADHD Brain Discovery',
+    text: `"You just need to focus."
+
+Thank you, Karen. Revolutionary advice. Let me just flip my focus switch that definitely exists and totally works.
+
+For those of us with ADHD, focus isn't a choice. It's a brain state that either happens or doesn't. And usually doesn't.
+
+Here's what changed for me:
+
+40 Hz binaural beats give my chaotic brain something consistent to sync with. It's like... external scaffolding for my internal mess.
+
+I'm not claiming it cures ADHD. I'm still a disaster in many ways.
+
+But when I need to do deep work? Headphones on. 40 Hz playing. My brain has an anchor now.
+
+The scattered thoughts still happen. But there's something to return to.
+
+nestorlab.app — free, no prescription required.
+
+Your brain isn't broken. It just needs different tools than neurotypical brains. 💜
+
+#adhd #adhdtiktok #actuallyadhd #binauralbeats #focustools #neurodivergent`
+  },
+  {
+    id: 11, category: 'focus', label: '🎯 Focus', title: 'Deep Work Protocol',
+    text: `I spent 3 months optimizing my deep work setup. Here's what actually moved the needle:
+
+1. Environment: Noise-canceling headphones, always. Not optional.
+
+2. Frequency: 40 Hz binaural beats. I tried lo-fi, classical, "focus playlists." Nothing comes close to pure frequency entrainment.
+
+3. Duration: 90-minute blocks. That's roughly one ultradian rhythm. Your brain naturally cycles about this long.
+
+4. Single-tasking: One clearly defined task. Not "work on project." Specific: "Write introduction section."
+
+5. No phone: Not on silent. Not face-down. In another room.
+
+With this setup, I do in 3 hours what used to take 8.
+
+The binaural beats are the catalyst. They shift my brain state from "scattered" to "locked in" within about 8 minutes.
+
+nestorlab.app — the only "productivity app" I actually use.
+
+Deep work is a skill. The right environment makes it accessible. 🎯
+
+#deepwork #productivity #focusmode #binauralbeats #worksmarter`
+  },
+  {
+    id: 12, category: 'focus', label: '🎯 Focus', title: 'Study Transformation',
+    text: `How I went from barely passing to Dean's List using sound:
+
+Freshman year: Studying in my dorm, music playing, phone buzzing, roommate existing. Retention: maybe 10%.
+
+Junior year: Library basement, noise-canceling headphones, 40 Hz binaural beats, phone locked in bag. Retention: 80%+.
+
+Same brain. Completely different environment.
+
+The binaural beats do something interesting — they give my brain a consistent signal in the chaos. No lyrics to process. No melody to follow. Just pure frequency that my brain entrains to.
+
+I read faster. I remember more. I can study for hours without that foggy exhaustion.
+
+My GPA went up 0.8 points. Not because I got smarter. Because I learned how to actually absorb information.
+
+nestorlab.app — free, no ads, no bullshit.
+
+Studying hard is overrated. Studying in the right brain state is underrated. 📚
+
+#studytips #studywithme #collegehacks #binauralbeats #deanslist #academicsuccess`
+  },
+  {
+    id: 13, category: 'focus', label: '🎯 Focus', title: 'Coding Flow State',
+    text: `Fellow developers: I found the cheat code.
+
+You know that state where you're debugging and suddenly you see the entire system at once? Where solutions appear before you finish formulating problems? Where hours feel like minutes?
+
+That's Gamma wave dominance. 40 Hz territory.
+
+I used to chase that state randomly. Sometimes it happened, usually it didn't.
+
+Now I induce it.
+
+40 Hz binaural beats + noise-canceling headphones + one clearly defined problem to solve.
+
+Within 10 minutes, my brain shifts. The code starts making sense in a different way. Connections I couldn't see become obvious.
+
+I'm not exaggerating when I say this changed my career.
+
+nestorlab.app — free, no account, just frequency.
+
+The difference between a 10x developer and a 1x developer might just be brain state management. 💻
+
+#developer #coding #programmer #binauralbeats #flowstate #devlife`
+  },
+  {
+    id: 14, category: 'focus', label: '🎯 Focus', title: 'Writer Unblocked',
+    text: `Writer's block is a frequency problem.
+
+I'm serious.
+
+When you're stuck staring at a blank page, your brain is usually in low Alpha — that daydreamy, wandering state. Not bad for ideation. Terrible for production.
+
+Writing requires higher Beta or Gamma — active, engaged, generative brain states.
+
+Here's what I do now:
+
+Stuck? I don't force it. I put on 18-20 Hz Beta binaural beats for 10 minutes while doing something mindless (dishes, walking, organizing).
+
+Then I return to the page.
+
+The words come. Not perfect words, but words. The block dissolves.
+
+I've written 3 books since discovering this. Used to take me 2 years per book. Now it's about 8 months.
+
+nestorlab.app — the writing tool that has no words.
+
+Sometimes the best writing advice isn't about writing at all. It's about brain state. ✍️
+
+#writersblock #writingtips #amwriting #binauralbeats #authortok #writingcommunity`
+  },
+  {
+    id: 15, category: 'focus', label: '🎯 Focus', title: 'Open Office Survival',
+    text: `Open offices were designed by someone who has never actually tried to think.
+
+The constant conversations. The keyboard clicking symphony. Someone eating something crunchy. Motion everywhere.
+
+Your brain can't focus because it's constantly processing threats and stimuli. Evolutionarily, we're not supposed to ignore movement in our peripheral vision. It might be a predator.
+
+The cubicle walls were doing more than we appreciated.
+
+My survival strategy:
+
+Noise-canceling headphones (non-negotiable) + 40 Hz binaural beats (the secret sauce).
+
+The headphones block the sound. The beats give my brain something consistent to sync with instead of the chaos.
+
+People think I'm just listening to music. I'm actually hacking my nervous system into productivity mode.
+
+nestorlab.app — free, no monthly subscription.
+
+Open offices aren't going away. But your focus doesn't have to suffer. 🎧
+
+#openoffice #remotework #focushack #binauralbeats #officehacks`
+  },
+
+  // ========== MEDITATION - Spiritual & Inner Work ==========
+  {
+    id: 16, category: 'meditation', label: '🧘 Meditation', title: 'The Monks Shortcut',
+    text: `I used to think I was bad at meditation.
+
+Sit still, clear your mind, find peace. Simple instructions. Impossible execution.
+
+My mind never cleared. It just yelled louder in the silence. Twenty minutes of thinking about thinking about not thinking.
+
+Then I learned something that changed everything:
+
+Experienced meditators aren't just magically peaceful. They produce specific brainwave patterns — Theta waves (4-8 Hz) — that most of us don't access easily.
+
+Monks develop this through 10,000+ hours of practice. Their brains are literally different.
+
+But binaural beats can guide your brain to Theta directly.
+
+It's not "cheating." It's using technology to access what humans have always been capable of — just faster.
+
+Now I meditate for 20 minutes and actually enter deep states. Not because I'm more disciplined. Because I have training wheels.
+
+nestorlab.app — free Theta access for anyone.
+
+The destination is the same. The path can be shorter. 🧘
+
+#meditation #mindfulness #binauralbeats #theta #meditationtips #consciousness`
+  },
+  {
+    id: 17, category: 'meditation', label: '🧘 Meditation', title: 'Meditation Skeptic',
+    text: `I was the meditation skeptic.
+
+"Just sitting there? Sounds like napping with extra steps."
+
+Then my therapist suggested it for anxiety. And my doctor. And that article I read. And my partner. Eventually I caved.
+
+Tried apps. Hated the voices. Tried silence. My thoughts got louder. Tried "noting" thoughts without judgment. Judged myself for judging.
+
+I was about to give up when I found binaural beats.
+
+No voice. No instructions. Just frequency.
+
+Headphones on, 6 Hz Theta, eyes closed.
+
+Something different happened. My usual mental chatter... softened. Not gone, but quieter. Like someone turned down the volume.
+
+I felt something close to peace. For maybe 30 seconds. But that was 30 seconds more than ever before.
+
+Now I do it daily. Still not a monk. But also not drowning in my own head.
+
+nestorlab.app — meditation for people who hate meditation.
+
+You don't have to be good at it. You just have to find what works. 💜
+
+#meditationbeginner #anxietyrelief #binauralbeats #mindfulness #mentalhealth`
+  },
+  {
+    id: 18, category: 'meditation', label: '🧘 Meditation', title: 'Sound Bath Home',
+    text: `I paid $85 for a sound bath once.
+
+Lying on a yoga mat while someone hit crystal bowls for an hour. Supposed to be transcendent.
+
+It was... fine? Relaxing, sure. Worth $85? Questionable.
+
+Then I realized: sound baths work because of frequency entrainment. The bowls produce tones that guide your brainwaves into meditative states.
+
+Binaural beats do the same thing. For free. At home. Anytime.
+
+My DIY sound bath:
+
+- 6 Hz Theta binaural beats
+- Comfortable position (bed or yoga mat)
+- Low lighting or darkness
+- 30-45 minutes
+- Maybe a blanket because you'll get cold when deeply relaxed
+
+I've been to $200 "healing frequency" sessions that don't compare to this.
+
+nestorlab.app — luxury wellness at zero cost.
+
+The expensive version isn't always the effective one. 🛁✨
+
+#soundbath #soundhealing #binauralbeats #selfcare #wellness #athome`
+  },
+  {
+    id: 19, category: 'meditation', label: '🧘 Meditation', title: 'Breath + Frequency',
+    text: `The combination that unlocked deep states I didn't know existed:
+
+Breathwork + binaural beats.
+
+I'd been doing each separately. Both helped. But together? Something else entirely.
+
+The breath moves energy through your body. The frequency shifts your brain state. Combine them and the effect multiplies.
+
+My protocol:
+
+- 5-7 Hz Theta binaural beats
+- Box breathing (4 counts in, 4 hold, 4 out, 4 hold)
+- 20 minutes minimum
+
+By minute 15, I regularly enter states that feel... cosmic. Sounds dramatic. But that's the only word that fits.
+
+Colors behind my eyes. Sense of expansion. Dissolving boundaries between self and space.
+
+Not every time. But often enough.
+
+nestorlab.app for the frequencies + your own breath.
+
+Some doors open easier with two keys. 🌬️✨
+
+#breathwork #pranayama #binauralbeats #meditation #consciousness #spirituality`
+  },
+
+  // ========== MANIFESTATION - Intention & Visualization ==========
+  {
+    id: 20, category: 'manifestation', label: '✨ Manifestation', title: 'Earth Heartbeat',
+    text: `7.83 Hz.
+
+That's the electromagnetic frequency of Earth's cavity between the surface and ionosphere. Scientists call it the Schumann Resonance.
+
+Discovered in 1952. Constantly measured. Scientifically documented.
+
+Here's where it gets interesting:
+
+When your brainwaves sync with 7.83 Hz, people report:
+- Clearer visualization
+- Deeper meditation
+- Stronger sense of "alignment"
+- Enhanced intuition
+
+Mystics have been talking about "tuning in to Earth's frequency" for centuries. Turns out they weren't being metaphorical.
+
+I use 7.83 Hz binaural beats for manifestation practice. Not because I believe in magic. Because I believe in synchronization.
+
+When you're vibrating at Earth's frequency, something shifts. Call it alignment. Call it resonance. Call it whatever helps you understand it.
+
+nestorlab.app — tune into what's always been there.
+
+Science and spirituality meet at 7.83 Hz. 🌍
+
+#schumannresonance #manifestation #binauralbeats #earthfrequency #spirituality #consciousness`
+  },
+  {
+    id: 21, category: 'manifestation', label: '✨ Manifestation', title: 'Visualization Power',
+    text: `The difference between daydreaming and manifesting:
+
+Brainwave state.
+
+In normal waking consciousness (Beta waves), your visualization is just imagination. Your conscious mind is analyzing, judging, doubting.
+
+"That's nice but be realistic."
+
+In Theta state (4-8 Hz), your conscious critic quiets. Visualizations bypass the skeptic and reach the subconscious directly.
+
+This is what every manifestation teacher is trying to explain but doesn't have the neuroscience for.
+
+Your subconscious doesn't distinguish between vividly imagined and actually experienced. But it only receives input when the conscious gatekeeper steps aside.
+
+Theta is when that happens.
+
+I use 6-7 Hz binaural beats before visualization now. The images feel different. More real. More embodied.
+
+nestorlab.app — free access to the manifestation frequency.
+
+Visualization without the right brain state is just daydreaming. With it, it's programming. ✨
+
+#manifestation #visualization #lawofattraction #binauralbeats #subconscious #mindset`
+  },
+  {
+    id: 22, category: 'manifestation', label: '✨ Manifestation', title: 'Morning Ritual',
+    text: `My morning manifestation ritual (the one that actually changed things):
+
+Before I check my phone. Before I speak to anyone. Before the day imprints on me.
+
+1. Stay in bed for 10 extra minutes
+2. Put on wireless earbuds
+3. 7.83 Hz binaural beats (Schumann resonance)
+4. Deep breathing until my body relaxes
+5. Visualize my day going perfectly
+6. Feel the emotions of that perfect day
+7. Set one clear intention
+
+That's it. 10-15 minutes.
+
+I've been doing this for 8 months. The changes are undeniable. Not magic — just consistent brain state + intention + action.
+
+Days that start this way feel different. More aligned. Less reactive. Things flow instead of force.
+
+nestorlab.app for the frequency. Your intentions are your own.
+
+How you start is how you go. Start intentionally. 🌅
+
+#morningroutine #manifestation #binauralbeats #intentionsetting #mindset #spirituality`
+  },
+  {
+    id: 23, category: 'manifestation', label: '✨ Manifestation', title: '528 Hz Experience',
+    text: `528 Hz.
+
+Some call it the "miracle tone." Part of the ancient Solfeggio scale. The frequency of love, DNA repair, transformation.
+
+Sounds mystical. I was skeptical too.
+
+But here's the thing about sound and matter: they interact. Look up cymatics if you want visual proof. Sound literally shapes physical structures.
+
+You are matter. Sound affects you.
+
+I've been using 528 Hz during meditation and visualization for 6 months. I can't prove causation, but I can describe correlation:
+
+- More synchronicities
+- Deeper meditative states
+- Sense of heart "opening" (sounds woo, felt real)
+- Emotional releases during sessions
+
+Maybe it's placebo. Maybe placebo is more powerful than we think. Maybe it's actually shifting something at a cellular level.
+
+I don't need to know which. I just keep practicing.
+
+nestorlab.app has all the Solfeggio frequencies.
+
+Some things work before we understand why. 💚
+
+#528hz #solfeggio #healingfrequencies #binauralbeats #miracles #transformation`
+  },
+
+  // ========== ANXIETY - Relief & Understanding ==========
+  {
+    id: 24, category: 'anxiety', label: '💜 Anxiety', title: 'The Volume Knob',
+    text: `Think of your nervous system like a volume knob.
+
+Anxiety cranks it to 10. Everything is loud, urgent, threatening. Your body is primed for danger that isn't coming.
+
+Most anxiety advice is about the thoughts. "Reframe your thinking." "Challenge cognitive distortions."
+
+Good advice. But here's the problem: your brain is in threat mode. It's not listening to logic. It's preparing for battle.
+
+Binaural beats address the physiology first.
+
+Alpha frequencies (8-12 Hz) signal safety to your nervous system. They turn the volume down. Not off — you still feel things. But at a manageable level.
+
+When the volume is at 5 instead of 10, the cognitive techniques actually work.
+
+I do 10 minutes of 10 Hz Alpha before therapy now. My sessions are twice as productive.
+
+nestorlab.app — free volume control for your nervous system.
+
+Sometimes the body needs to calm before the mind can listen. 💜
+
+#anxiety #nervoussystem #binauralbeats #mentalhealth #regulation #therapy`
+  },
+  {
+    id: 25, category: 'anxiety', label: '💜 Anxiety', title: 'Panic Attack Protocol',
+    text: `For when the panic hits:
+
+I'm not going to tell you to "just breathe" or "think positive thoughts." When you're mid-panic, that advice is useless.
+
+Here's what actually helps me:
+
+Immediate: Grab my phone, put on earbuds, start 10 Hz Alpha binaural beats. Don't try to calm down yet. Just listen.
+
+The frequency gives my brain something to sync with that isn't the panic spiral. It doesn't stop the panic instantly. But it interrupts the acceleration.
+
+Within 2-3 minutes, I can usually start the breathing techniques. Box breathing. 4-4-4-4.
+
+Within 10 minutes, I'm usually past the peak.
+
+This doesn't cure panic disorder. I still have it. But I have a protocol now. A tool.
+
+The difference between "I'm powerless" and "I have a tool" is everything.
+
+nestorlab.app — saved as an emergency shortcut on my phone.
+
+You're not weak for having panic attacks. You're human. 💜
+
+#panicattack #panicattacks #anxiety #binauralbeats #copingtools #mentalhealth`
+  },
+  {
+    id: 26, category: 'anxiety', label: '💜 Anxiety', title: 'Social Anxiety Prep',
+    text: `I have social anxiety. Not the cute "I'm an introvert" kind. The "I canceled three times and still almost threw up in the parking lot" kind.
+
+Here's my party prep (or meeting prep, or any social event prep):
+
+30 minutes before leaving:
+- 10 Hz Alpha binaural beats
+- Lying down, eyes closed
+- Deep breathing
+- NOT rehearsing conversations (that makes it worse)
+
+I'm regulating my nervous system before I ask it to perform.
+
+I still feel nervous when I arrive. But it's a 6/10 instead of a 10/10. I can function at 6.
+
+The beats don't make me extroverted. They don't make me love parties. They make social situations survivable.
+
+Sometimes survivable is enough.
+
+nestorlab.app — my pre-social-event ritual.
+
+You don't have to enjoy every social situation. You just have to get through some of them. 💜
+
+#socialanxiety #anxiety #introvert #binauralbeats #mentalhealth #survivalguide`
+  },
+  {
+    id: 27, category: 'anxiety', label: '💜 Anxiety', title: 'Morning Dread',
+    text: `You know that thing where you wake up with your heart already racing?
+
+Like your body got a head start on the day's anxiety before you even opened your eyes?
+
+Morning anxiety is rough because you have no buffer. You're going from unconscious to full-dread in seconds.
+
+What helped me:
+
+I don't get out of bed immediately anymore. I stay horizontal. Put on wireless earbuds. Start 10 Hz Alpha binaural beats.
+
+I give my nervous system 10-15 minutes to adjust with support before facing gravity and the world.
+
+The beats override the cortisol spike. They give my brain a frequency to match that isn't panic.
+
+I still have anxious mornings. But they're manageable now.
+
+nestorlab.app — the first thing I do before I do anything.
+
+You deserve a soft landing into each day. 🌅💜
+
+#morninganxiety #anxiety #binauralbeats #morningroutine #mentalhealth #selfcare`
+  },
+
+  // ========== SCIENCE - Education & Explanation ==========
+  {
+    id: 28, category: 'science', label: '🧠 Science', title: 'Simple Explanation',
+    text: `How binaural beats work (actually simple explanation):
+
+Your brain is electrical. It produces waves. Different frequencies = different states.
+
+Delta (1-4 Hz) = Deep sleep
+Theta (4-8 Hz) = Meditation, creativity
+Alpha (8-12 Hz) = Relaxed focus
+Beta (12-30 Hz) = Active thinking
+Gamma (30+ Hz) = Peak cognition
+
+Now here's the trick:
+
+When you hear two slightly different frequencies — one in each ear — your brain perceives a third frequency equal to the difference.
+
+Left ear: 400 Hz
+Right ear: 410 Hz
+Brain perceives: 10 Hz (Alpha)
+
+Your brain naturally wants to sync with consistent external rhythms. It's called "entrainment." Same reason you nod to a beat.
+
+So you can literally choose what state you want your brain in. Sleep? Play 1 Hz difference. Focus? Play 40 Hz difference.
+
+That's it. That's the whole science.
+
+nestorlab.app — pick your frequency, change your state.
+
+Your brain is more controllable than you think. 🧠
+
+#neuroscience #brainwaves #binauralbeats #howtoworks #scienceexplained #education`
+  },
+  {
+    id: 29, category: 'science', label: '🧠 Science', title: 'Research Overview',
+    text: `The research on binaural beats (honest overview):
+
+What studies show:
+- Brainwave entrainment is real and measurable via EEG
+- Anxiety reduction in multiple clinical studies
+- Improved focus and attention in some studies
+- Enhanced meditation depth
+- Sleep improvement in various trials
+
+What's still uncertain:
+- Optimal frequencies for specific outcomes
+- Long-term effects
+- Why some people respond more than others
+- Exact mechanisms beyond entrainment
+
+What I take from this:
+
+The phenomenon is real. The effects are measurable. The exact science is still developing.
+
+I don't need perfect science to try something safe that might help. This isn't medication with side effects. It's sound.
+
+The worst case: you listened to frequencies for 20 minutes.
+The best case: you shifted your brain state intentionally.
+
+nestorlab.app — experiment on yourself.
+
+Science is ongoing. Experience is immediate. 🔬
+
+#research #science #binauralbeats #studies #evidencebased #neuroscience`
+  },
+  {
+    id: 30, category: 'science', label: '🧠 Science', title: 'EEG Evidence',
+    text: `I have access to EEG equipment. (Perks of dating a neuroscientist.)
+
+We decided to test binaural beats on me. Real data.
+
+Baseline: Normal waking state, mostly Beta waves (15-20 Hz dominant).
+
+Test 1: 10 minutes of 10 Hz Alpha binaural beats
+Result: Clear shift toward Alpha dominance. Took about 6 minutes to see significant entrainment.
+
+Test 2: 10 minutes of 6 Hz Theta binaural beats
+Result: Theta increase was present but less dramatic. Theta is naturally harder to access.
+
+Test 3: 15 minutes of 1 Hz Delta binaural beats
+Result: Didn't fall asleep, but saw increased Delta activity and decreased Beta significantly.
+
+What I learned:
+
+1. The effect is real and measurable
+2. Different people may respond to different frequencies differently
+3. Longer sessions produce more pronounced effects
+4. This isn't placebo — the EEG doesn't lie
+
+nestorlab.app — try it and see how YOU respond.
+
+N=1, but it's the only N that matters for your experience. 📊
+
+#eeg #neuroscience #binauralbeats #experiment #brainwaves #data`
+  },
+
+  // ========== STORIES - Personal Narratives ==========
+  {
+    id: 31, category: 'story', label: '📖 Story', title: 'The Skeptic Converted',
+    text: `I was the annoying skeptic.
+
+"Binaural beats? Sounds like placebo. Show me a peer-reviewed study. Actually, show me three."
+
+My partner used them. I rolled my eyes. My coworker mentioned them. I explained why they "probably didn't really work."
+
+Then I couldn't sleep for three weeks straight. Stress from a project. Every pharmaceutical made me groggy. Nothing worked.
+
+Out of desperation — literal desperation — I tried my partner's binaural beats.
+
+1 Hz. Headphones. Lying in bed with my skepticism and my insomnia.
+
+I woke up 7 hours later.
+
+Maybe it was coincidence. Maybe I was just tired enough. So I tried again the next night. Same result.
+
+Three years later, I use them daily. For sleep. For focus. For meditation.
+
+I was wrong. It takes a certain kind of person to say that publicly.
+
+nestorlab.app — for skeptics who've run out of options.
+
+Sometimes the thing you dismiss is the thing you need. 🌙
+
+#skeptic #converted #binauralbeats #insomniacured #openmind #story`
+  },
+  {
+    id: 32, category: 'story', label: '📖 Story', title: 'Grief Companion',
+    text: `When my mom died, I stopped sleeping.
+
+Not insomnia. Grief.
+
+Lying in bed meant thinking. Thinking meant feeling. Feeling meant drowning.
+
+I'd stay awake until I literally collapsed. Not a solution.
+
+A grief counselor suggested binaural beats. Not as therapy. As a bridge to rest.
+
+"Sometimes we need help turning off," she said.
+
+Delta frequencies (1-2 Hz) became my nighttime companion. They didn't stop the grief. Nothing stops grief. But they created enough space for my brain to rest between the waves of pain.
+
+I slept in fragments. But I slept.
+
+It's been two years. I still use them. Not just for grief now. But I'll never forget what they did for me in those first impossible months.
+
+nestorlab.app — sometimes tools are also friends.
+
+If you're grieving, I'm sorry. And you still need to sleep. 💜
+
+#grief #loss #binauralbeats #sleep #healing #griefsupport`
+  },
+  {
+    id: 33, category: 'story', label: '📖 Story', title: 'Touring Musician',
+    text: `I'm a touring musician. Which sounds glamorous until you realize it means sleeping in a different city every night, often on a bus that's moving.
+
+My sleep was destroyed. My voice was suffering. My mental health was shot.
+
+Traditional sleep hygiene advice? Laughable. "Sleep in a cool, dark room." Sir, I'm in a bunk on I-95.
+
+A sound engineer (of course a sound engineer) introduced me to binaural beats.
+
+Delta frequencies through noise-canceling earbuds. Same audio environment every night, regardless of where I physically was.
+
+My brain started associating those frequencies with sleep. Pavlovian conditioning, basically.
+
+Now I can sleep almost anywhere. The bus, hotels, friends' couches. The frequency is my constant.
+
+nestorlab.app — the touring musician's secret weapon.
+
+Home is wherever your frequency is. 🎸
+
+#touringmusician #musician #binauralbeats #sleephack #tourlife #musiciansoftiktok`
+  },
+  {
+    id: 34, category: 'story', label: '📖 Story', title: 'Exam Transformation',
+    text: `I almost failed out of law school.
+
+Not because I didn't study. I studied constantly. But I retained nothing. The stress was so high that my brain was in permanent survival mode.
+
+Fight or flight isn't a learning state. You can't encode memories when your brain thinks it's being chased by a tiger.
+
+A classmate — top of her class, annoyingly calm — told me her secret.
+
+40 Hz binaural beats during study sessions. 10 Hz before exams.
+
+"It's not magic," she said. "It just changes your brain state."
+
+I tried it. Skeptically, desperately.
+
+Within two weeks, I noticed I was remembering things. Actually retaining information. The fog was lifting.
+
+I graduated. Passed the bar first try. Still use binaural beats when I need to learn something complex.
+
+nestorlab.app — saved my legal career.
+
+Intelligence isn't fixed. Brain state is flexible. 📚
+
+#lawschool #studytips #binauralbeats #transformation #exams #success`
+  },
+
+  // ========== CURIOSITY - Unique Angles & Hooks ==========
+  {
+    id: 35, category: 'curiosity', label: '🔮 Curiosity', title: 'What If',
+    text: `What if everything you struggle with — focus, sleep, anxiety, creativity — isn't a personal failing?
+
+What if it's just... tuning?
+
+Your brain is constantly producing electromagnetic waves. When they're in sync with what you're trying to do, things flow. When they're not, you struggle.
+
+Trying to focus in Delta state (1-4 Hz)? Impossible.
+Trying to sleep in Beta state (15+ Hz)? Forget it.
+Trying to be creative in high Beta? Good luck.
+
+Most of us have never learned to consciously shift these states. We're at the mercy of whatever frequency our brain happens to be producing.
+
+Binaural beats are a tuning tool.
+
+Not a cure. Not magic. Just... access to your own controls.
+
+nestorlab.app — what if the solution is simpler than you thought?
+
+Maybe you're not broken. Maybe you're just tuned to the wrong station. 📻
+
+#whatif #mindset #binauralbeats #brainwaves #reframe #potential`
+  },
+  {
+    id: 36, category: 'curiosity', label: '🔮 Curiosity', title: 'Ancient Modern',
+    text: `This technology has existed for centuries. We just didn't call it that.
+
+Monks chanting in specific resonances.
+Shamanic drumming at particular rhythms.
+Tibetan singing bowls tuned to specific frequencies.
+
+Every culture discovered that certain sounds do something to consciousness.
+
+Now neuroscience explains why: brainwave entrainment. Your brain syncs to external rhythms.
+
+The monks were right. The shamans were right. The singing bowl practitioners were right.
+
+They just didn't have EEG machines to prove it.
+
+Binaural beats are the modern, accessible version of ancient wisdom.
+
+nestorlab.app — technology so old it's new.
+
+Sometimes progress means remembering what we forgot. 🔮
+
+#ancientwisdom #modernscience #binauralbeats #spirituality #consciousness #history`
+  },
+  {
+    id: 37, category: 'curiosity', label: '🔮 Curiosity', title: 'The 40 Hz Mystery',
+    text: `40 Hz is getting a lot of attention from neuroscientists right now.
+
+Here's why:
+
+Studies on Alzheimer's patients showed that exposure to 40 Hz light and sound reduced amyloid plaques — the protein buildup associated with the disease.
+
+MIT researchers are actively investigating this. Major institutions are funding further studies.
+
+The theory: 40 Hz stimulates microglia (brain's immune cells) to clear waste more effectively.
+
+I'm not claiming binaural beats cure Alzheimer's. That would be irresponsible.
+
+But I am saying: 40 Hz does something interesting to brains. We're still learning what.
+
+In the meantime, I use 40 Hz for focus, and I notice significant effects.
+
+nestorlab.app — includes 40 Hz and all other frequencies.
+
+Sometimes we use things that work before we fully understand why. 🧠
+
+#40hz #neuroscience #brainstudy #binauralbeats #cognition #research`
+  },
+  {
+    id: 38, category: 'curiosity', label: '🔮 Curiosity', title: 'Lucid Doorway',
+    text: `I've had 23 lucid dreams in the past 6 months.
+
+Before that? Maybe 2 in my entire life.
+
+What changed:
+
+3-4 Hz binaural beats as I fall asleep. This is the Theta-Delta border — the hypnagogic state. The gateway.
+
+The theory: the beats help maintain a sliver of awareness as your body falls asleep. Enough consciousness to realize you're dreaming.
+
+The practice: Lie still. Focus on the frequency. Set the intention to recognize you're dreaming.
+
+It doesn't work every night. But when it works, it's wild.
+
+Flying. Creating. Talking to parts of your subconscious. Having experiences indistinguishable from waking reality.
+
+nestorlab.app — the doorway to your own dreamworld.
+
+Your sleeping hours don't have to be unconscious. 🔮
+
+#luciddreaming #dreams #binauralbeats #consciousness #dreamworld #explore`
+  },
+  {
+    id: 39, category: 'curiosity', label: '🔮 Curiosity', title: 'Emotional Release',
+    text: `Sometimes during binaural beat meditation, people cry.
+
+Not sad crying. Not happy crying. Just... releasing crying.
+
+It happened to me about three months in. 6 Hz Theta, deep in a session, and suddenly tears streaming down my face. No thought attached. Just emotion moving through.
+
+I've heard similar stories from dozens of others.
+
+The theory: Theta state accesses repressed emotional content. Stuff you've pushed down surfaces when your conscious defenses lower.
+
+It's not bad. It's actually cathartic. Like your psyche taking advantage of an open window to do some cleaning.
+
+If it happens, let it happen. Don't analyze. Just feel.
+
+nestorlab.app — sometimes healing looks like unexplained tears.
+
+The body keeps the score. And sometimes it decides to settle accounts. 💜
+
+#emotionalrelease #healing #binauralbeats #meditation #catharsis #therapy`
+  },
+  {
+    id: 40, category: 'curiosity', label: '🔮 Curiosity', title: 'Creativity Portal',
+    text: `Ever notice your best ideas come in the shower?
+
+Or right before sleep?
+
+Or during a boring meeting?
+
+There's a reason: Theta brainwaves.
+
+When your conscious mind is occupied (showering, drifting off, zoning out), your brain slips into Theta. That's where creativity lives.
+
+The problem: you can't force it. The harder you try to be creative, the more you stay in Beta (analytical mind).
+
+The solution: stop trying. Enter Theta intentionally.
+
+7-8 Hz binaural beats. Let your mind wander. Have a notebook nearby.
+
+The ideas will come. Not because you forced them. Because you opened the door.
+
+nestorlab.app — the portal to your own creative unconscious.
+
+Creativity isn't pushing. It's receiving. And you have to be in the right state to receive. 🎨
+
+#creativity #creativityflow #binauralbeats #theta #ideas #artist`
+  },
+
+  // ========== QUICK - Short & Punchy ==========
+  {
+    id: 41, category: 'quick', label: '⚡ Quick', title: 'Sleep Quickie',
+    text: `Can't sleep? 🌙
+
+Put this in your ears: 1 Hz binaural beats
+Keep volume: low
+Close eyes
+Stop trying
+
+That's it.
+
+nestorlab.app (free)
+
+You're welcome.
+
+#sleephack #binauralbeats #insomnia #cantsleep`
+  },
+  {
+    id: 42, category: 'quick', label: '⚡ Quick', title: 'Focus Quickie',
+    text: `Need to focus like your life depends on it?
+
+40 Hz binaural beats.
+Noise-canceling headphones.
+Phone in another room.
+
+You're welcome.
+
+nestorlab.app
+
+#focushack #binauralbeats #deepwork #productivity`
+  },
+  {
+    id: 43, category: 'quick', label: '⚡ Quick', title: 'Anxiety Quickie',
+    text: `Anxious? 💜
+
+10 Hz Alpha binaural beats.
+Eyes closed.
+Breathe slow.
+10 minutes.
+
+It helps. Really.
+
+nestorlab.app
+
+#anxiety #anxietyrelief #binauralbeats #calm`
+  },
+  {
+    id: 44, category: 'quick', label: '⚡ Quick', title: 'Save List',
+    text: `Save this for when you need it:
+
+😴 Sleep → 1 Hz
+🎯 Focus → 40 Hz
+🧘 Meditate → 6 Hz
+😰 Anxiety → 10 Hz
+🎨 Create → 7 Hz
+
+All free: nestorlab.app
+
+#savethis #binauralbeats #brainhacks #lifetips`
+  },
+  {
+    id: 45, category: 'quick', label: '⚡ Quick', title: 'Story Quick',
+    text: `The thing I use every single day that costs $0:
+
+Binaural beats.
+
+Sleep better. Focus longer. Stress less.
+
+Just frequencies. Just science.
+
+nestorlab.app
+
+#freetool #binauralbeats #dailyhabits #wellness`
+  },
+  {
+    id: 46, category: 'quick', label: '⚡ Quick', title: 'Study Quick',
+    text: `Study mode: ACTIVATED 📚
+
+40 Hz binaural beats
++ Do Not Disturb
++ Actually reading
+
+GPA incoming.
+
+nestorlab.app
+
+#studytips #studyhacks #binauralbeats #studentlife`
+  },
+
+  // ========== MORE UNIQUE STORIES & HOOKS ==========
+  {
+    id: 47, category: 'story', label: '📖 Story', title: 'Therapist Discovery',
+    text: `My therapist started recommending binaural beats to her other patients.
+
+Not because I told her to. Because she saw what happened to me.
+
+I'd been in therapy for anxiety for two years. Progress was slow. Talk therapy is valuable, but my nervous system was too activated to really receive it.
+
+I started using 10 Hz Alpha binaural beats for 10 minutes before each session.
+
+The difference was immediate. I was calmer. I could access difficult memories without spiraling. I could stay in my body during hard conversations.
+
+My therapist noticed. "What changed?" she asked.
+
+I showed her the app. She researched it herself. Now she recommends it as a pre-therapy practice for dysregulated clients.
+
+nestorlab.app — therapist-approved (at least by mine).
+
+Sometimes the best therapy tool isn't therapy. It's preparation for therapy. 💜
+
+#therapy #mentalhealth #binauralbeats #anxietytreatment #healingjourney`
+  },
+  {
+    id: 48, category: 'curiosity', label: '🔮 Curiosity', title: 'Babies & Frequency',
+    text: `My baby stops crying when I play low Delta frequencies.
+
+Like, immediately.
+
+I discovered this by accident. She was colicky, screaming, nothing worked. In desperation, I put on my binaural beats to try to stay calm myself.
+
+She stopped. Just... stopped.
+
+Babies' brains are in Delta and Theta most of the time. Maybe the frequency feels familiar? Like the womb's rhythm?
+
+I don't fully understand it. But it works.
+
+Not through earbuds for her — just low volume through speakers. The carrier wave seems to be enough.
+
+nestorlab.app — accidentally became a parenting tool.
+
+Sometimes discoveries happen when you're not looking. 👶
+
+#newparent #baby #colic #binauralbeats #parentinghack #discovery`
+  },
+  {
+    id: 49, category: 'focus', label: '🎯 Focus', title: 'Chess Improvement',
+    text: `I improved 200 Elo points in 6 months.
+
+Not from studying openings (though I did that too). Not from playing more games.
+
+From changing my brain state during games.
+
+Chess requires sustained concentration and pattern recognition. Both are Gamma wave activities. 40 Hz territory.
+
+I started listening to 40 Hz binaural beats during online games.
+
+My calculation got deeper. My blunders decreased. I could maintain focus for longer games without that mid-game fog.
+
+It's not cheating — it's brain state optimization. Like how athletes do visualization or breathing exercises.
+
+nestorlab.app — the chess training tool that isn't about chess.
+
+Sometimes improvement comes from training what's between the ears, not what's in the books. ♟️
+
+#chess #chesstok #improvement #binauralbeats #focus #mentaltraining`
+  },
+  {
+    id: 50, category: 'meditation', label: '🧘 Meditation', title: 'Micro Meditation',
+    text: `I don't have time for 30-minute meditation sessions.
+
+I have 5-minute pockets throughout the day.
+
+Here's what I do:
+
+5 minutes. 6 Hz Theta binaural beats. Eyes closed.
+
+No goal. No expectations. Just presence.
+
+The frequency does the heavy lifting. I don't have to "clear my mind" or "observe my thoughts" or whatever. I just exist in the frequency.
+
+Five minutes of Theta is more valuable than 30 minutes of struggling in Beta.
+
+I do this 3-4 times a day. Between meetings. Before a difficult call. When I feel my stress rising.
+
+nestorlab.app — meditation for people with no time.
+
+You don't need an hour. You need moments. 🧘
+
+#micromeditation #meditation #busylife #binauralbeats #mindfulness #shortmeditation`
+  },
+  {
+    id: 51, category: 'sleep', label: '😴 Sleep', title: 'The Mattress Myth',
+    text: `I spent $3,000 on a mattress trying to fix my sleep.
+
+Still couldn't sleep.
+
+Bought blackout curtains. White noise machine. Perfect pillow. Weighted blanket. All the stuff.
+
+Still couldn't sleep.
+
+You know what fixed it? Free audio frequencies.
+
+Because my problem wasn't physical comfort. It was mental state. My brain didn't know how to shift from high-alert to sleep-mode.
+
+The fancy mattress didn't teach it that. Delta binaural beats did.
+
+I still use that mattress. It's comfortable. But it didn't fix my sleep.
+
+nestorlab.app — fixes what mattresses can't.
+
+Sometimes the solution isn't more expensive. It's just different. 🌙
+
+#sleepfix #mattress #binauralbeats #insomnia #sleepscience #moneywasted`
+  },
+  {
+    id: 52, category: 'anxiety', label: '💜 Anxiety', title: 'Before The Meeting',
+    text: `That pre-meeting anxiety where your brain fast-forwards through every possible disaster?
+
+I used to sit in that state for hours. Physically in the present, mentally in worst-case-scenario land.
+
+Now, 15 minutes before any stressful meeting:
+
+10 Hz Alpha binaural beats.
+
+I don't try to prepare what I'll say. I don't rehearse. I just calm my nervous system.
+
+When I walk in, I'm in a completely different state. Present. Responsive. Not reactive.
+
+The meeting usually goes better. And even if it doesn't, I'm not destroyed before it starts.
+
+nestorlab.app — pre-meeting ritual.
+
+You can't control the meeting. You can control your state entering it. 💼
+
+#meetinganxiety #worklife #anxiety #binauralbeats #preparation #professionallife`
+  },
+  {
+    id: 53, category: 'manifestation', label: '✨ Manifestation', title: 'Before Sleep Scripting',
+    text: `The most powerful manifestation hack I've found:
+
+Theta binaural beats + scripting + right before sleep.
+
+Here's the logic:
+
+1. Theta state = subconscious is receptive
+2. Scripting = writing your desires as already real
+3. Before sleep = your subconscious processes all night
+
+I put on 6 Hz. Write in my journal as if my goals have already happened. Then fall asleep with that reality fresh in my mind.
+
+My subconscious marinates in it for 8 hours.
+
+I'm not claiming causation. But I am noticing an uncomfortable number of "coincidences" that match what I've been scripting.
+
+nestorlab.app + a journal + bedtime.
+
+Program yourself while you sleep. ✨
+
+#scripting #manifestation #binauralbeats #bedtimeritual #lawofattraction #journaling`
+  },
+  {
+    id: 54, category: 'science', label: '🧠 Science', title: 'Neuroplasticity',
+    text: `Your brain physically changes based on what you repeatedly do.
+
+That's neuroplasticity.
+
+Taxi drivers have larger hippocampi (spatial memory region).
+Musicians have larger motor cortices.
+Meditators have thicker prefrontal cortices.
+
+What about repeated brainwave states?
+
+If you regularly enter Gamma states (40 Hz) for focus, you're training those neural pathways. If you consistently access Theta (4-8 Hz) for meditation, you're strengthening that capacity.
+
+Binaural beats aren't just temporary state changes. Used consistently, they may be neural training.
+
+You're not just visiting these states. You're building roads to them.
+
+nestorlab.app — brain training disguised as listening.
+
+Every session is a rep for your mind. 🧠
+
+#neuroplasticity #braintraining #binauralbeats #neuroscience #growth #training`
+  },
+  {
+    id: 55, category: 'story', label: '📖 Story', title: 'Rock Bottom Recovery',
+    text: `Rock bottom for me was sitting in my car in a parking lot for 3 hours because I couldn't face going inside to work.
+
+Anxiety had become paralysis.
+
+I couldn't sleep. Couldn't focus. Couldn't function. Couldn't imagine continuing like this, but also couldn't imagine any other way.
+
+A random Reddit comment mentioned binaural beats for anxiety. One desperate download later.
+
+10 Hz Alpha. I listened in that parking lot.
+
+Something shifted. Not a cure. But a crack in the prison. For the first time in months, I felt like maybe I could move.
+
+I went inside that day. And the next day. And I kept using the beats.
+
+That was two years ago. I'm not "fixed" — that's not how mental health works. But I'm functional. I'm even okay sometimes.
+
+nestorlab.app — I'm not exaggerating when I say it changed my life.
+
+If you're in the parking lot right now, this might help. 💜
+
+#rockbottom #anxietyrecovery #binauralbeats #mentalhealth #recovery #hope`
+  },
+  {
+    id: 56, category: 'curiosity', label: '🔮 Curiosity', title: 'Every Ancient Culture',
+    text: `Every ancient culture discovered sonic consciousness alteration.
+
+Shamanic drums. Temple bells. Throat singing. Didgeridoo. Gregorian chants.
+
+Different continents. No communication between them. Same discovery.
+
+Rhythm and frequency do something to human consciousness.
+
+We're just the first generation with the neuroscience to explain WHY.
+
+And the technology to apply it precisely.
+
+nestorlab.app — ancient wisdom, modern precision.
+
+Our ancestors weren't wrong. They just couldn't measure it yet. 🔮
+
+#ancientcultures #shamanism #binauralbeats #consciousness #wisdom #anthropology`
+  },
+  {
+    id: 57, category: 'focus', label: '🎯 Focus', title: 'Language Learning',
+    text: `I'm learning my 4th language, and binaural beats changed everything.
+
+Languages require:
+- Memory encoding (Gamma)
+- Pattern recognition (Alpha/Gamma)
+- Relaxed repetition (Alpha)
+
+When I study vocab: 40 Hz for encoding
+When I listen to native speakers: 10 Hz for absorption
+When I practice speaking: 12-15 Hz for alert relaxation
+
+My retention is significantly higher than previous languages.
+
+The brain state matters as much as the study method.
+
+nestorlab.app — language learning companion.
+
+You're not bad at languages. You might just be studying in the wrong brain state. 🌍
+
+#languagelearning #polyglot #binauralbeats #studytips #languages #learning`
+  },
+  {
+    id: 58, category: 'anxiety', label: '💜 Anxiety', title: 'Flying Fear',
+    text: `Flying used to require Xanax.
+
+Full disclosure: I'd take a pill before boarding, wake up wherever we landed, and call it a success. Not sustainable.
+
+A doctor suggested trying to reduce anxiety naturally first. I was skeptical but compliant.
+
+10 Hz Alpha binaural beats, starting in the terminal. Noise-canceling headphones during the flight. Eyes closed during takeoff and landing.
+
+First flight without medication: terrifying. But manageable.
+Fifth flight: uncomfortable but okay.
+Twentieth flight: almost calm?
+
+It's not about eliminating fear. It's about keeping your nervous system regulated enough that the fear doesn't spiral.
+
+nestorlab.app — my flight companion now.
+
+You don't have to be drugged to fly. You can be regulated instead. ✈️
+
+#fearofflying #flyinganxiety #binauralbeats #anxiety #traveltips #drugfree`
+  },
+  {
+    id: 59, category: 'meditation', label: '🧘 Meditation', title: 'Driving Meditation',
+    text: `I do meditation during my commute.
+
+Not like, eyes-closed meditation. That would be dangerous.
+
+8-10 Hz Alpha binaural beats (low volume, bone conduction headphones for safety).
+
+It shifts my drive from stressful to contemplative.
+
+The frequency keeps me alert but calm. I arrive at work regulated instead of road-raged.
+
+Same time investment. Completely different outcome.
+
+The car becomes a moving meditation space.
+
+nestorlab.app — transforms dead time into growth time.
+
+You're going to be in traffic anyway. Might as well use it. 🚗
+
+#drivingmeditation #commute #binauralbeats #mindfulness #timemanagement`
+  },
+  {
+    id: 60, category: 'story', label: '📖 Story', title: 'Wedding Day Calm',
+    text: `I used binaural beats at my wedding.
+
+Not during the ceremony (that would be weird). But in the hour before.
+
+Wedding day anxiety is a specific kind of chaos. Excitement and terror and love and doubt all swirling together.
+
+I sat in the bridal suite, earbuds in, 10 Hz Alpha, breathing.
+
+My bridesmaids thought I was "zoning out." I was regulating my nervous system.
+
+When I walked down the aisle, I was present. Actually there. Not spinning in anxiety.
+
+I remember every moment. Every face. Every feeling.
+
+nestorlab.app — the wedding prep no one talks about.
+
+The most important moments deserve your full presence. 💒
+
+#wedding #weddingday #bridaltips #binauralbeats #calm #bigday`
+  },
+
+  // Continue with more unique captions...
+  {
+    id: 61, category: 'curiosity', label: '🔮 Curiosity', title: 'Color Visualization',
+    text: `Closed-eye visuals during binaural beats are a thing.
+
+Usually in Theta (4-8 Hz), after 15+ minutes.
+
+Colors. Geometric patterns. Sometimes almost landscapes.
+
+It's not hallucination — it's your visual cortex generating internal imagery without external input. Hypnagogia, basically.
+
+Some people see nothing. Some see vivid scenes.
+
+I see swirling purples and golds. Mandala-like patterns that shift.
+
+They get more detailed with practice.
+
+nestorlab.app — see what your mind creates when given space.
+
+Your consciousness does interesting things when you stop feeding it external input. 🎨
+
+#closedeyevisuals #hypnagogia #binauralbeats #meditation #consciousness #innerworld`
+  },
+  {
+    id: 62, category: 'sleep', label: '😴 Sleep', title: 'Hotel Sleep Fix',
+    text: `I travel constantly. Different hotels every few days.
+
+My brain used to hate new environments. First night in any hotel = barely sleeping. "First night effect" — your brain stays partially alert in unfamiliar places.
+
+Binaural beats became my portable consistency.
+
+Same frequency (1-2 Hz Delta) every night, regardless of where I am.
+
+The audio environment is constant even when the physical environment changes.
+
+My brain learned: this frequency = sleep, no matter what room we're in.
+
+Hotel sleep went from 4 hours to 7+.
+
+nestorlab.app — home wherever you are.
+
+Your brain needs consistency. Create it sonically. 🏨
+
+#travelsleep #businesstravel #hotel #binauralbeats #sleephack #roadwarrior`
+  },
+  {
+    id: 63, category: 'focus', label: '🎯 Focus', title: 'Math Finally Clicked',
+    text: `Math never made sense to me.
+
+Letters where numbers should be. Rules that felt arbitrary. Years of struggling and shame.
+
+At 28, I decided to try again. Self-studying algebra to calculus.
+
+What made it different this time: 40 Hz binaural beats during study.
+
+Something clicked. Literally felt different in my brain.
+
+The patterns that never made sense started emerging. The logic connected.
+
+I think my brain was always in the wrong state for mathematical thinking. Too stressed, too scattered.
+
+Gamma is analytical. Gamma is pattern-recognition. Math IS patterns.
+
+nestorlab.app — the math study companion I wish I'd had at 15.
+
+It's not too late to learn what you couldn't before. 📐
+
+#mathstruggle #adultlearning #binauralbeats #education #nevertoonate #mathfear`
+  },
+  {
+    id: 64, category: 'manifestation', label: '✨ Manifestation', title: 'Vision Board 2.0',
+    text: `Vision boards are great.
+
+Vision boards + Theta binaural beats = different.
+
+Looking at your vision board in normal waking consciousness: "That's what I want."
+
+Looking at your vision board in Theta state: *embodied experience of already having it*
+
+The difference is whether you're observing or inhabiting.
+
+I spend 15 minutes daily looking at my vision board with 7 Hz playing.
+
+Not just seeing the images. Feeling what it feels like. The emotions of that reality.
+
+Three things from last year's board have manifested. Coincidence? Maybe. But I'm not stopping.
+
+nestorlab.app + vision board + feeling state.
+
+See it. Feel it. Become it. ✨
+
+#visionboard #manifestation #binauralbeats #visualization #lawofattraction #feelingstate`
+  },
+  {
+    id: 65, category: 'anxiety', label: '💜 Anxiety', title: 'Driving Anxiety',
+    text: `I used to pull over on highways because I'd panic mid-drive.
+
+Driving anxiety is extra scary because you're responsible for a moving vehicle while your brain is screaming that you're dying.
+
+I can't close my eyes. I can't escape. I can't even really breathe deeply without feeling like I'll crash.
+
+What helped:
+
+Before driving: 10 minutes of 10 Hz Alpha, preparing my nervous system.
+During driving: Very low-volume binaural beats through one earbud (legal where I am, use discretion).
+
+The pre-drive regulation was the key. Starting calm made staying calm possible.
+
+I drive highways now. Not comfortably, but I do it.
+
+nestorlab.app — preparation made possible.
+
+Some fears require workarounds. This is mine. 🚗💜
+
+#drivinganxiety #anxiety #binauralbeats #mentalhealth #overcomingfear`
+  },
+  
+  // ========== ADVANCED MODES ==========
+  {
+    id: 200, category: 'advanced', label: '🚀 Advanced', title: '🌠 Deep Sleep Protocol',
+    text: `20 minutes. That's all it takes.
+
+Not a guided meditation. Not nature sounds. A scientific sleep induction protocol.
+
+Here's what happens:
+• Minutes 1-3: Alpha waves calm your racing mind
+• Minutes 4-7: Theta drops you into drowsiness  
+• Minutes 8-15: Delta takes over — you're drifting
+• Minutes 16-20: Ultra-delta (0.2 Hz) — your cells are regenerating
+
+Most people don't make it past minute 12.
+
+The difference from regular sleep sounds? This one doesn't let you back up. Each phase locks in before the next begins.
+
+Growth hormone releases. Cells repair. Tomorrow's energy is being built right now.
+
+nestorlab.app → Quick Start → Deep Sleep 🌠
+
+20 minutes to the deepest sleep of your life.
+
+#deepsleep #sleepprotocol #binauralbeats #deltawaves #insomnia #sleephack #sleepscience`
+  },
+  {
+    id: 201, category: 'advanced', label: '🚀 Advanced', title: '🦋 Anxiety Relief Protocol',
+    text: `There's a frequency zone therapists call "the therapeutic window."
+
+It's the 7-8 Hz range. The Alpha-Theta crossover.
+
+In this zone, your amygdala (fear center) quiets down. Your prefrontal cortex (rational thinking) comes online. Anxiety literally cannot maintain its grip.
+
+The 18-minute Anxiety Relief protocol:
+• SMR waves establish safety first
+• 10 Hz Alpha — the proven "anxiety sweet spot"
+• Extended time in the 7.5 Hz crossover zone
+• Gentle theta for deep calm
+• Return to functional alertness (not drowsy)
+
+You don't end up sleepy. You end up clear.
+
+Clinical studies show 10 Hz significantly reduces anxiety markers. This protocol was built around that research.
+
+nestorlab.app → Quick Start → Anxiety Relief 🦋
+
+18 minutes from panic to peace.
+
+#anxiety #anxietyrelief #mentalhealth #binauralbeats #alphawaves #calmdown #panicattack #healing`
+  },
+  {
+    id: 202, category: 'advanced', label: '🚀 Advanced', title: '⚡ Deep Focus Protocol',
+    text: `Flow state isn't luck. It's a frequency.
+
+40 Hz Gamma. The "genius wave."
+
+MIT researchers found it enhances memory. Monks produce it during peak meditation. Elite performers have more of it than average people.
+
+The 18-minute Deep Focus protocol:
+• Alpha foundation — clear the mental clutter
+• SMR training (14 Hz) — lock attention
+• Beta climb (18-20 Hz) — deep work mode
+• Gamma peak (40 Hz) — FLOW STATE
+• Stable beta return — maintain without burnout
+
+You don't crash after. You coast at optimal performance.
+
+The difference from caffeine? This focus is calm. Clear. Sustainable.
+
+Warning: You might finish in 2 hours what used to take all day.
+
+nestorlab.app → Quick Start → Deep Focus ⚡
+
+18 minutes to becoming unstoppable.
+
+#focus #flowstate #productivity #gamma #deepwork #concentration #studyhack #binauralbeats`
+  },
+  {
+    id: 203, category: 'advanced', label: '🚀 Advanced', title: '🔮 Transcendent Protocol',
+    text: `They scanned Tibetan monks during deep meditation.
+
+What they found: Gamma bursts riding on theta waves. A combination that shouldn't happen... but does in masters.
+
+25 minutes of the Transcendent protocol recreates this.
+
+The journey:
+• Sacred space — Alpha grounds you
+• Deep theta descent — ego dissolves
+• Extended theta immersion — where insights live
+• Gamma illumination — the 40 Hz "enlightenment" burst
+• Integration — return transformed
+
+This isn't relaxation. This is consciousness technology.
+
+Some users report: "I saw things I can't explain." "Time disappeared." "I understood something I can't put into words."
+
+Not everyone is ready for 25 minutes of transcendence. But if you are...
+
+nestorlab.app → Quick Start → Transcendent 🔮
+
+The protocol that changes how you see everything.
+
+#meditation #transcendence #enlightenment #consciousness #gammawaves #thetawaves #spiritual #awakening`
+  },
+  {
+    id: 204, category: 'advanced', label: '🚀 Advanced', title: '👁️ Third Eye Protocol',
+    text: `852 Hz. 963 Hz.
+
+These aren't random numbers. They're ancient Solfeggio frequencies, encoded in Gregorian chants for centuries.
+
+852 Hz — Third eye activation
+963 Hz — Pineal gland stimulation
+
+The 22-minute Third Eye protocol combines them with modern neuroscience:
+• Ground first — essential for safe inner work
+• Theta visualization — activate the inner screen
+• 852 Hz immersion — Ajna opens
+• 963 Hz pineal — crown connection
+• 40 Hz illumination — "light" activation
+• Integration — return with enhanced vision
+
+Users report: Inner colors. Geometric patterns. Vivid mental imagery. Enhanced intuition.
+
+Your pineal gland evolved to perceive light. Sometimes it just needs... reminding.
+
+nestorlab.app → Quick Start → Third Eye 👁️
+
+22 minutes to awakening what's been dormant.
+
+#thirdeye #pineal #awakening #solfeggio #852hz #963hz #intuition #spirituality #consciousness`
+  },
+  {
+    id: 205, category: 'advanced', label: '🚀 Advanced', title: '🩹 Body Restore Protocol',
+    text: `Your body heals at specific frequencies.
+
+Deep delta (0.5-3 Hz) triggers growth hormone release. The same hormone that repairs tissue, builds muscle, and reverses cellular damage.
+
+The 22-minute Body Restore protocol:
+• Cortisol reduction — stop the stress damage first
+• Vagus nerve activation — "rest and digest" mode
+• 7 minutes of deep delta — maximum GH release
+• Ultra-low delta — pain signals quiet
+• 10 Hz alpha finish — anti-inflammatory effect
+
+This isn't meditation. This is recovery technology.
+
+Athletes use delta entrainment for faster healing. So do people with chronic pain, fibromyalgia, and autoimmune conditions.
+
+Your body knows how to heal. Sometimes it just needs the right frequency environment.
+
+nestorlab.app → Quick Start → Body Restore 🩹
+
+22 minutes of cellular restoration.
+
+#healing #recovery #growthhormone #deltawaves #painrelief #bodyhack #wellness #binauralbeats`
+  },
+  {
+    id: 206, category: 'advanced', label: '🚀 Advanced', title: '✨ Space Clear Protocol',
+    text: `This one's different. It's not for headphones.
+
+Play it through speakers. Let it fill your room.
+
+The 18-minute Space Clear protocol uses the complete Solfeggio scale (174 Hz → 963 Hz) to cleanse physical spaces.
+
+Sound cleansing is ancient:
+• Temple bells
+• Tibetan singing bowls  
+• Cathedral acoustics
+• Shamanic drums
+
+Modern version: A progressive sweep through 9 sacred frequencies, each clearing a different layer of stagnant energy.
+
+Use it:
+• Moving into a new space
+• After arguments or tension
+• Office feels heavy
+• Regular energetic maintenance
+
+The frequency progression: OM opening → low Solfeggio (clear density) → 528 Hz miracle tone → high Solfeggio (purify) → 963 Hz divine seal.
+
+nestorlab.app → Quick Start → Space Clear ✨
+
+18 minutes to transform any room.
+
+#spaceclearing #solfeggio #energyclearing #soundhealing #528hz #roomclearing #sacredspace #spirituality`
+  }
+];
+
+// Hashtags
+const HASHTAG_PACKS = [
+  { name: '🧠 Core Binaural', tags: ['#binauralbeats', '#brainwaves', '#soundhealing', '#frequencyhealing', '#brainwaveentrainment', '#healingfrequencies'] },
+  { name: '😴 Sleep & Rest', tags: ['#sleephack', '#deepsleep', '#insomnia', '#deltawaves', '#cantsleep', '#sleepbetter', '#sleepscience'] },
+  { name: '🎯 Focus & Productivity', tags: ['#focus', '#deepwork', '#productivity', '#studytips', '#concentration', '#studywithme', '#adhdhacks'] },
+  { name: '🧘 Meditation & Mindfulness', tags: ['#meditation', '#mindfulness', '#thetawaves', '#innerpeace', '#zenlife', '#consciousness'] },
+  { name: '✨ Manifestation', tags: ['#manifestation', '#lawofattraction', '#schumannresonance', '#spirituality', '#visualization', '#mindset'] },
+  { name: '💜 Mental Health', tags: ['#mentalhealth', '#anxiety', '#anxietyrelief', '#selfcare', '#healing', '#wellness', '#therapy'] }
+];
+
+function init() {
+  renderCaptions(CAPTIONS);
+  renderHashtags();
+  setupFilters();
+  updateCounts();
+}
+
+function renderCaptions(captions) {
+  const grid = document.getElementById('captionsGrid');
+  grid.innerHTML = captions.map(cap => `
+    <div class="caption-card" data-category="${cap.category}">
+      <div class="caption-header">
+        <span class="caption-label">${cap.label}</span>
+        <span class="caption-meta">${cap.title}</span>
+      </div>
+      <div class="caption-text">${escapeHtml(cap.text)}</div>
+      <div class="caption-footer">
+        <button class="copy-btn" onclick="copyCaption(this, ${cap.id})">📋 Copy</button>
+        <span class="char-count">${cap.text.length} chars</span>
+      </div>
+    </div>
+  `).join('');
+  
+  document.getElementById('noResults').style.display = captions.length ? 'none' : 'block';
+  updateCounts(captions.length);
+}
+
+function renderHashtags() {
+  const grid = document.getElementById('hashtagGrid');
+  grid.innerHTML = HASHTAG_PACKS.map(pack => `
+    <div class="hashtag-card">
+      <h3>${pack.name}</h3>
+      <div class="hashtags">${pack.tags.map(t => `<span class="hashtag">${t}</span>`).join('')}</div>
+      <button class="copy-btn" onclick="copyHashtags(this, '${pack.tags.join(' ')}')">📋 Copy All</button>
+    </div>
+  `).join('');
+}
+
+let currentCategory = 'all';
+let currentSearch = '';
+
+function setupFilters() {
+  // Desktop filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.dataset.filter;
+      filterCaptions();
+    });
+  });
+  
+  // Desktop search
+  const searchBox = document.getElementById('searchBox');
+  if (searchBox) searchBox.addEventListener('input', (e) => {
+    currentSearch = e.target.value.toLowerCase();
+    filterCaptions();
+  });
+  
+  // Mobile category dropdown
+  const mobileSelect = document.getElementById('categorySelectMobile');
+  if (mobileSelect) mobileSelect.addEventListener('change', (e) => {
+    currentCategory = e.target.value;
+    filterCaptions();
+  });
+  
+  // Mobile search
+  const mobileSearch = document.getElementById('searchBoxMobile');
+  if (mobileSearch) mobileSearch.addEventListener('input', (e) => {
+    currentSearch = e.target.value.toLowerCase();
+    filterCaptions();
+  });
+}
+
+function filterCaptions() {
+  let filtered = CAPTIONS;
+  if (currentCategory !== 'all') filtered = filtered.filter(c => c.category === currentCategory);
+  if (currentSearch) filtered = filtered.filter(c => c.text.toLowerCase().includes(currentSearch) || c.title.toLowerCase().includes(currentSearch));
+  
+  renderCaptions(filtered);
+}
+
+function updateCounts(visible) {
+  document.getElementById('totalCount').textContent = CAPTIONS.length;
+  document.getElementById('visibleCount').textContent = visible !== undefined ? visible : CAPTIONS.length;
+}
+
+function escapeHtml(text) { return text.replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+function showNotification(msg = '✓ Copied!') {
+  const notif = document.getElementById('notification');
+  notif.textContent = msg;
+  notif.classList.add('show');
+  setTimeout(() => notif.classList.remove('show'), 2000);
+}
+
+function copyCaption(btn, id) {
+  const caption = CAPTIONS.find(c => c.id === id);
+  navigator.clipboard.writeText(caption.text).then(() => {
+    btn.innerHTML = '✓ Copied!';
+    btn.classList.add('copied');
+    showNotification();
+    setTimeout(() => { btn.innerHTML = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyHashtags(btn, tags) {
+  navigator.clipboard.writeText(tags).then(() => {
+    btn.innerHTML = '✓ Copied!';
+    btn.classList.add('copied');
+    showNotification();
+    setTimeout(() => { btn.innerHTML = '📋 Copy All'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+init();
+</script>
+
+</body>
+</html>

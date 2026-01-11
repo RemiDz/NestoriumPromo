@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a1a">
+<title>Nestorium Static Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Quicksand:wght@300;400;500;600&family=Space+Mono&family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+  color: #f5f0e8;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Top Header with Back */
+.top-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  padding-top: calc(12px + env(safe-area-inset-top));
+  background: rgba(10, 10, 20, 0.98);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(155, 126, 217, 0.15);
+  border: 1px solid rgba(155, 126, 217, 0.3);
+  border-radius: 12px;
+  color: #9b7ed9;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.top-header-content {
+  flex: 1;
+}
+
+.top-header-content h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: #d4af37;
+}
+
+.top-header-content span {
+  font-size: 0.7rem;
+  color: rgba(245, 240, 232, 0.5);
+}
+
+.main-content {
+  padding: 15px;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom));
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: rgba(155, 126, 217, 0.15);
+  border: 1px solid rgba(155, 126, 217, 0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+.stat strong { color: #d4af37; }
+
+/* Category Dropdown for Mobile */
+.mobile-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.mobile-controls select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid rgba(155, 126, 217, 0.4);
+  background: rgba(155, 126, 217, 0.1);
+  color: #f5f0e8;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239b7ed9'%3E%3Cpath d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.mobile-controls select option { background: #0a0a1a; }
+
+.format-select {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(94, 231, 223, 0.1);
+  border: 1px solid rgba(94, 231, 223, 0.3);
+  color: #5ee7df;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%235ee7df' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+}
+
+.format-select:focus {
+  outline: none;
+  border-color: #5ee7df;
+  box-shadow: 0 0 10px rgba(94, 231, 223, 0.3);
+}
+
+.format-select option {
+  background: #0a0a1a;
+  color: #f5f0e8;
+  padding: 10px;
+}
+
+/* Desktop format selector - hidden on mobile */
+.format-controls {
+  display: none;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.format-select-desktop {
+  padding: 12px 40px 12px 20px;
+  background: rgba(94, 231, 223, 0.15);
+  border: 2px solid rgba(94, 231, 223, 0.4);
+  color: #5ee7df;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%235ee7df' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 20px;
+  min-width: 280px;
+}
+
+.format-select-desktop:hover {
+  background: rgba(94, 231, 223, 0.25);
+  border-color: #5ee7df;
+  box-shadow: 0 0 20px rgba(94, 231, 223, 0.3);
+}
+
+.format-select-desktop:focus {
+  outline: none;
+  border-color: #5ee7df;
+  box-shadow: 0 0 20px rgba(94, 231, 223, 0.4);
+}
+
+.format-select-desktop option {
+  background: #0a0a1a;
+  color: #f5f0e8;
+  padding: 12px;
+}
+
+/* Desktop filters - hidden on mobile */
+.controls {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 14px;
+  background: rgba(155, 126, 217, 0.1);
+  border: 1px solid rgba(155, 126, 217, 0.3);
+  color: #f5f0e8;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.7rem;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active { background: rgba(212, 175, 55, 0.3); border-color: #d4af37; color: #d4af37; }
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.card-label {
+  font-size: 0.7rem;
+  color: rgba(245, 240, 232, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* BASE CARD - Mobile Optimized */
+.card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.card.square { aspect-ratio: 1 / 1; padding: 25px; }
+.card.story { aspect-ratio: 9 / 16; max-width: 280px; padding: 30px 20px; }
+.card.portrait { aspect-ratio: 4 / 5; max-width: 300px; padding: 28px 22px; }
+
+/* Tip box */
+.tip-box {
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+  color: rgba(245, 240, 232, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tip-box span { font-size: 1.2rem; }
+
+@media (min-width: 600px) {
+  .mobile-controls { display: none; }
+  .controls { display: flex; }
+  .format-controls { display: flex; }
+  .cards-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+  .card-wrapper { width: auto; }
+  .card.square { width: 400px; max-width: none; padding: 30px; }
+  .card.story { width: 280px; max-width: none; padding: 30px 22px; }
+  .card.portrait { width: 340px; max-width: none; padding: 30px 25px; }
+  .tip-box { display: none; }
+}
+
+/* ========== 20+ UNIQUE BACKGROUND THEMES ========== */
+
+/* Theme 1: Cosmic Purple */
+.theme-cosmic-purple {
+  background: radial-gradient(ellipse at 30% 20%, rgba(155, 126, 217, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(212, 175, 55, 0.2) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0a1a 0%, #1a1030 50%, #0a0a1a 100%);
+}
+
+/* Theme 2: Golden Luxury */
+.theme-golden {
+  background: radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(180, 140, 50, 0.2) 0%, transparent 40%),
+    linear-gradient(180deg, #0f0d0a 0%, #1a1508 50%, #0f0d0a 100%);
+}
+
+/* Theme 3: Teal Flow */
+.theme-teal {
+  background: radial-gradient(ellipse at 40% 30%, rgba(94, 231, 223, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 70%, rgba(60, 180, 170, 0.2) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0f0f 0%, #0a1a1a 50%, #0a0f0f 100%);
+}
+
+/* Theme 4: Rose Soft */
+.theme-rose {
+  background: radial-gradient(ellipse at 50% 40%, rgba(232, 180, 184, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 70%, rgba(180, 130, 140, 0.2) 0%, transparent 40%),
+    linear-gradient(180deg, #0f0a0b 0%, #1a1012 50%, #0f0a0b 100%);
+}
+
+/* Theme 5: Deep Ocean */
+.theme-ocean {
+  background: radial-gradient(ellipse at 50% 60%, rgba(30, 80, 150, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 30%, rgba(50, 120, 180, 0.2) 0%, transparent 40%),
+    linear-gradient(180deg, #050a10 0%, #0a1525 50%, #050a10 100%);
+}
+
+/* Theme 6: Aurora */
+.theme-aurora {
+  background: radial-gradient(ellipse at 20% 20%, rgba(94, 231, 223, 0.3) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 30%, rgba(155, 126, 217, 0.3) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(212, 175, 55, 0.2) 0%, transparent 40%),
+    linear-gradient(180deg, #0a0a1a 0%, #0f1020 50%, #0a0a1a 100%);
+}
+
+/* Theme 7: Minimal Dark */
+.theme-minimal {
+  background: #0a0a0f;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+/* Theme 8: Gradient Bar */
+.theme-gradient-bar {
+  background: #0a0a0f;
+}
+.theme-gradient-bar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, #9b7ed9, #5ee7df, #e8b4b8, #d4af37);
+}
+.theme-gradient-bar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #5ee7df, #d4af37, #9b7ed9, #e8b4b8, #5ee7df);
+}
+
+/* Theme 9: Starfield */
+.theme-starfield {
+  background: radial-gradient(circle at 50% 50%, #12101f 0%, #0a0a0f 100%);
+}
+
+/* Theme 10: Sunset Warm */
+.theme-sunset {
+  background: radial-gradient(ellipse at 50% 70%, rgba(255, 120, 80, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 30%, rgba(255, 180, 100, 0.15) 0%, transparent 40%),
+    linear-gradient(180deg, #0f0a08 0%, #1a0f0a 50%, #0f0a08 100%);
+}
+
+/* Theme 11: Emerald */
+.theme-emerald {
+  background: radial-gradient(ellipse at 40% 40%, rgba(80, 200, 120, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 60%, rgba(40, 150, 80, 0.2) 0%, transparent 40%),
+    linear-gradient(180deg, #050f08 0%, #0a1a10 50%, #050f08 100%);
+}
+
+/* Theme 12: Mystical Purple */
+.theme-mystical {
+  background: radial-gradient(ellipse at 50% 20%, rgba(120, 80, 200, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(80, 40, 150, 0.3) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0515 0%, #150a20 50%, #0a0515 100%);
+}
+
+/* Theme 13: Bronze */
+.theme-bronze {
+  background: radial-gradient(ellipse at 50% 50%, rgba(180, 130, 70, 0.3) 0%, transparent 50%),
+    linear-gradient(180deg, #0f0c08 0%, #1a150a 50%, #0f0c08 100%);
+  border: 2px solid rgba(180, 130, 70, 0.4);
+}
+
+/* Theme 14: Neon Frame */
+.theme-neon-frame {
+  background: #0a0a0f;
+  box-shadow: inset 0 0 40px rgba(94, 231, 223, 0.1), inset 0 0 80px rgba(155, 126, 217, 0.05);
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #5ee7df, #9b7ed9, #d4af37) 1;
+}
+
+/* Theme 15: Gradient Mesh */
+.theme-mesh {
+  background: 
+    radial-gradient(at 0% 0%, rgba(94, 231, 223, 0.3) 0%, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(155, 126, 217, 0.3) 0%, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(212, 175, 55, 0.3) 0%, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(232, 180, 184, 0.3) 0%, transparent 50%),
+    #0a0a0f;
+}
+
+/* Theme 16: Vertical Gradient */
+.theme-vertical {
+  background: linear-gradient(180deg, 
+    rgba(155, 126, 217, 0.2) 0%, 
+    rgba(94, 231, 223, 0.1) 30%, 
+    rgba(212, 175, 55, 0.15) 70%, 
+    rgba(232, 180, 184, 0.1) 100%),
+    #0a0a0f;
+}
+
+/* Theme 17: Corner Glow */
+.theme-corner-glow {
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.4) 0%, transparent 30%),
+    radial-gradient(circle at 100% 100%, rgba(94, 231, 223, 0.4) 0%, transparent 30%),
+    #0a0a0f;
+}
+
+/* Theme 18: Center Spotlight */
+.theme-spotlight {
+  background: radial-gradient(circle at 50% 50%, rgba(245, 240, 232, 0.08) 0%, transparent 50%), #0a0a0f;
+}
+
+/* Theme 19: Dual Tone */
+.theme-dual {
+  background: linear-gradient(135deg, #12101f 0%, #0f1a15 100%);
+}
+
+/* Theme 20: Galaxy */
+.theme-galaxy {
+  background: 
+    radial-gradient(ellipse at 20% 80%, rgba(100, 50, 200, 0.3) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 20%, rgba(200, 100, 50, 0.2) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(50, 100, 200, 0.15) 0%, transparent 50%),
+    #05050a;
+}
+
+/* ========== TYPOGRAPHY STYLES ========== */
+
+.title {
+  position: relative;
+  z-index: 10;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+/* Title Style 1: Elegant Serif */
+.title-elegant {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+/* Title Style 2: Modern Sans */
+.title-modern {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.6rem;
+  letter-spacing: -0.5px;
+}
+
+/* Title Style 3: Display */
+.title-display {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  font-size: 1.9rem;
+}
+
+/* Title Style 4: Mono Tech */
+.title-tech {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+/* Title Style 5: Light */
+.title-light {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+
+/* Color variants */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #f5f0e8 0%, #d4af37 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-teal {
+  background: linear-gradient(135deg, #5ee7df 0%, #9b7ed9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-violet {
+  background: linear-gradient(135deg, #9b7ed9 0%, #e8b4b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-spectrum {
+  background: linear-gradient(135deg, #5ee7df 0%, #9b7ed9 33%, #d4af37 66%, #e8b4b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold { color: #d4af37; }
+.text-teal { color: #5ee7df; }
+.text-violet { color: #9b7ed9; }
+.text-white { color: #f5f0e8; }
+.text-rose { color: #e8b4b8; }
+
+/* Subtitles */
+.subtitle {
+  font-size: 0.75rem;
+  color: rgba(245, 240, 232, 0.7);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Frequency Display */
+.freq {
+  font-family: 'Space Mono', monospace;
+  position: relative;
+  z-index: 10;
+  margin: 10px 0;
+}
+
+.freq-large {
+  font-size: 3rem;
+  background: linear-gradient(180deg, #5ee7df 0%, #9b7ed9 50%, #d4af37 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.freq-medium {
+  font-size: 2.2rem;
+  color: #5ee7df;
+}
+
+.freq-small {
+  font-size: 1.5rem;
+  color: #d4af37;
+}
+
+.freq-glow {
+  text-shadow: 0 0 20px rgba(94, 231, 223, 0.5), 0 0 40px rgba(155, 126, 217, 0.3);
+}
+
+/* ========== VISUAL ELEMENTS ========== */
+
+/* Wheel variations */
+.wheel {
+  border-radius: 50%;
+  position: relative;
+  z-index: 10;
+  margin: 12px 0;
+}
+
+.wheel-rainbow {
+  width: 100px;
+  height: 100px;
+  background: conic-gradient(from 0deg, #d4af37, #9b7ed9, #5ee7df, #e8b4b8, #7b68ee, #d4af37);
+  box-shadow: 0 0 30px rgba(155, 126, 217, 0.4);
+}
+
+.wheel-gold {
+  width: 90px;
+  height: 90px;
+  background: conic-gradient(from 0deg, #d4af37, #b8860b, #ffd700, #daa520, #d4af37);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+}
+
+.wheel-teal {
+  width: 85px;
+  height: 85px;
+  background: conic-gradient(from 0deg, #5ee7df, #20b2aa, #40e0d0, #00ced1, #5ee7df);
+  box-shadow: 0 0 25px rgba(94, 231, 223, 0.5);
+}
+
+.wheel-violet {
+  width: 95px;
+  height: 95px;
+  background: conic-gradient(from 0deg, #9b7ed9, #8a2be2, #9370db, #ba55d3, #9b7ed9);
+  box-shadow: 0 0 25px rgba(155, 126, 217, 0.5);
+}
+
+.wheel::before {
+  content: '';
+  position: absolute;
+  top: 22%; left: 22%; right: 22%; bottom: 22%;
+  background: #0a0a0f;
+  border-radius: 50%;
+}
+
+.wheel::after {
+  content: '✧';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: #d4af37;
+}
+
+/* Dual wheels */
+.dual-wheels {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  z-index: 10;
+  margin: 15px 0;
+}
+
+.mini-wheel {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #d4af37, #9b7ed9, #5ee7df, #d4af37);
+  box-shadow: 0 0 20px rgba(155, 126, 217, 0.4);
+  position: relative;
+}
+
+.mini-wheel::before {
+  content: '';
+  position: absolute;
+  top: 25%; left: 25%; right: 25%; bottom: 25%;
+  background: #0a0a0f;
+  border-radius: 50%;
+}
+
+/* Orbs */
+.orb {
+  border-radius: 50%;
+  position: relative;
+  z-index: 10;
+  margin: 12px 0;
+}
+
+.orb-glow {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(155, 126, 217, 0.8) 0%, rgba(212, 175, 55, 0.4) 50%, transparent 70%);
+  box-shadow: 0 0 40px rgba(155, 126, 217, 0.5);
+}
+
+.orb-teal {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle, rgba(94, 231, 223, 0.8) 0%, rgba(94, 231, 223, 0.3) 50%, transparent 70%);
+  box-shadow: 0 0 35px rgba(94, 231, 223, 0.5);
+}
+
+.orb-gold {
+  width: 75px;
+  height: 75px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(212, 175, 55, 0.3) 50%, transparent 70%);
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.5);
+}
+
+/* Sound bars variations */
+.bars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  z-index: 10;
+  margin: 12px 0;
+}
+
+.bars-standard { height: 50px; }
+.bars-tall { height: 70px; }
+.bars-short { height: 35px; }
+
+.bar {
+  width: 6px;
+  border-radius: 3px;
+}
+
+.bars-rainbow .bar { background: linear-gradient(180deg, #5ee7df 0%, #9b7ed9 50%, #d4af37 100%); }
+.bars-gold .bar { background: linear-gradient(180deg, #ffd700 0%, #d4af37 50%, #b8860b 100%); }
+.bars-teal .bar { background: linear-gradient(180deg, #5ee7df 0%, #20b2aa 100%); }
+.bars-violet .bar { background: linear-gradient(180deg, #9b7ed9 0%, #8a2be2 100%); }
+
+.bar:nth-child(1) { height: 30%; }
+.bar:nth-child(2) { height: 50%; }
+.bar:nth-child(3) { height: 70%; }
+.bar:nth-child(4) { height: 90%; }
+.bar:nth-child(5) { height: 100%; }
+.bar:nth-child(6) { height: 90%; }
+.bar:nth-child(7) { height: 70%; }
+.bar:nth-child(8) { height: 50%; }
+.bar:nth-child(9) { height: 30%; }
+
+/* Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  z-index: 10;
+  margin: 10px 0;
+}
+
+.tag {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.tag-violet { background: rgba(155, 126, 217, 0.2); border: 1px solid rgba(155, 126, 217, 0.4); }
+.tag-teal { background: rgba(94, 231, 223, 0.2); border: 1px solid rgba(94, 231, 223, 0.4); }
+.tag-gold { background: rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.4); }
+.tag-rose { background: rgba(232, 180, 184, 0.2); border: 1px solid rgba(232, 180, 184, 0.4); }
+
+/* Benefits list */
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+  margin: 10px 0;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+}
+
+.benefit-icon { font-size: 1rem; }
+
+/* Dividers */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  z-index: 10;
+  margin: 10px 0;
+}
+
+.divider-long { width: 120px; }
+.divider-teal { background: linear-gradient(90deg, transparent, #5ee7df, transparent); }
+
+/* Logo */
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+  margin-top: auto;
+}
+
+.logo-symbol { font-size: 1.6rem; }
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: #d4af37;
+  font-size: 1.1rem;
+}
+
+/* URL */
+.url {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: #5ee7df;
+  padding: 8px 18px;
+  background: rgba(94, 231, 223, 0.1);
+  border: 1px solid rgba(94, 231, 223, 0.3);
+  border-radius: 20px;
+  z-index: 10;
+  margin-top: 10px;
+}
+
+/* Corner decorations */
+.corners::before,
+.corners::after,
+.corners .corner-bl,
+.corners .corner-br {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(212, 175, 55, 0.4);
+}
+
+.corners::before { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+.corners::after { top: 15px; right: 15px; border-left: none; border-bottom: none; }
+.corners .corner-bl { bottom: 15px; left: 15px; border-right: none; border-top: none; }
+.corners .corner-br { bottom: 15px; right: 15px; border-left: none; border-top: none; }
+
+/* Quote style */
+.quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(245, 240, 232, 0.9);
+  line-height: 1.4;
+  z-index: 10;
+  position: relative;
+  padding: 0 15px;
+}
+
+.quote::before {
+  content: '"';
+  font-size: 2.5rem;
+  color: rgba(212, 175, 55, 0.4);
+  position: absolute;
+  top: -15px;
+  left: 0;
+}
+
+/* Phase timeline */
+.timeline {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  z-index: 10;
+  margin: 10px 0;
+}
+
+.phase {
+  width: 40px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(155, 126, 217, 0.3);
+}
+
+.phase:nth-child(1) { background: rgba(155, 126, 217, 0.6); }
+.phase:nth-child(2) { background: rgba(94, 231, 223, 0.6); }
+.phase:nth-child(3) { background: rgba(212, 175, 55, 0.6); }
+.phase:nth-child(4) { background: rgba(232, 180, 184, 0.6); }
+
+/* Stars overlay */
+.stars {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* Emoji icon large */
+.icon-large {
+  font-size: 3rem;
+  z-index: 10;
+  margin: 10px 0;
+}
+
+/* Number highlight */
+.number {
+  font-family: 'Space Mono', monospace;
+  font-size: 4rem;
+  z-index: 10;
+  line-height: 1;
+}
+
+.number-gold { color: #d4af37; }
+.number-teal { color: #5ee7df; }
+.number-gradient {
+  background: linear-gradient(180deg, #d4af37 0%, #9b7ed9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Spacer for story and portrait cards */
+.spacer { flex-grow: 1; }
+
+/* Hidden for filtering */
+.hidden { display: none !important; }
+
+@media (max-width: 600px) {
+  .card.square { width: calc(100vw - 30px); max-width: 400px; aspect-ratio: 1/1; height: auto; padding: 25px; }
+  .card.story { width: calc(100vw - 30px); max-width: 360px; aspect-ratio: 9/16; height: auto; padding: 30px 20px; }
+  .card.portrait { width: calc(100vw - 30px); max-width: 380px; aspect-ratio: 4/5; height: auto; padding: 28px 22px; }
+  .title-elegant, .title-display { font-size: 1.8rem; }
+  .freq-large { font-size: 2.5rem; }
+  .freq-medium { font-size: 1.8rem; }
+  .subtitle { font-size: 0.85rem; }
+  .logo-text { font-size: 0.85rem; }
+  .url { font-size: 0.75rem; }
+}
+
+/* Card wrapper with actions */
+.card-wrapper {
+  position: relative;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: rgba(94, 231, 223, 0.15);
+  border: 1px solid rgba(94, 231, 223, 0.4);
+  border-radius: 20px;
+  color: #5ee7df;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card-action-btn:active {
+  transform: scale(0.95);
+}
+
+.card-action-btn:hover {
+  background: rgba(94, 231, 223, 0.25);
+  box-shadow: 0 0 15px rgba(94, 231, 223, 0.3);
+}
+
+.card-action-btn.posted {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.5);
+  color: #d4af37;
+}
+
+.card-action-btn.posted:hover {
+  background: rgba(212, 175, 55, 0.3);
+}
+
+/* Posted indicator on card */
+.posted-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(212, 175, 55, 0.9);
+  color: #0a0a1a;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 100;
+}
+
+/* Filter controls for posted status */
+.status-filter {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.status-btn {
+  padding: 8px 16px;
+  background: rgba(155, 126, 217, 0.1);
+  border: 1px solid rgba(155, 126, 217, 0.3);
+  border-radius: 20px;
+  color: #f5f0e8;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.status-btn.active {
+  background: rgba(94, 231, 223, 0.2);
+  border-color: #5ee7df;
+  color: #5ee7df;
+}
+
+.status-btn:active {
+  transform: scale(0.95);
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(94, 231, 223, 0.95);
+  color: #0a0a1a;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <a href="index.html" class="back-btn">←</a>
+  <div class="top-header-content">
+    <h1>✧ Static Cards</h1>
+    <span id="presetCount">210+ cards</span>
+  </div>
+</header>
+
+<div class="main-content">
+
+<div class="tip-box">
+  <span>💡</span>
+  <div>Tap <strong>Save</strong> to download • Tap <strong>Posted</strong> to track what you've shared</div>
+</div>
+
+<div class="status-filter">
+  <button class="status-btn active" data-status="all">📚 All</button>
+  <button class="status-btn" data-status="unposted">🆕 Unposted</button>
+  <button class="status-btn" data-status="posted">✅ Posted</button>
+</div>
+
+<div class="stats">
+  <div class="stat"><strong id="totalCount">0</strong> Cards</div>
+  <div class="stat"><strong id="visibleCount">0</strong> Showing</div>
+</div>
+
+<!-- Mobile Controls -->
+<div class="mobile-controls">
+  <select id="categorySelectMobile">
+    <option value="all">📚 All Categories</option>
+    <option value="brainwave">🧠 Brainwaves</option>
+    <option value="sleep">😴 Sleep</option>
+    <option value="focus">🎯 Focus</option>
+    <option value="meditation">🧘 Meditation</option>
+    <option value="manifestation">✨ Manifestation</option>
+    <option value="solfeggio">🔮 Solfeggio</option>
+    <option value="journey">🌌 Journeys</option>
+    <option value="benefit">💫 Benefits</option>
+    <option value="audience">👥 Audiences</option>
+    <option value="viral">🔥 Viral</option>
+    <option value="advanced">🚀 Advanced</option>
+  </select>
+  <select id="formatSelectMobile" class="format-select">
+    <option value="square">1:1 Square (Instagram)</option>
+    <option value="portrait">4:5 Portrait (Instagram)</option>
+    <option value="story">9:16 Story (TikTok/Reels)</option>
+  </select>
+</div>
+
+<!-- Desktop Controls -->
+<div class="controls">
+  <button class="filter-btn active" data-cat="all">All</button>
+  <button class="filter-btn" data-cat="brainwave">🧠 Brainwaves</button>
+  <button class="filter-btn" data-cat="sleep">😴 Sleep</button>
+  <button class="filter-btn" data-cat="focus">🎯 Focus</button>
+  <button class="filter-btn" data-cat="meditation">🧘 Meditation</button>
+  <button class="filter-btn" data-cat="manifestation">✨ Manifestation</button>
+  <button class="filter-btn" data-cat="solfeggio">🔮 Solfeggio</button>
+  <button class="filter-btn" data-cat="journey">🌌 Journeys</button>
+  <button class="filter-btn" data-cat="benefit">💫 Benefits</button>
+  <button class="filter-btn" data-cat="audience">👥 Audiences</button>
+  <button class="filter-btn" data-cat="viral">🔥 Viral</button>
+  <button class="filter-btn" data-cat="advanced">🚀 Advanced</button>
+</div>
+
+<!-- Desktop Format Selector -->
+<div class="format-controls">
+  <select id="formatSelectDesktop" class="format-select-desktop">
+    <option value="square">📐 1:1 Square (Instagram Feed)</option>
+    <option value="portrait">📱 4:5 Portrait (Instagram Optimal)</option>
+    <option value="story">📲 9:16 Story (TikTok/Reels)</option>
+  </select>
+</div>
+
+<div class="cards-container" id="cardsContainer"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// 100+ Card Definitions
+const CARDS = [
+  // ========== BRAINWAVE CARDS (20) ==========
+  { cat: 'brainwave', label: 'Delta Sleep', theme: 'theme-cosmic-purple', titleStyle: 'title-elegant text-gradient-gold', title: 'Fall Asleep<br>in Minutes', visual: 'orb-glow', freq: '1 Hz', freqStyle: 'freq-large', subtitle: 'Delta Wave Technology' },
+  { cat: 'brainwave', label: 'Theta Meditation', theme: 'theme-mystical', titleStyle: 'title-display text-violet', title: 'Unlock Deep<br>Meditation', visual: 'wheel-violet', freq: '6 Hz', freqStyle: 'freq-medium text-violet', subtitle: 'Theta State Access' },
+  { cat: 'brainwave', label: 'Alpha Calm', theme: 'theme-teal', titleStyle: 'title-modern text-teal', title: 'Instant<br>Calm Focus', visual: 'bars-teal', freq: '10 Hz', freqStyle: 'freq-medium', subtitle: 'Alpha Wave Relaxation' },
+  { cat: 'brainwave', label: 'Beta Focus', theme: 'theme-golden', titleStyle: 'title-elegant text-gold', title: 'Peak<br>Concentration', visual: 'bars-gold', freq: '18 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Beta Wave Power' },
+  { cat: 'brainwave', label: 'Gamma Peak', theme: 'theme-aurora', titleStyle: 'title-display text-gradient-spectrum', title: 'This Frequency<br>Changes Everything', visual: 'wheel-rainbow', freq: '40 Hz', freqStyle: 'freq-large', subtitle: 'Gamma Wave Cognition' },
+  { cat: 'brainwave', label: 'Brain States', theme: 'theme-gradient-bar', titleStyle: 'title-modern text-white', title: 'Choose Your<br>Brain State', visual: 'tags', tags: ['🌙 Delta', '💭 Theta', '☯️ Alpha', '🎯 Beta', '⚡ Gamma'], subtitle: 'One Tap Access' },
+  { cat: 'brainwave', label: 'Lucid Dreams', theme: 'theme-galaxy', titleStyle: 'title-elegant text-gradient-violet', title: 'Control Your<br>Dreams', visual: 'orb-glow', freq: '3 Hz', freqStyle: 'freq-medium', subtitle: 'Lucid Dream Frequency' },
+  { cat: 'brainwave', label: 'Creativity Flow', theme: 'theme-rose', titleStyle: 'title-display text-rose', title: 'Unlock Your<br>Creative Genius', visual: 'wheel-rainbow', freq: '7 Hz', freqStyle: 'freq-medium text-rose', subtitle: 'Alpha-Theta Border' },
+  { cat: 'brainwave', label: 'Deep Rest', theme: 'theme-ocean', titleStyle: 'title-light text-white', title: 'The Sound That<br>Makes You Sleep', visual: 'bars-rainbow', freq: '2 Hz', freqStyle: 'freq-large', subtitle: 'Delta Entrainment' },
+  { cat: 'brainwave', label: 'Mental Clarity', theme: 'theme-minimal', titleStyle: 'title-tech text-gold', title: 'CRYSTAL CLEAR<br>THINKING', visual: 'bars-gold', freq: '15 Hz', freqStyle: 'freq-medium text-gold', subtitle: 'Low Beta Clarity', corners: true },
+  { cat: 'brainwave', label: 'High Alert', theme: 'theme-sunset', titleStyle: 'title-elegant text-gradient-gold', title: 'Maximum<br>Mental Energy', visual: 'orb-gold', freq: '25 Hz', freqStyle: 'freq-large', subtitle: 'Peak Beta State' },
+  { cat: 'brainwave', label: 'All 5 States', theme: 'theme-mesh', titleStyle: 'title-modern text-gradient-spectrum', title: '5 Brain States<br>One Tool', visual: 'dual-wheels', freq: null, subtitle: 'Delta → Theta → Alpha → Beta → Gamma' },
+  { cat: 'brainwave', label: 'Relaxed Alert', theme: 'theme-emerald', titleStyle: 'title-display text-teal', title: 'The Perfect<br>Balance', visual: 'wheel-teal', freq: '12 Hz', freqStyle: 'freq-medium', subtitle: 'High Alpha State' },
+  { cat: 'brainwave', label: 'Deep Delta', theme: 'theme-cosmic-purple', titleStyle: 'title-light text-gradient-violet', title: 'Deepest Sleep<br>Possible', visual: 'orb-glow', freq: '0.5 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Sub-Delta Territory' },
+  { cat: 'brainwave', label: 'Light Relax', theme: 'theme-corner-glow', titleStyle: 'title-elegant text-gold', title: 'Gentle<br>Relaxation', visual: 'bars-rainbow', freq: '8 Hz', freqStyle: 'freq-medium', subtitle: 'Entry Alpha' },
+  
+  // ========== SLEEP CARDS (15) ==========
+  { cat: 'sleep', label: '3 AM Hook', theme: 'theme-cosmic-purple', titleStyle: 'title-elegant text-gradient-gold', title: '3 AM.<br>Still Awake?', visual: 'orb-glow', freq: null, subtitle: 'Try This Sound', quote: null },
+  { cat: 'sleep', label: 'Insomnia Cure', theme: 'theme-minimal', titleStyle: 'title-modern text-gold', title: 'End Insomnia<br>Tonight', visual: 'bars-gold', freq: '1 Hz', freqStyle: 'freq-large', subtitle: 'Delta Technology', corners: true },
+  { cat: 'sleep', label: 'Sleep Science', theme: 'theme-ocean', titleStyle: 'title-tech text-teal', title: 'THE SCIENCE OF<br>DEEP SLEEP', visual: 'wheel-teal', freq: '1-4 Hz', freqStyle: 'freq-medium', subtitle: 'Delta Wave Range' },
+  { cat: 'sleep', label: 'Dream Enhancement', theme: 'theme-galaxy', titleStyle: 'title-display text-gradient-violet', title: 'Dream Bigger<br>Dream Better', visual: 'orb-glow', freq: '3 Hz', freqStyle: 'freq-medium text-violet', subtitle: 'REM Enhancement' },
+  { cat: 'sleep', label: 'Quick Sleep', theme: 'theme-mystical', titleStyle: 'title-elegant text-white', title: 'Fall Asleep<br>in 5 Minutes', icon: '🌙', freq: '1 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Guaranteed' },
+  { cat: 'sleep', label: 'Sleep Tip', theme: 'theme-gradient-bar', titleStyle: 'title-modern text-gradient-gold', title: "Can't Sleep?", visual: null, benefits: ['✓ Put on headphones', '✓ Play 1 Hz Delta', '✓ Close your eyes', '✓ You\'re welcome'], subtitle: null },
+  { cat: 'sleep', label: 'Body Recovery', theme: 'theme-teal', titleStyle: 'title-light text-teal', title: 'Sleep Is<br>Recovery', visual: 'bars-teal', freq: '2 Hz', freqStyle: 'freq-medium', subtitle: 'Let Your Body Heal' },
+  { cat: 'sleep', label: 'Night Shift', theme: 'theme-cosmic-purple', titleStyle: 'title-elegant text-gradient-violet', title: 'Night Shift<br>Workers', visual: 'orb-glow', freq: '1 Hz', freqStyle: 'freq-large', subtitle: 'Sleep Anytime' },
+  { cat: 'sleep', label: 'Sleep Better', theme: 'theme-rose', titleStyle: 'title-display text-rose', title: 'Sleep Better<br>Wake Refreshed', visual: 'wheel-rainbow', freq: null, subtitle: 'Delta Wave Technology' },
+  { cat: 'sleep', label: 'Parents Sleep', theme: 'theme-spotlight', titleStyle: 'title-modern text-gold', title: 'New Parents:<br>Sleep When You Can', visual: 'orb-gold', freq: '1 Hz', freqStyle: 'freq-medium', subtitle: 'Quick Delta Access' },
+  
+  // ========== FOCUS CARDS (15) ==========
+  { cat: 'focus', label: 'Scientist Hack', theme: 'theme-golden', titleStyle: 'title-elegant text-gradient-gold', title: 'The Brain Hack<br>Scientists Use', visual: 'bars-gold', freq: '40 Hz', freqStyle: 'freq-large', subtitle: 'Gamma Wave Power' },
+  { cat: 'focus', label: 'ADHD Focus', theme: 'theme-aurora', titleStyle: 'title-modern text-gradient-spectrum', title: 'ADHD Brain<br>Finally Focused', visual: 'wheel-rainbow', freq: '40 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Gamma Entrainment' },
+  { cat: 'focus', label: 'Deep Work', theme: 'theme-minimal', titleStyle: 'title-tech text-teal', title: 'DEEP WORK<br>MODE', visual: 'bars-teal', freq: '18 Hz', freqStyle: 'freq-medium', subtitle: 'Beta Wave Focus', corners: true },
+  { cat: 'focus', label: 'Study Ace', theme: 'theme-neon-frame', titleStyle: 'title-display text-gradient-teal', title: 'How I Aced<br>Every Exam', visual: 'wheel-teal', freq: '40 Hz', freqStyle: 'freq-large', subtitle: 'The Study Secret' },
+  { cat: 'focus', label: 'Productivity', theme: 'theme-gradient-bar', titleStyle: 'title-elegant text-gold', title: 'Get More<br>Done Today', visual: 'bars-rainbow', freq: '18 Hz', freqStyle: 'freq-medium text-gold', subtitle: 'Active Beta State' },
+  { cat: 'focus', label: 'Flow State', theme: 'theme-mesh', titleStyle: 'title-light text-gradient-spectrum', title: 'Enter<br>Flow State', visual: 'orb-glow', freq: '40 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Peak Performance Zone' },
+  { cat: 'focus', label: 'No Caffeine', theme: 'theme-emerald', titleStyle: 'title-modern text-teal', title: 'Energy Without<br>Caffeine', visual: 'bars-teal', freq: '20 Hz', freqStyle: 'freq-medium', subtitle: 'Natural Beta Boost' },
+  { cat: 'focus', label: 'Coding Focus', theme: 'theme-cosmic-purple', titleStyle: 'title-tech text-violet', title: 'DEVELOPER<br>FLOW STATE', visual: 'wheel-violet', freq: '40 Hz', freqStyle: 'freq-large', subtitle: 'Code Better' },
+  { cat: 'focus', label: 'Memory Boost', theme: 'theme-golden', titleStyle: 'title-display text-gold', title: 'Remember<br>Everything', visual: 'orb-gold', freq: '40 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Gamma Memory Enhancement' },
+  { cat: 'focus', label: 'Students', theme: 'theme-vertical', titleStyle: 'title-elegant text-gradient-gold', title: 'Study Smarter<br>Not Harder', visual: 'bars-rainbow', freq: '40 Hz', freqStyle: 'freq-medium', subtitle: 'For Students' },
+  
+  // ========== MEDITATION CARDS (12) ==========
+  { cat: 'meditation', label: 'Monk Level', theme: 'theme-mystical', titleStyle: 'title-elegant text-gradient-violet', title: 'Meditate Like<br>A Monk', visual: 'wheel-violet', freq: '6 Hz', freqStyle: 'freq-large', subtitle: 'Without 10,000 Hours' },
+  { cat: 'meditation', label: 'Beginner', theme: 'theme-teal', titleStyle: 'title-modern text-teal', title: 'Meditation<br>Made Easy', visual: 'orb-teal', freq: '7 Hz', freqStyle: 'freq-medium', subtitle: 'Theta Access' },
+  { cat: 'meditation', label: 'Deep States', theme: 'theme-cosmic-purple', titleStyle: 'title-display text-gradient-gold', title: 'Access Deep<br>States Instantly', visual: 'wheel-rainbow', freq: '5 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Deep Theta' },
+  { cat: 'meditation', label: 'Sound Bath', theme: 'theme-aurora', titleStyle: 'title-light text-gradient-spectrum', title: 'Free Sound Bath<br>At Home', visual: 'bars-rainbow', freq: '6 Hz', freqStyle: 'freq-medium', subtitle: 'Better Than $100 Classes' },
+  { cat: 'meditation', label: 'Inner Peace', theme: 'theme-rose', titleStyle: 'title-elegant text-rose', title: 'Find Your<br>Inner Peace', visual: 'orb-glow', freq: '6 Hz', freqStyle: 'freq-large', subtitle: 'Theta Serenity' },
+  { cat: 'meditation', label: 'Micro Meditation', theme: 'theme-minimal', titleStyle: 'title-tech text-gold', title: '5 MINUTE<br>MEDITATION', visual: 'wheel-gold', freq: '6 Hz', freqStyle: 'freq-medium', subtitle: 'No Time Excuse', corners: true },
+  { cat: 'meditation', label: 'Breathwork', theme: 'theme-ocean', titleStyle: 'title-display text-teal', title: 'Breathwork +<br>Binaural Beats', visual: 'bars-teal', freq: '6 Hz', freqStyle: 'freq-medium text-teal', subtitle: 'Power Combination' },
+  { cat: 'meditation', label: 'Consciousness', theme: 'theme-galaxy', titleStyle: 'title-elegant text-gradient-violet', title: 'Expand Your<br>Consciousness', visual: 'orb-glow', freq: '7 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Alpha-Theta Gateway' },
+  { cat: 'meditation', label: 'Daily Practice', theme: 'theme-spotlight', titleStyle: 'title-modern text-white', title: 'Your Daily<br>Meditation', visual: 'wheel-rainbow', freq: '6 Hz', freqStyle: 'freq-medium', subtitle: 'Make It Easy' },
+  
+  // ========== MANIFESTATION CARDS (15) ==========
+  { cat: 'manifestation', label: 'Earth Frequency', theme: 'theme-emerald', titleStyle: 'title-elegant text-gradient-gold', title: "Earth's\nHeartbeat", visual: 'wheel-rainbow', freq: '7.83 Hz', freqStyle: 'freq-large', subtitle: 'Schumann Resonance' },
+  { cat: 'manifestation', label: 'Miracle Tone', theme: 'theme-mesh', titleStyle: 'title-display text-gradient-spectrum', title: 'The Miracle<br>Frequency', visual: 'orb-glow', freq: '528 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'DNA Repair & Love' },
+  { cat: 'manifestation', label: 'Abundance', theme: 'theme-golden', titleStyle: 'title-elegant text-gold', title: 'Attract<br>Abundance', visual: 'orb-gold', freq: '7.83 Hz', freqStyle: 'freq-medium text-gold', subtitle: 'Wealth Frequency' },
+  { cat: 'manifestation', label: 'Vision', theme: 'theme-cosmic-purple', titleStyle: 'title-light text-gradient-violet', title: 'See Your<br>Future Clearly', visual: 'wheel-violet', freq: '6 Hz', freqStyle: 'freq-large', subtitle: 'Theta Visualization' },
+  { cat: 'manifestation', label: 'Love', theme: 'theme-rose', titleStyle: 'title-display text-rose', title: 'Manifest<br>True Love', visual: 'orb-glow', freq: '639 Hz', freqStyle: 'freq-medium text-rose', subtitle: 'Heart Chakra Frequency' },
+  { cat: 'manifestation', label: 'Intention', theme: 'theme-aurora', titleStyle: 'title-modern text-gradient-gold', title: 'Set Powerful<br>Intentions', visual: 'dual-wheels', freq: '7 Hz', freqStyle: 'freq-medium', subtitle: 'Reality Shaping' },
+  { cat: 'manifestation', label: 'Morning Ritual', theme: 'theme-sunset', titleStyle: 'title-elegant text-gold', title: 'Morning<br>Manifestation', icon: '🌅', freq: '7.83 Hz', freqStyle: 'freq-large', subtitle: 'Start Your Day Right' },
+  { cat: 'manifestation', label: 'Scripting', theme: 'theme-minimal', titleStyle: 'title-tech text-teal', title: 'WRITE YOUR<br>REALITY', visual: 'bars-teal', freq: '6 Hz', freqStyle: 'freq-medium', subtitle: 'Theta For Scripting', corners: true },
+  { cat: 'manifestation', label: 'Block Release', theme: 'theme-mystical', titleStyle: 'title-display text-gradient-violet', title: 'Release What<br>Blocks You', visual: 'orb-glow', freq: '396 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Liberation Frequency' },
+  { cat: 'manifestation', label: 'Quantum', theme: 'theme-galaxy', titleStyle: 'title-light text-gradient-spectrum', title: 'Quantum Jump<br>To Your Reality', visual: 'wheel-rainbow', freq: '40 Hz', freqStyle: 'freq-medium', subtitle: 'High Gamma Coherence' },
+  { cat: 'manifestation', label: 'Gratitude', theme: 'theme-corner-glow', titleStyle: 'title-elegant text-gold', title: 'Amplify Your<br>Gratitude', visual: 'orb-gold', freq: '528 Hz', freqStyle: 'freq-large', subtitle: 'Raise Your Vibration' },
+  { cat: 'manifestation', label: 'Ancient Wisdom', theme: 'theme-bronze', titleStyle: 'title-display text-gradient-gold', title: 'Ancient Monks<br>Knew This', visual: 'wheel-gold', freq: '7.83 Hz', freqStyle: 'freq-medium', subtitle: 'Modern Science Proved It' },
+  
+  // ========== SOLFEGGIO CARDS (10) ==========
+  { cat: 'solfeggio', label: '174 Hz', theme: 'theme-ocean', titleStyle: 'title-elegant text-teal', title: 'Foundation<br>Frequency', visual: 'bars-teal', freq: '174 Hz', freqStyle: 'freq-large', subtitle: 'Pain Reduction & Security' },
+  { cat: 'solfeggio', label: '285 Hz', theme: 'theme-mystical', titleStyle: 'title-display text-violet', title: 'Cellular<br>Healing', visual: 'orb-glow', freq: '285 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Tissue Regeneration' },
+  { cat: 'solfeggio', label: '396 Hz', theme: 'theme-cosmic-purple', titleStyle: 'title-light text-gradient-violet', title: 'Release Fear<br>& Guilt', visual: 'wheel-violet', freq: '396 Hz', freqStyle: 'freq-medium', subtitle: 'Root Chakra' },
+  { cat: 'solfeggio', label: '417 Hz', theme: 'theme-aurora', titleStyle: 'title-modern text-gradient-spectrum', title: 'Facilitate<br>Change', visual: 'bars-rainbow', freq: '417 Hz', freqStyle: 'freq-large', subtitle: 'Transformation' },
+  { cat: 'solfeggio', label: '528 Hz', theme: 'theme-emerald', titleStyle: 'title-elegant text-gradient-gold', title: 'The Love<br>Frequency', visual: 'orb-glow', freq: '528 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'DNA Repair & Miracles' },
+  { cat: 'solfeggio', label: '639 Hz', theme: 'theme-rose', titleStyle: 'title-display text-rose', title: 'Harmonize<br>Relationships', visual: 'wheel-rainbow', freq: '639 Hz', freqStyle: 'freq-medium text-rose', subtitle: 'Heart Chakra' },
+  { cat: 'solfeggio', label: '741 Hz', theme: 'theme-teal', titleStyle: 'title-tech text-teal', title: 'AWAKEN<br>INTUITION', visual: 'bars-teal', freq: '741 Hz', freqStyle: 'freq-large', subtitle: 'Throat Chakra' },
+  { cat: 'solfeggio', label: '852 Hz', theme: 'theme-galaxy', titleStyle: 'title-elegant text-gradient-violet', title: 'Third Eye<br>Activation', visual: 'orb-glow', freq: '852 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Higher Perception' },
+  { cat: 'solfeggio', label: '963 Hz', theme: 'theme-golden', titleStyle: 'title-display text-gold', title: 'Crown Chakra<br>Connection', visual: 'wheel-gold', freq: '963 Hz', freqStyle: 'freq-medium text-gold', subtitle: 'Divine Frequency' },
+  { cat: 'solfeggio', label: 'All 9', theme: 'theme-mesh', titleStyle: 'title-modern text-gradient-spectrum', title: 'Sacred<br>Solfeggio Scale', visual: 'tags', tags: ['174', '285', '396', '417', '528', '639', '741', '852', '963'], subtitle: '9 Healing Frequencies' },
+  
+  // ========== JOURNEY CARDS (8) ==========
+  { cat: 'journey', label: 'Deep Calm', theme: 'theme-cosmic-purple', titleStyle: 'title-elegant text-gradient-gold', title: 'From Stress<br>To Serenity', visual: 'timeline', freq: '15 min', freqStyle: 'freq-small text-gold', subtitle: 'Beta → Theta Journey' },
+  { cat: 'journey', label: 'Sleep Prep', theme: 'theme-ocean', titleStyle: 'title-display text-teal', title: 'The Sleep<br>Journey', visual: 'timeline', freq: '20 min', freqStyle: 'freq-small text-teal', subtitle: 'Gradual Delta Descent' },
+  { cat: 'journey', label: 'Creative Flow', theme: 'theme-aurora', titleStyle: 'title-light text-gradient-spectrum', title: 'Access Your<br>Creative Zone', visual: 'dual-wheels', freq: '15 min', freqStyle: 'freq-small', subtitle: 'Alpha-Theta Creativity' },
+  { cat: 'journey', label: 'Quick Refresh', theme: 'theme-teal', titleStyle: 'title-modern text-teal', title: '8 Minutes to<br>Reset Your Mind', visual: 'bars-teal', freq: '8 min', freqStyle: 'freq-medium text-teal', subtitle: 'Fast Stress Relief' },
+  { cat: 'journey', label: 'Morning Wake', theme: 'theme-sunset', titleStyle: 'title-elegant text-gradient-gold', title: 'Start Your Day<br>With Energy', visual: 'orb-gold', freq: '10 min', freqStyle: 'freq-small text-gold', subtitle: 'Gentle Energizing' },
+  { cat: 'journey', label: 'Anxiety Release', theme: 'theme-rose', titleStyle: 'title-display text-rose', title: 'Release<br>Anxiety Now', visual: 'timeline', freq: '15 min', freqStyle: 'freq-small text-rose', subtitle: 'Calm Your Nervous System' },
+  { cat: 'journey', label: 'Healing', theme: 'theme-emerald', titleStyle: 'title-light text-gradient-gold', title: 'Heal Your<br>Mind & Body', visual: 'wheel-rainbow', freq: '16 min', freqStyle: 'freq-small text-teal', subtitle: 'Earth-Resonant Restoration' },
+  
+  // ========== BENEFIT CARDS (10) ==========
+  { cat: 'benefit', label: 'What It Does', theme: 'theme-gradient-bar', titleStyle: 'title-elegant text-gradient-gold', title: 'What Binaural<br>Beats Can Do', visual: null, benefits: ['🧠 Enhance Focus', '😴 Improve Sleep', '🧘 Deepen Meditation', '✨ Boost Creativity', '😌 Reduce Anxiety'], subtitle: null },
+  { cat: 'benefit', label: 'Sleep Benefits', theme: 'theme-cosmic-purple', titleStyle: 'title-modern text-gradient-violet', title: 'Better Sleep<br>Tonight', visual: null, benefits: ['✓ Fall asleep faster', '✓ Stay asleep longer', '✓ Wake refreshed', '✓ Dream vividly'], subtitle: 'Delta Wave Technology' },
+  { cat: 'benefit', label: 'Focus Benefits', theme: 'theme-golden', titleStyle: 'title-display text-gold', title: 'Laser Focus<br>On Demand', visual: null, benefits: ['✓ Deep concentration', '✓ No distractions', '✓ Task completion', '✓ Mental clarity'], subtitle: 'Gamma Wave Power' },
+  { cat: 'benefit', label: 'Anxiety Relief', theme: 'theme-rose', titleStyle: 'title-elegant text-rose', title: 'Calm Your<br>Anxious Mind', visual: null, benefits: ['✓ Reduce worry', '✓ Find peace', '✓ Breathe easier', '✓ Feel grounded'], subtitle: 'Theta-Alpha Therapy' },
+  { cat: 'benefit', label: 'Study Benefits', theme: 'theme-teal', titleStyle: 'title-tech text-teal', title: 'STUDY BETTER', visual: null, benefits: ['✓ Better retention', '✓ Focus longer', '✓ Remember more', '✓ Less fatigue'], subtitle: 'Students Love It' },
+  { cat: 'benefit', label: 'Free Forever', theme: 'theme-neon-frame', titleStyle: 'title-modern text-gradient-spectrum', title: 'Completely<br>Free Forever', visual: null, benefits: ['✓ No subscription', '✓ No sign up', '✓ No ads', '✓ Works offline'], subtitle: 'Unlike $200 Apps' },
+  
+  // ========== AUDIENCE CARDS (8) ==========
+  { cat: 'audience', label: 'For Students', theme: 'theme-aurora', titleStyle: 'title-elegant text-gradient-gold', title: 'For Students', icon: '🎓', freq: '40 Hz', freqStyle: 'freq-medium', subtitle: 'Study Smarter Not Harder' },
+  { cat: 'audience', label: 'For ADHD', theme: 'theme-neon-frame', titleStyle: 'title-modern text-gradient-teal', title: 'For ADHD<br>Brains', icon: '🧠', freq: '40 Hz', freqStyle: 'freq-large', subtitle: 'Finally Focus' },
+  { cat: 'audience', label: 'For Meditators', theme: 'theme-mystical', titleStyle: 'title-display text-violet', title: 'For Meditators', icon: '🧘', freq: '6 Hz', freqStyle: 'freq-medium', subtitle: 'Deepen Your Practice' },
+  { cat: 'audience', label: 'For Creatives', theme: 'theme-rose', titleStyle: 'title-light text-rose', title: 'For Creatives', icon: '🎨', freq: '7 Hz', freqStyle: 'freq-medium text-rose', subtitle: 'Access Your Muse' },
+  { cat: 'audience', label: 'For Executives', theme: 'theme-golden', titleStyle: 'title-elegant text-gold', title: 'For Executives', icon: '💼', freq: '40 Hz', freqStyle: 'freq-medium text-gold', subtitle: 'Peak Mental Performance' },
+  { cat: 'audience', label: 'For Parents', theme: 'theme-teal', titleStyle: 'title-modern text-teal', title: 'For Busy<br>Parents', icon: '👨‍👩‍👧', freq: '10 Hz', freqStyle: 'freq-small', subtitle: 'Find Your Calm Again' },
+  { cat: 'audience', label: 'For Athletes', theme: 'theme-emerald', titleStyle: 'title-display text-gradient-gold', title: 'For Athletes', icon: '🏃', freq: '40 Hz', freqStyle: 'freq-medium', subtitle: 'Mental Edge For Victory' },
+  { cat: 'audience', label: 'For Remote', theme: 'theme-gradient-bar', titleStyle: 'title-tech text-teal', title: 'FOR REMOTE<br>WORKERS', icon: '💻', freq: '18 Hz', freqStyle: 'freq-small', subtitle: 'Focus From Anywhere' },
+  
+  // ========== VIRAL HOOKS (12) ==========
+  { cat: 'viral', label: 'Brain Hack', theme: 'theme-golden', titleStyle: 'title-elegant text-gradient-gold', title: 'The Brain Hack<br>Scientists Use', visual: 'bars-gold', freq: '40 Hz', freqStyle: 'freq-large', subtitle: 'Gamma Wave Power' },
+  { cat: 'viral', label: '5 Min Sleep', theme: 'theme-cosmic-purple', titleStyle: 'title-display text-gradient-violet', title: 'Fall Asleep<br>in 5 Minutes', visual: 'orb-glow', freq: '1 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Try It Tonight' },
+  { cat: 'viral', label: 'Rewires Brain', theme: 'theme-aurora', titleStyle: 'title-modern text-gradient-spectrum', title: 'This Sound<br>Rewires Your<br>Brain', visual: 'wheel-rainbow', freq: null, subtitle: 'Binaural Beat Science' },
+  { cat: 'viral', label: 'Free Tool', theme: 'theme-neon-frame', titleStyle: 'title-tech text-teal', title: 'FREE TOOL<br>REPLACES<br>$200 APPS', visual: 'dual-wheels', freq: null, subtitle: 'No Subscription Needed' },
+  { cat: 'viral', label: 'Ancient Monks', theme: 'theme-bronze', titleStyle: 'title-elegant text-gradient-gold', title: 'Ancient Monks<br>Knew This', visual: 'wheel-gold', freq: '7.83 Hz', freqStyle: 'freq-medium', subtitle: 'Modern Science Proved It' },
+  { cat: 'viral', label: 'Anxiety Gone', theme: 'theme-rose', titleStyle: 'title-display text-rose', title: 'Anxiety Gone<br>in 15 Minutes', visual: 'orb-glow', freq: '6 Hz', freqStyle: 'freq-large', subtitle: 'Theta Wave Therapy' },
+  { cat: 'viral', label: 'Control Dreams', theme: 'theme-galaxy', titleStyle: 'title-light text-gradient-violet', title: 'Control Your<br>Dreams Tonight', visual: 'wheel-violet', freq: '3 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Lucid Dream Frequency' },
+  { cat: 'viral', label: 'Unlock Subconscious', theme: 'theme-mystical', titleStyle: 'title-elegant text-gradient-violet', title: 'Unlock Your<br>Subconscious', visual: 'orb-glow', freq: '6 Hz', freqStyle: 'freq-medium', subtitle: 'Theta Wave Doorway' },
+  { cat: 'viral', label: 'Superpowers', theme: 'theme-mesh', titleStyle: 'title-display text-gradient-spectrum', title: 'Your Brain Has<br>Superpowers', visual: 'wheel-rainbow', freq: null, subtitle: 'Learn to Unlock Them' },
+  { cat: 'viral', label: 'Number Stats', theme: 'theme-minimal', titleStyle: 'title-modern text-white', title: null, number: '50+', numberStyle: 'number-gold', subtitle: 'Presets', benefits: ['15 Brain States', 'Guided Journeys', '100% Free'], corners: true },
+  { cat: 'viral', label: 'Try This', theme: 'theme-corner-glow', titleStyle: 'title-elegant text-gold', title: 'If You Haven\'t<br>Tried This Yet...', visual: 'bars-rainbow', freq: null, subtitle: 'You\'re Missing Out' },
+  { cat: 'viral', label: 'Change Life', theme: 'theme-spotlight', titleStyle: 'title-display text-gradient-gold', title: 'This Changed<br>My Life', visual: 'wheel-rainbow', freq: null, quote: 'I finally sleep. I finally focus. I finally found peace.' },
+  
+  // ========== ADVANCED MODES - DEEP SLEEP (10) ==========
+  { cat: 'advanced', label: 'Deep Sleep', theme: 'theme-cosmic-purple', titleStyle: 'title-elegant text-gradient-violet', title: '🌠 Deep Sleep<br>Journey', visual: 'orb-glow', freq: '0.2 Hz', freqStyle: 'freq-large freq-glow', subtitle: '20 Min Scientific Sleep' },
+  { cat: 'advanced', label: 'Deep Sleep Alt', theme: 'theme-galaxy', titleStyle: 'title-display text-white', title: 'Ultra Delta<br>Sleep Induction', visual: 'wheel-violet', freq: '20 min', freqStyle: 'freq-medium', subtitle: 'Cellular Restoration Mode' },
+  { cat: 'advanced', label: 'Deep Sleep Hook', theme: 'theme-cosmic-purple', titleStyle: 'title-elegant text-gradient-gold', title: '3 AM and<br>Still Awake?', visual: 'orb-glow', freq: null, subtitle: 'This 20 Min Sound Fixes That', quote: 'Ultra Delta waves guide you to unconsciousness' },
+  { cat: 'advanced', label: 'Deep Sleep Science', theme: 'theme-galaxy', titleStyle: 'title-modern text-white', title: 'Scientists Found<br>The Sleep Frequency', visual: 'wheel-violet', freq: '0.2-0.5', freqStyle: 'freq-large', subtitle: 'Ultra Delta Territory' },
+  { cat: 'advanced', label: 'Deep Sleep Promise', theme: 'theme-cosmic-purple', titleStyle: 'title-display text-gradient-violet', title: 'Asleep in<br>20 Minutes', visual: 'bars-rainbow', freq: null, subtitle: 'Guaranteed', quote: 'Your brain cannot resist ultra delta' },
+  { cat: 'advanced', label: 'Deep Sleep Phases', theme: 'theme-galaxy', titleStyle: 'title-elegant text-white', title: 'The 4-Phase<br>Sleep Descent', visual: 'timeline', freq: '20 min', freqStyle: 'freq-medium', subtitle: 'Alpha → Theta → Delta → Ultra' },
+  { cat: 'advanced', label: 'Deep Sleep Stats', theme: 'theme-cosmic-purple', titleStyle: 'title-modern text-white', title: null, number: '0.2', numberStyle: 'number-gradient', subtitle: 'Hz — Deepest Human Frequency', benefits: ['Cellular Renewal', 'Memory Consolidation', 'Complete Rest'] },
+  { cat: 'advanced', label: 'Deep Sleep Night', theme: 'theme-galaxy', titleStyle: 'title-light text-gradient-violet', title: 'The Night<br>Belongs to Delta', visual: 'orb-glow', freq: null, subtitle: '20 Min Journey to Unconsciousness' },
+  { cat: 'advanced', label: 'Deep Sleep Insomnia', theme: 'theme-cosmic-purple', titleStyle: 'title-elegant text-gradient-gold', title: 'End Insomnia<br>Forever', visual: 'wheel-violet', freq: '20 min', freqStyle: 'freq-medium', subtitle: 'The Scientific Solution' },
+  { cat: 'advanced', label: 'Deep Sleep Restore', theme: 'theme-galaxy', titleStyle: 'title-display text-white', title: 'While You Sleep<br>Your Cells Renew', visual: 'bars-rainbow', freq: '0.2 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Deep Delta Restoration' },
+  
+  // ========== ADVANCED MODES - ANXIETY RELIEF (10) ==========
+  { cat: 'advanced', label: 'Anxiety Relief', theme: 'theme-teal', titleStyle: 'title-modern text-teal', title: '🦋 Anxiety Relief<br>Session', visual: 'bars-teal', freq: '7.5 Hz', freqStyle: 'freq-large', subtitle: '18 Min Anxiety Dissolution' },
+  { cat: 'advanced', label: 'Anxiety Crossover', theme: 'theme-emerald', titleStyle: 'title-elegant text-gradient-teal', title: 'Alpha-Theta<br>Crossover Zone', visual: 'wheel-teal', freq: '18 min', freqStyle: 'freq-medium', subtitle: 'The Therapeutic Window' },
+  { cat: 'advanced', label: 'Anxiety Hook', theme: 'theme-teal', titleStyle: 'title-display text-teal', title: 'Chest Tight?<br>Mind Racing?', visual: 'orb-glow', freq: null, subtitle: '18 Minutes to Peace', quote: 'The alpha-theta crossover dissolves anxiety' },
+  { cat: 'advanced', label: 'Anxiety Science', theme: 'theme-emerald', titleStyle: 'title-modern text-white', title: 'Therapists Call It<br>The Crossover', visual: 'bars-teal', freq: '7-8 Hz', freqStyle: 'freq-large', subtitle: 'Where Anxiety Releases' },
+  { cat: 'advanced', label: 'Anxiety Free', theme: 'theme-teal', titleStyle: 'title-elegant text-gradient-teal', title: 'Imagine Life<br>Without Anxiety', visual: 'wheel-teal', freq: '18 min', freqStyle: 'freq-medium', subtitle: 'It Starts Here' },
+  { cat: 'advanced', label: 'Anxiety SMR', theme: 'theme-emerald', titleStyle: 'title-display text-teal', title: 'SMR Training<br>For Calm', visual: 'bars-teal', freq: '12-15 Hz', freqStyle: 'freq-medium', subtitle: 'Reduce Hypervigilance' },
+  { cat: 'advanced', label: 'Anxiety Transform', theme: 'theme-teal', titleStyle: 'title-light text-white', title: 'Transform Fear<br>Into Peace', visual: 'orb-glow', freq: null, subtitle: 'The 18-Minute Shift' },
+  { cat: 'advanced', label: 'Anxiety Stats', theme: 'theme-emerald', titleStyle: 'title-modern text-white', title: null, number: '10', numberStyle: 'number-teal', subtitle: 'Hz — The Anxiety Sweet Spot', benefits: ['Calms Nervous System', 'Releases Tension', 'Restores Peace'] },
+  { cat: 'advanced', label: 'Anxiety Breath', theme: 'theme-teal', titleStyle: 'title-elegant text-gradient-teal', title: 'Finally<br>Breathe Again', visual: 'wheel-teal', freq: '18 min', freqStyle: 'freq-medium', subtitle: 'Alpha-Theta Therapy' },
+  { cat: 'advanced', label: 'Anxiety Release', theme: 'theme-emerald', titleStyle: 'title-display text-teal', title: 'Let It Go<br>All of It', visual: 'bars-teal', freq: '7.5 Hz', freqStyle: 'freq-large', subtitle: 'Emotional Release Frequency' },
+  
+  // ========== ADVANCED MODES - DEEP FOCUS (10) ==========
+  { cat: 'advanced', label: 'Deep Focus', theme: 'theme-golden', titleStyle: 'title-display text-gradient-gold', title: '⚡ Deep Focus<br>Experience', visual: 'bars-gold', freq: '40 Hz', freqStyle: 'freq-large freq-glow', subtitle: '18 Min Flow State' },
+  { cat: 'advanced', label: 'Deep Focus Gamma', theme: 'theme-aurora', titleStyle: 'title-tech text-gradient-spectrum', title: 'GAMMA<br>ACTIVATION', visual: 'wheel-rainbow', freq: '18 min', freqStyle: 'freq-medium', subtitle: 'Peak Cognitive Performance' },
+  { cat: 'advanced', label: 'Deep Focus Hook', theme: 'theme-golden', titleStyle: 'title-elegant text-gradient-gold', title: 'Can\'t Focus?<br>Distractions Win?', visual: 'orb-gold', freq: null, subtitle: '18 Min to Flow State', quote: 'Gamma makes distractions invisible' },
+  { cat: 'advanced', label: 'Deep Focus Zone', theme: 'theme-aurora', titleStyle: 'title-display text-white', title: 'Enter<br>The Zone', visual: 'bars-gold', freq: '40 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'Flow State Activation' },
+  { cat: 'advanced', label: 'Deep Focus SMR', theme: 'theme-golden', titleStyle: 'title-modern text-gold', title: 'SMR Training<br>Then Gamma', visual: 'wheel-rainbow', freq: '14→40', freqStyle: 'freq-large', subtitle: 'The Focus Stack' },
+  { cat: 'advanced', label: 'Deep Focus Stats', theme: 'theme-aurora', titleStyle: 'title-modern text-white', title: null, number: '40', numberStyle: 'number-gold', subtitle: 'Hz — The Genius Frequency', benefits: ['Laser Focus', 'Flow State', 'Peak Cognition'] },
+  { cat: 'advanced', label: 'Deep Focus Work', theme: 'theme-golden', titleStyle: 'title-elegant text-gradient-gold', title: 'Do 4 Hours<br>in 2 Hours', visual: 'bars-gold', freq: '18 min', freqStyle: 'freq-medium', subtitle: 'The Productivity Hack' },
+  { cat: 'advanced', label: 'Deep Focus Brain', theme: 'theme-aurora', titleStyle: 'title-display text-gradient-spectrum', title: 'Your Brain<br>on Gamma', visual: 'wheel-rainbow', freq: '40 Hz', freqStyle: 'freq-large', subtitle: 'Peak Performance Unlocked' },
+  { cat: 'advanced', label: 'Deep Focus CEO', theme: 'theme-golden', titleStyle: 'title-tech text-gold', title: 'THE CEO<br>FOCUS STATE', visual: 'bars-gold', freq: '18 min', freqStyle: 'freq-medium', subtitle: 'Elite Mental Performance', corners: true },
+  { cat: 'advanced', label: 'Deep Focus Flow', theme: 'theme-aurora', titleStyle: 'title-light text-gradient-gold', title: 'Flow State<br>On Demand', visual: 'orb-gold', freq: '40 Hz', freqStyle: 'freq-large freq-glow', subtitle: 'The 18 Min Shortcut' },
+  
+  // ========== ADVANCED MODES - TRANSCENDENT (10) ==========
+  { cat: 'advanced', label: 'Transcendent', theme: 'theme-mystical', titleStyle: 'title-elegant text-gradient-violet', title: '🔮 Transcendent<br>Journey', visual: 'orb-glow', freq: 'θ + γ', freqStyle: 'freq-large', subtitle: '25 Min Enlightenment' },
+  { cat: 'advanced', label: 'Transcendent Monk', theme: 'theme-mesh', titleStyle: 'title-display text-violet', title: 'Theta + Gamma<br>Monk State', visual: 'wheel-rainbow', freq: '25 min', freqStyle: 'freq-medium text-violet', subtitle: 'Tibetan Meditation' },
+  { cat: 'advanced', label: 'Transcendent Hook', theme: 'theme-mystical', titleStyle: 'title-elegant text-gradient-gold', title: 'What Monks<br>Achieve in Years', visual: 'orb-glow', freq: null, subtitle: 'Access in 25 Minutes', quote: 'Gamma bursts on theta waves — the enlightenment signature' },
+  { cat: 'advanced', label: 'Transcendent Science', theme: 'theme-mesh', titleStyle: 'title-modern text-white', title: 'Scientists Scanned<br>Tibetan Monks', visual: 'wheel-rainbow', freq: 'θ + γ', freqStyle: 'freq-large', subtitle: 'This Is What They Found' },
+  { cat: 'advanced', label: 'Transcendent Beyond', theme: 'theme-mystical', titleStyle: 'title-display text-gradient-violet', title: 'Go Beyond<br>Your Mind', visual: 'bars-rainbow', freq: '25 min', freqStyle: 'freq-medium', subtitle: 'The Enlightenment Experience' },
+  { cat: 'advanced', label: 'Transcendent Unity', theme: 'theme-mesh', titleStyle: 'title-elegant text-violet', title: 'Experience<br>Unity', visual: 'orb-glow', freq: 'θ + γ', freqStyle: 'freq-medium', subtitle: 'Dissolve the Ego' },
+  { cat: 'advanced', label: 'Transcendent Stats', theme: 'theme-mystical', titleStyle: 'title-modern text-white', title: null, number: '25', numberStyle: 'number-gradient', subtitle: 'Minutes to Transcendence', benefits: ['Gamma Enlightenment', 'Deep Theta', 'Monk State'] },
+  { cat: 'advanced', label: 'Transcendent Sacred', theme: 'theme-mesh', titleStyle: 'title-light text-gradient-violet', title: 'Enter<br>Sacred Space', visual: 'wheel-violet', freq: '25 min', freqStyle: 'freq-medium', subtitle: 'The Inner Temple' },
+  { cat: 'advanced', label: 'Transcendent Burst', theme: 'theme-mystical', titleStyle: 'title-display text-gradient-spectrum', title: 'Gamma Burst<br>Illumination', visual: 'wheel-rainbow', freq: '40 Hz', freqStyle: 'freq-large', subtitle: 'The Peak Experience' },
+  { cat: 'advanced', label: 'Transcendent Ancient', theme: 'theme-mesh', titleStyle: 'title-elegant text-gold', title: 'Ancient Wisdom<br>Modern Science', visual: 'orb-glow', freq: '25 min', freqStyle: 'freq-medium', subtitle: 'The Synthesis' },
+  
+  // ========== ADVANCED MODES - THIRD EYE (10) ==========
+  { cat: 'advanced', label: 'Third Eye', theme: 'theme-galaxy', titleStyle: 'title-display text-gradient-spectrum', title: '👁️ Third Eye<br>Awakening', visual: 'orb-glow', freq: '852 Hz', freqStyle: 'freq-large', subtitle: '22 Min Pineal Activation' },
+  { cat: 'advanced', label: 'Third Eye Solfeggio', theme: 'theme-cosmic-purple', titleStyle: 'title-elegant text-white', title: 'Solfeggio<br>963 Hz', visual: 'wheel-violet', freq: '22 min', freqStyle: 'freq-medium', subtitle: 'Ajna Awakening' },
+  { cat: 'advanced', label: 'Third Eye Hook', theme: 'theme-galaxy', titleStyle: 'title-elegant text-gradient-violet', title: 'Eyes Closed<br>But Seeing', visual: 'orb-glow', freq: null, subtitle: '22 Min to Inner Vision', quote: 'The pineal gland remembers how to see' },
+  { cat: 'advanced', label: 'Third Eye Sacred', theme: 'theme-cosmic-purple', titleStyle: 'title-display text-gradient-spectrum', title: 'Sacred<br>Frequencies', visual: 'wheel-rainbow', freq: '852 + 963', freqStyle: 'freq-medium', subtitle: 'Ancient Solfeggio Scale' },
+  { cat: 'advanced', label: 'Third Eye Vision', theme: 'theme-galaxy', titleStyle: 'title-modern text-white', title: 'Activate<br>Inner Vision', visual: 'bars-rainbow', freq: '22 min', freqStyle: 'freq-medium', subtitle: 'Pineal Gateway' },
+  { cat: 'advanced', label: 'Third Eye Stats', theme: 'theme-cosmic-purple', titleStyle: 'title-modern text-white', title: null, number: '963', numberStyle: 'number-gradient', subtitle: 'Hz — The Pineal Frequency', benefits: ['Third Eye Opening', 'Intuition Boost', 'Spiritual Vision'] },
+  { cat: 'advanced', label: 'Third Eye Light', theme: 'theme-galaxy', titleStyle: 'title-elegant text-gradient-violet', title: 'See The<br>Inner Light', visual: 'orb-glow', freq: '852 Hz', freqStyle: 'freq-large', subtitle: 'Ajna Illumination' },
+  { cat: 'advanced', label: 'Third Eye Ancient', theme: 'theme-cosmic-purple', titleStyle: 'title-display text-white', title: 'They Hid This<br>Knowledge', visual: 'wheel-violet', freq: '22 min', freqStyle: 'freq-medium', subtitle: 'Now You Have It' },
+  { cat: 'advanced', label: 'Third Eye Gamma', theme: 'theme-galaxy', titleStyle: 'title-display text-gradient-spectrum', title: 'Solfeggio +<br>Gamma Flash', visual: 'wheel-rainbow', freq: '40 Hz', freqStyle: 'freq-large', subtitle: 'The Illumination Combo' },
+  { cat: 'advanced', label: 'Third Eye Pineal', theme: 'theme-cosmic-purple', titleStyle: 'title-light text-gradient-violet', title: 'Your Pineal<br>Awaits', visual: 'orb-glow', freq: '963 Hz', freqStyle: 'freq-large', subtitle: '22 Min Activation' },
+  
+  // ========== ADVANCED MODES - BODY RESTORE (10) ==========
+  { cat: 'advanced', label: 'Body Restore', theme: 'theme-rose', titleStyle: 'title-modern text-rose', title: '🩹 Body Restore<br>Session', visual: 'bars-rainbow', freq: 'δ GH', freqStyle: 'freq-large', subtitle: '22 Min Cellular Healing' },
+  { cat: 'advanced', label: 'Body GH', theme: 'theme-spotlight', titleStyle: 'title-display text-gradient-gold', title: 'Growth Hormone<br>Release', visual: 'wheel-rainbow', freq: '22 min', freqStyle: 'freq-medium', subtitle: 'Deep Delta Recovery' },
+  { cat: 'advanced', label: 'Body Hook', theme: 'theme-rose', titleStyle: 'title-elegant text-rose', title: 'Tired Body?<br>Aching Muscles?', visual: 'orb-glow', freq: null, subtitle: '22 Min to Feel Renewed', quote: 'Delta triggers your body\'s repair mode' },
+  { cat: 'advanced', label: 'Body Science', theme: 'theme-spotlight', titleStyle: 'title-modern text-white', title: 'Delta Waves<br>Release GH', visual: 'bars-rainbow', freq: '0.5-3 Hz', freqStyle: 'freq-large', subtitle: 'The Healing Frequency' },
+  { cat: 'advanced', label: 'Body Heal', theme: 'theme-rose', titleStyle: 'title-display text-gradient-gold', title: 'Heal While<br>You Rest', visual: 'wheel-rainbow', freq: '22 min', freqStyle: 'freq-medium', subtitle: 'Cellular Regeneration' },
+  { cat: 'advanced', label: 'Body Stats', theme: 'theme-spotlight', titleStyle: 'title-modern text-white', title: null, number: '22', numberStyle: 'number-gradient', subtitle: 'Minutes of Deep Healing', benefits: ['Growth Hormone', 'Pain Relief', 'Cell Renewal'] },
+  { cat: 'advanced', label: 'Body Vagus', theme: 'theme-rose', titleStyle: 'title-elegant text-rose', title: 'Activate<br>Vagus Nerve', visual: 'bars-rainbow', freq: '6-7 Hz', freqStyle: 'freq-medium', subtitle: 'Rest & Digest Mode' },
+  { cat: 'advanced', label: 'Body Pain', theme: 'theme-spotlight', titleStyle: 'title-display text-gradient-gold', title: 'Pain Fades<br>In Delta', visual: 'orb-glow', freq: '22 min', freqStyle: 'freq-medium', subtitle: 'Natural Relief' },
+  { cat: 'advanced', label: 'Body Renew', theme: 'theme-rose', titleStyle: 'title-light text-white', title: 'Every Cell<br>Renews', visual: 'wheel-rainbow', freq: 'δ GH', freqStyle: 'freq-large', subtitle: 'The Regeneration Session' },
+  { cat: 'advanced', label: 'Body Immune', theme: 'theme-spotlight', titleStyle: 'title-modern text-rose', title: 'Boost Your<br>Immune System', visual: 'bars-rainbow', freq: '22 min', freqStyle: 'freq-medium', subtitle: 'Deep Theta Activation' },
+  
+  // ========== ADVANCED MODES - SPACE CLEAR (10) ==========
+  { cat: 'advanced', label: 'Space Clear', theme: 'theme-teal', titleStyle: 'title-elegant text-teal', title: '✨ Space Clear<br>Experience', visual: 'bars-teal', freq: '9 Sol', freqStyle: 'freq-large', subtitle: '18 Min Room Cleansing' },
+  { cat: 'advanced', label: 'Space Solfeggio', theme: 'theme-neon-frame', titleStyle: 'title-tech text-gradient-teal', title: 'SOLFEGGIO<br>SWEEP', visual: 'wheel-teal', freq: '18 min', freqStyle: 'freq-medium', subtitle: '174-963 Hz Purification' },
+  { cat: 'advanced', label: 'Space Hook', theme: 'theme-teal', titleStyle: 'title-elegant text-gradient-teal', title: 'Room Feels<br>Heavy?', visual: 'orb-glow', freq: null, subtitle: '18 Min to Clear Energy', quote: 'Play through speakers to cleanse any space' },
+  { cat: 'advanced', label: 'Space Ancient', theme: 'theme-neon-frame', titleStyle: 'title-display text-teal', title: 'Temples Used<br>Sound to Cleanse', visual: 'wheel-teal', freq: '9 Freq', freqStyle: 'freq-large', subtitle: 'Ancient Purification' },
+  { cat: 'advanced', label: 'Space Home', theme: 'theme-teal', titleStyle: 'title-modern text-white', title: 'Cleanse Your<br>Home', visual: 'bars-teal', freq: '18 min', freqStyle: 'freq-medium', subtitle: 'Full Solfeggio Sweep' },
+  { cat: 'advanced', label: 'Space Stats', theme: 'theme-neon-frame', titleStyle: 'title-modern text-white', title: null, number: '9', numberStyle: 'number-teal', subtitle: 'Sacred Solfeggio Frequencies', benefits: ['Clear Negativity', 'Balance Energy', 'Harmonize Space'] },
+  { cat: 'advanced', label: 'Space 528', theme: 'theme-teal', titleStyle: 'title-elegant text-gradient-teal', title: 'The Miracle<br>Tone', visual: 'wheel-rainbow', freq: '528 Hz', freqStyle: 'freq-large', subtitle: 'DNA Repair Frequency' },
+  { cat: 'advanced', label: 'Space Uses', theme: 'theme-neon-frame', titleStyle: 'title-display text-teal', title: 'When to<br>Clear Space', visual: 'tags', tags: ['🏠 New Home', '😤 After Fights', '🧘 Before Meditation', '💼 Office'], subtitle: 'Play Through Speakers' },
+  { cat: 'advanced', label: 'Space OM', theme: 'theme-teal', titleStyle: 'title-elegant text-white', title: 'OM Opens<br>Sacred Space', visual: 'orb-glow', freq: '136.1 Hz', freqStyle: 'freq-large', subtitle: 'Cosmic Frequency' },
+  { cat: 'advanced', label: 'Space Pure', theme: 'theme-neon-frame', titleStyle: 'title-light text-gradient-teal', title: 'Pure Energy<br>Pure Space', visual: 'bars-teal', freq: '18 min', freqStyle: 'freq-medium', subtitle: 'The Complete Cleanse' },
+];
+
+// Helper: Create stars
+function createStars(count = 20) {
+  let html = '<div class="stars">';
+  for (let i = 0; i < count; i++) {
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    const size = 1 + Math.random() * 2;
+    const opacity = 0.3 + Math.random() * 0.5;
+    html += `<div class="star" style="left:${x}%;top:${y}%;width:${size}px;height:${size}px;opacity:${opacity}"></div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+// Helper: Create bars
+function createBars(colorClass) {
+  return `<div class="bars bars-standard ${colorClass}">${'<div class="bar"></div>'.repeat(9)}</div>`;
+}
+
+// Helper: Create visual element
+function createVisual(visual, tags) {
+  if (!visual) return '';
+  if (visual === 'tags' && tags) {
+    return `<div class="tags">${tags.map((t, i) => `<span class="tag tag-${['violet','teal','gold','rose'][i % 4]}">${t}</span>`).join('')}</div>`;
+  }
+  if (visual === 'timeline') return '<div class="timeline"><div class="phase"></div><div class="phase"></div><div class="phase"></div><div class="phase"></div></div>';
+  if (visual === 'dual-wheels') return '<div class="dual-wheels"><div class="mini-wheel"></div><div class="mini-wheel"></div></div>';
+  if (visual.startsWith('bars-')) return createBars(visual);
+  if (visual.startsWith('wheel-')) return `<div class="wheel ${visual}"></div>`;
+  if (visual.startsWith('orb-')) return `<div class="orb ${visual}"></div>`;
+  return '';
+}
+
+// Create a single card
+function createCard(card, format, cardId = '', posted = false) {
+  let html = `<div class="card ${format} ${card.theme}${card.corners ? ' corners' : ''}" data-cat="${card.cat}" data-card-id="${cardId}">`;
+  const starCount = format === 'square' ? 20 : format === 'portrait' ? 18 : 15;
+  html += createStars(starCount);
+  
+  // Posted badge
+  if (posted) {
+    html += '<div class="posted-badge">POSTED</div>';
+  }
+  
+  if (card.corners) {
+    html += '<div class="corner-bl"></div><div class="corner-br"></div>';
+  }
+  
+  // Title or number
+  if (card.number) {
+    html += `<div class="number ${card.numberStyle || 'number-gradient'}">${card.number}</div>`;
+  } else if (card.title) {
+    html += `<div class="title ${card.titleStyle}">${card.title}</div>`;
+  }
+  
+  // Subtitle before visual
+  if (card.subtitle && !card.freq && !card.visual && !card.benefits) {
+    html += `<div class="subtitle">${card.subtitle}</div>`;
+  }
+  
+  // Icon
+  if (card.icon) {
+    html += `<div class="icon-large">${card.icon}</div>`;
+  }
+  
+  // Visual element
+  html += createVisual(card.visual, card.tags);
+  
+  // Frequency
+  if (card.freq) {
+    html += `<div class="freq ${card.freqStyle || 'freq-large'}">${card.freq}</div>`;
+  }
+  
+  // Subtitle after freq
+  if (card.subtitle && (card.freq || card.visual)) {
+    html += `<div class="subtitle">${card.subtitle}</div>`;
+  }
+  
+  // Benefits
+  if (card.benefits) {
+    html += '<div class="benefits">';
+    card.benefits.forEach(b => html += `<div class="benefit">${b}</div>`);
+    html += '</div>';
+  }
+  
+  // Quote
+  if (card.quote) {
+    html += `<div class="quote">${card.quote}</div>`;
+  }
+  
+  // Spacer for story and portrait formats
+  if (format === 'story' || format === 'portrait') {
+    html += '<div class="spacer"></div>';
+  }
+  
+  // Divider
+  html += '<div class="divider"></div>';
+  
+  // Logo
+  html += '<div class="logo"><div class="logo-symbol">✧</div><div class="logo-text">NESTORIUM</div></div>';
+  html += '<div class="url">nestorlab.app</div>';
+  
+  html += '</div>';
+  return html;
+}
+
+// LocalStorage for posted tracking
+const STORAGE_KEY = 'nestorium_posted_cards';
+
+function getPostedCards() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  } catch (e) {
+    return {};
+  }
+}
+
+function setCardPosted(cardId, posted) {
+  const data = getPostedCards();
+  if (posted) {
+    data[cardId] = Date.now();
+  } else {
+    delete data[cardId];
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function isCardPosted(cardId) {
+  return !!getPostedCards()[cardId];
+}
+
+// Toast notification
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// Download card as image using html2canvas
+async function downloadCard(cardElement, cardId, format) {
+  showToast('📸 Preparing download...');
+  
+  // Load html2canvas if not already loaded
+  if (!window.html2canvas) {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    document.head.appendChild(script);
+    await new Promise(resolve => script.onload = resolve);
+  }
+  
+  try {
+    const canvas = await html2canvas(cardElement, {
+      scale: 3, // High resolution
+      backgroundColor: null,
+      useCORS: true,
+      logging: false
+    });
+    
+    // Convert to blob and download
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `nestorium-${cardId}-${format}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('✅ Card saved!');
+    }, 'image/png', 1.0);
+  } catch (err) {
+    console.error('Download error:', err);
+    showToast('❌ Download failed. Try screenshot instead.');
+  }
+}
+
+// Toggle posted status
+function togglePosted(cardId, btn) {
+  const isPosted = isCardPosted(cardId);
+  setCardPosted(cardId, !isPosted);
+  
+  // Update button
+  if (!isPosted) {
+    btn.classList.add('posted');
+    btn.innerHTML = '✅ Posted';
+    showToast('✅ Marked as posted');
+  } else {
+    btn.classList.remove('posted');
+    btn.innerHTML = '📌 Mark Posted';
+    showToast('📌 Unmarked');
+  }
+  
+  // Update badge
+  const wrapper = btn.closest('.card-wrapper');
+  const existingBadge = wrapper.querySelector('.posted-badge');
+  if (!isPosted) {
+    if (!existingBadge) {
+      const card = wrapper.querySelector('.card');
+      const badge = document.createElement('div');
+      badge.className = 'posted-badge';
+      badge.textContent = 'POSTED';
+      card.appendChild(badge);
+    }
+  } else {
+    if (existingBadge) existingBadge.remove();
+  }
+  
+  // Update posted count
+  updatePostedCount();
+  
+  // Re-render if filtering by status
+  if (currentStatus !== 'all') {
+    renderCards(currentCat, currentFormat, currentStatus);
+  }
+}
+
+// Render all cards
+function renderCards(filter = 'all', format = 'all', status = 'all') {
+  const container = document.getElementById('cardsContainer');
+  let html = '';
+  let count = 0;
+  
+  CARDS.forEach((card, i) => {
+    const catMatch = filter === 'all' || card.cat === filter;
+    
+    if (catMatch) {
+      const formats = format === 'all' ? ['square', 'portrait', 'story'] : [format];
+      
+      formats.forEach(fmt => {
+        const cardId = `${card.cat}-${card.label.toLowerCase().replace(/\s+/g, '-')}-${fmt}`;
+        const posted = isCardPosted(cardId);
+        
+        // Status filter
+        if (status === 'posted' && !posted) return;
+        if (status === 'unposted' && posted) return;
+        
+        const formatLabel = fmt === 'square' ? '1:1 Square' : fmt === 'portrait' ? '4:5 Portrait' : '9:16 Story';
+        
+        html += `<div class="card-wrapper" data-card-id="${cardId}">
+          <span class="card-label">${formatLabel} • ${card.label}</span>
+          ${createCard(card, fmt, cardId, posted)}
+          <div class="card-actions">
+            <button class="card-action-btn save-btn" data-card-id="${cardId}" data-format="${fmt}">
+              💾 Save
+            </button>
+            <button class="card-action-btn ${posted ? 'posted' : ''} posted-btn" data-card-id="${cardId}">
+              ${posted ? '✅ Posted' : '📌 Mark Posted'}
+            </button>
+          </div>
+        </div>`;
+        count++;
+      });
+    }
+  });
+  
+  container.innerHTML = html;
+  document.getElementById('visibleCount').textContent = count;
+  
+  // Attach event listeners
+  container.querySelectorAll('.save-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const cardId = btn.dataset.cardId;
+      const format = btn.dataset.format;
+      const cardEl = btn.closest('.card-wrapper').querySelector('.card');
+      downloadCard(cardEl, cardId, format);
+    });
+  });
+  
+  container.querySelectorAll('.posted-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      togglePosted(btn.dataset.cardId, btn);
+    });
+  });
+}
+
+// Init
+let currentCat = 'all';
+let currentFormat = 'square';
+let currentStatus = 'all';
+
+function init() {
+  document.getElementById('totalCount').textContent = CARDS.length * 3;
+  renderCards(currentCat, currentFormat, currentStatus);
+  
+  // Mobile category dropdown
+  const mobileSelect = document.getElementById('categorySelectMobile');
+  if (mobileSelect) {
+    mobileSelect.addEventListener('change', (e) => {
+      currentCat = e.target.value;
+      renderCards(currentCat, currentFormat, currentStatus);
+    });
+  }
+  
+  // Desktop category filters
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCat = btn.dataset.cat;
+      renderCards(currentCat, currentFormat, currentStatus);
+    });
+  });
+  
+  // Status filter buttons
+  document.querySelectorAll('.status-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentStatus = btn.dataset.status;
+      renderCards(currentCat, currentFormat, currentStatus);
+    });
+  });
+  
+  // Format select dropdowns (mobile and desktop)
+  const formatSelectMobile = document.getElementById('formatSelectMobile');
+  const formatSelectDesktop = document.getElementById('formatSelectDesktop');
+  
+  if (formatSelectMobile) {
+    formatSelectMobile.addEventListener('change', (e) => {
+      currentFormat = e.target.value;
+      // Sync desktop selector
+      if (formatSelectDesktop) formatSelectDesktop.value = currentFormat;
+      renderCards(currentCat, currentFormat, currentStatus);
+    });
+  }
+  
+  if (formatSelectDesktop) {
+    formatSelectDesktop.addEventListener('change', (e) => {
+      currentFormat = e.target.value;
+      // Sync mobile selector
+      if (formatSelectMobile) formatSelectMobile.value = currentFormat;
+      renderCards(currentCat, currentFormat, currentStatus);
+    });
+  }
+  
+  // Show posted count in stats
+  updatePostedCount();
+}
+
+function updatePostedCount() {
+  const postedCount = Object.keys(getPostedCards()).length;
+  const presetCount = document.getElementById('presetCount');
+  if (presetCount) {
+    presetCount.textContent = `${CARDS.length * 3} cards • ${postedCount} posted`;
+  }
+}
+
+init();
+</script>
+
+</body>
+</html>
